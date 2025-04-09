@@ -1,43 +1,69 @@
 import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
-import { Kecamatan } from './kecamatan';
+import { Controls, calculateZoomTransform, calculatePathBounds } from '../components/control';
+import { KecamatanDetail, hideKecamatanInfo } from '../components/detail';
+import { Kecamatan } from '../data/kecamatan';
 import { Sidebar } from './sidebar';
 
+interface KecamatanData {
+    name: string;
+    path: string;
+    center: [number, number];
+    defaultColor?: string;
+    area: string | number;
+    population: string | number;
+}
+
 export function Map() {
-    const svgRef = useRef(null);
-    const containerRef = useRef(null);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const svgRef = useRef<SVGSVGElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [containerDimensions, setContainerDimensions] = useState({ width: 0, height: 0 });
+    const [selectedKecamatan, setSelectedKecamatan] = useState<KecamatanData | null>(null);
+
     const mapInstanceRef = useRef({
-        svg: null,
-        g: null,
-        zoom: null,
-        paths: null,
-        kecamatanInfo: null,
-        kecamatanTitle: null,
-        kecamatanPopulation: null,
-        kecamatanArea: null,
+        svg: null as d3.Selection<SVGSVGElement, unknown, null, undefined> | null,
+        g: null as d3.Selection<SVGGElement, unknown, null, undefined> | null,
+        zoom: null as d3.ZoomBehavior<Element, unknown> | null,
+        paths: null as d3.Selection<d3.BaseType, KecamatanData, SVGGElement, unknown> | null,
+        mapBounds: { minX: 0, maxX: 0, minY: 0, maxY: 0 }
     });
 
-    // Memeriksa apakah data Kecamatan tersedia
-    const [kecamatanData, setKecamatanData] = useState([]);
-    const [mapError, setMapError] = useState(null);
+    // Check if Kecamatan data is available
+    const [kecamatanData, setKecamatanData] = useState<KecamatanData[]>([]);
+    const [mapError, setMapError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Memeriksa ketersediaan data
+        // Check data availability
         if (!Kecamatan || Kecamatan.length === 0) {
-            setMapError("Data kecamatan tidak tersedia");
-            console.error("Data kecamatan tidak tersedia atau kosong");
+            setMapError("Kecamatan data is not available");
+            console.error("Kecamatan data is not available or empty");
             return;
         }
         setKecamatanData(Kecamatan);
     }, []);
 
+    // Update container dimensions when sidebar state changes
+    useEffect(() => {
+        if (containerRef.current) {
+            // Short delay to allow the DOM to update
+            const timer = setTimeout(() => {
+                setContainerDimensions({
+                    width: containerRef.current!.clientWidth,
+                    height: containerRef.current!.clientHeight
+                });
+            }, 300); // Match the transition duration
+
+            return () => clearTimeout(timer);
+        }
+    }, [isSidebarOpen]);
+
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
-    const handleSelectKecamatan = (kecamatan) => {
+    const handleSelectKecamatan = (kecamatan: KecamatanData) => {
         if (!mapInstanceRef.current.svg || !mapInstanceRef.current.paths) return;
 
         // Reset all paths to default color
@@ -54,72 +80,50 @@ export function Map() {
                 .duration(300)
                 .style("fill", "#ec4899");
 
-            // Update info panel
-            updateInfo(kecamatan);
-
-            // Show info panel
-            mapInstanceRef.current.kecamatanInfo
-                .transition()
-                .duration(300)
-                .style("opacity", 1);
+            // Update the selected kecamatan state
+            setSelectedKecamatan(kecamatan);
 
             // Zoom to the selected kecamatan
             zoomToKecamatan(kecamatan);
         }
     };
 
-    const updateInfo = (kecamatan) => {
-        if (!mapInstanceRef.current.kecamatanTitle) return;
-
-        mapInstanceRef.current.kecamatanTitle.text(kecamatan.name);
-        mapInstanceRef.current.kecamatanPopulation.text(`Populasi: ${kecamatan.population} jiwa`);
-        mapInstanceRef.current.kecamatanArea.text(`Luas: ${kecamatan.area}`);
-    };
-
-    const zoomToKecamatan = (kecamatan) => {
-        const { svg, zoom, g } = mapInstanceRef.current;
+    const zoomToKecamatan = (kecamatan: KecamatanData) => {
+        const { svg, zoom } = mapInstanceRef.current;
         if (!svg || !zoom || !containerRef.current) return;
 
         const containerWidth = containerRef.current.clientWidth;
         const containerHeight = containerRef.current.clientHeight;
 
-        const buffer = 80;
-        const [cx, cy] = kecamatan.center;
-
-        // Parse the path to find its bounds
-        const pathPoints = kecamatan.path.match(/[0-9]+,[0-9]+/g);
-        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-
-        if (pathPoints && pathPoints.length > 0) {
-            pathPoints.forEach(point => {
-                const [x, y] = point.split(',').map(Number);
-                minX = Math.min(minX, x);
-                maxX = Math.max(maxX, x);
-                minY = Math.min(minY, y);
-                maxY = Math.max(maxY, y);
-            });
-        } else {
-            // If we can't parse the path, just use the center
-            minX = cx - buffer;
-            maxX = cx + buffer;
-            minY = cy - buffer;
-            maxY = cy + buffer;
+        // Ensure kecamatan has the required properties
+        if (!kecamatan || !kecamatan.path) {
+            console.error('Invalid kecamatan data for zoom:', kecamatan);
+            return;
         }
 
-        // Add buffer area
-        minX -= buffer;
-        maxX += buffer;
-        minY -= buffer;
-        maxY += buffer;
+        // Calculate path bounds using the utility function
+        const bounds = calculatePathBounds(kecamatan.path, kecamatan.center);
 
-        // Calculate the appropriate scale
-        const scale = Math.min(8, 0.9 / Math.max((maxX - minX) / containerWidth, (maxY - minY) / containerHeight));
+        // Validate bounds before using
+        if (!bounds || typeof bounds !== 'object' ||
+            isNaN(bounds.minX) || isNaN(bounds.maxX) ||
+            isNaN(bounds.minY) || isNaN(bounds.maxY)) {
+            console.error('Invalid bounds for zoom:', bounds);
+            return;
+        }
 
-        // Create a new transform
-        const transform = d3.zoomIdentity
-            .translate(containerWidth / 2, containerHeight / 2)
-            .scale(scale)
-            .translate(-(minX + maxX) / 2, -(minY + maxY) / 2);
+        // Calculate transform using the utility function
+        const transform = calculateZoomTransform(
+            containerWidth,
+            containerHeight,
+            bounds
+        );
+
+        // Validate transform before applying
+        if (!transform || isNaN(transform.x) || isNaN(transform.y) || isNaN(transform.k)) {
+            console.error('Invalid transform:', transform);
+            return;
+        }
 
         // Apply the transform with a transition
         svg.transition()
@@ -127,40 +131,47 @@ export function Map() {
             .call(zoom.transform, transform);
     };
 
-    // Recalculate the map when sidebar state changes
+    const resetView = () => {
+        const { svg, zoom, g, mapBounds } = mapInstanceRef.current;
+        if (!svg || !zoom || !containerRef.current) return;
+
+        // Reset all path colors
+        g!.selectAll("path")
+            .transition()
+            .duration(300)
+            .style("fill", d => (d as any).defaultColor || "#5b9bd5");
+
+        // Clear the selected kecamatan
+        setSelectedKecamatan(null);
+
+        // Hide info panel using the utility function from detail.tsx
+        hideKecamatanInfo(svg);
+
+        const containerWidth = containerRef.current.clientWidth;
+        const containerHeight = containerRef.current.clientHeight;
+
+        // Create a proper initial transform
+        const initialTransform = calculateZoomTransform(
+            containerWidth,
+            containerHeight,
+            mapBounds
+        );
+
+        // Apply the transform with a transition
+        svg.transition()
+            .duration(750)
+            .call(zoom.transform, initialTransform);
+    };
+
+    // Update SVG dimensions when container dimensions change
     useEffect(() => {
-        // Short delay to allow the DOM to update
-        const timer = setTimeout(() => {
-            if (mapInstanceRef.current.svg && containerRef.current) {
-                const containerWidth = containerRef.current.clientWidth;
-                const containerHeight = containerRef.current.clientHeight;
-
-                mapInstanceRef.current.svg
-                    .attr("width", containerWidth)
-                    .attr("height", containerHeight)
-                    .attr("viewBox", [0, 0, containerWidth, containerHeight]);
-
-                // Update zoom controls position
-                d3.select(".zoom-controls")
-                    .attr("transform", `translate(${containerWidth - 60}, ${containerHeight / 2 - 50})`);
-
-                // Update info panel position
-                d3.select(".kecamatan-info")
-                    .attr("transform", `translate(${containerWidth - 225}, ${containerHeight - 135})`);
-
-                // Update title position
-                d3.select(".map-title")
-                    .attr("x", containerWidth / 2);
-
-                // Update footer position
-                d3.select(".map-footer")
-                    .attr("x", containerWidth / 2)
-                    .attr("y", containerHeight - 30);
-            }
-        }, 300); // Match the transition duration
-
-        return () => clearTimeout(timer);
-    }, [isSidebarOpen]);
+        if (mapInstanceRef.current.svg && containerDimensions.width && containerDimensions.height) {
+            mapInstanceRef.current.svg
+                .attr("width", containerDimensions.width)
+                .attr("height", containerDimensions.height)
+                .attr("viewBox", [0, 0, containerDimensions.width, containerDimensions.height]);
+        }
+    }, [containerDimensions]);
 
     useEffect(() => {
         if (!kecamatanData.length || mapError) return;
@@ -168,7 +179,7 @@ export function Map() {
         const createMap = () => {
             try {
                 if (!containerRef.current || !svgRef.current) {
-                    console.error("Container atau SVG reference belum siap");
+                    console.error("SVG reference is not ready");
                     return;
                 }
 
@@ -177,10 +188,11 @@ export function Map() {
                 const containerHeight = containerRef.current.clientHeight;
 
                 if (!containerWidth || !containerHeight) {
-                    console.error("Container dimensions tidak valid:", containerWidth, containerHeight);
+                    console.error("Invalid container dimensions:", containerWidth, containerHeight);
                     return;
                 }
 
+                setContainerDimensions({ width: containerWidth, height: containerHeight });
                 d3.select(svgRef.current).selectAll("*").remove();
 
                 const svg = d3.select(svgRef.current)
@@ -189,7 +201,7 @@ export function Map() {
                     .attr("height", containerHeight)
                     .style("background", "#f8fafc");
 
-                mapInstanceRef.current.svg = svg;
+                mapInstanceRef.current.svg = svg as unknown as d3.Selection<SVGSVGElement, unknown, null, undefined>;
 
                 svg.append("rect")
                     .attr("width", containerWidth)
@@ -197,11 +209,11 @@ export function Map() {
                     .attr("fill", "#f9fafb");
 
                 const g = svg.append("g");
-                mapInstanceRef.current.g = g;
+                mapInstanceRef.current.g = g as unknown as d3.Selection<SVGGElement, unknown, null, undefined>;
 
                 let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
 
-                // Gunakan array kecamatanData dari state
+                // Calculate map bounds from kecamatan data
                 kecamatanData.forEach(kecamatan => {
                     const pathPoints = kecamatan.path.match(/[0-9]+,[0-9]+/g);
                     if (pathPoints) {
@@ -221,8 +233,11 @@ export function Map() {
                 maxX += padding;
                 maxY += padding;
 
+                // Store map bounds in ref
+                mapInstanceRef.current.mapBounds = { minX, maxX, minY, maxY };
+
                 // Improved zoom definition
-                const zoom = d3.zoom()
+                const zoom = d3.zoom<SVGSVGElement, unknown>()
                     .scaleExtent([0.5, 8]) // Allow zooming out a bit more
                     .extent([[0, 0], [containerWidth, containerHeight]])
                     .on("zoom", (event) => {
@@ -240,46 +255,43 @@ export function Map() {
                     .call(zoom.translateTo, (minX + maxX) / 2, (minY + maxY) / 2)
                     .on("dblclick.zoom", null); // Disable default double-click zoom
 
-                const reset = () => {
-                    // Reset all path colors
-                    g.selectAll("path")
-                        .transition()
-                        .duration(300)
-                        .style("fill", d => d.defaultColor || "#5b9bd5");
+                // Use dblclick for reset
+                svg.on("dblclick", resetView);
 
-                    // Hide info panel
-                    d3.select(".kecamatan-info")
-                        .transition()
-                        .duration(300)
-                        .style("opacity", 0);
+                // Add grid pattern
+                const defs = svg.append("defs");
 
-                    const containerWidth = containerRef.current.clientWidth;
-                    const containerHeight = containerRef.current.clientHeight;
+                // Create grid pattern
+                const pattern = defs.append("pattern")
+                    .attr("id", "grid-pattern")
+                    .attr("width", 20)  // Grid size
+                    .attr("height", 20)
+                    .attr("patternUnits", "userSpaceOnUse");
 
-                    // Create a proper initial transform
-                    const initialTransform = d3.zoomIdentity
-                        .translate(containerWidth / 2, containerHeight / 2)
-                        .scale(1)
-                        .translate(-(minX + maxX) / 2, -(minY + maxY) / 2);
+                // Add background for pattern (base color)
+                pattern.append("rect")
+                    .attr("width", 20)
+                    .attr("height", 20)
+                    .attr("fill", "#f9fafb");
 
-                    // Apply the transform with a transition
-                    svg.transition()
-                        .duration(750)
-                        .call(zoom.transform, initialTransform);
-                };
+                // Add lines to create grid
+                pattern.append("path")
+                    .attr("d", "M 20 0 L 0 0 0 20")
+                    .attr("fill", "none")
+                    .attr("stroke", "#e5e7eb")  // Grid line color
+                    .attr("stroke-width", 1);
 
-                // Use click instead of dblclick for reset button
-                svg.select("rect").on("click", null);
-                svg.on("dblclick", reset);
+                svg.select("rect")  // Select existing background rect
+                    .attr("fill", "url(#grid-pattern)");
 
-                const clicked = (event, d) => {
+                const clicked = (event: any, d: KecamatanData) => {
                     event.stopPropagation();
 
                     // Reset all colors
                     g.selectAll("path")
                         .transition()
                         .duration(300)
-                        .style("fill", kec => kec.defaultColor || "#5b9bd5");
+                        .style("fill", (kec: any) => kec.defaultColor || "#5b9bd5");
 
                     // Highlight clicked kecamatan
                     d3.select(event.currentTarget)
@@ -287,63 +299,18 @@ export function Map() {
                         .duration(300)
                         .style("fill", "#ec4899");
 
-                    // Update info panel
-                    updateInfo(d);
+                    // Set the selected kecamatan
+                    setSelectedKecamatan(d);
 
-                    // Show info panel
-                    d3.select(".kecamatan-info")
-                        .transition()
-                        .duration(300)
-                        .style("opacity", 1);
+                    // Calculate path bounds
+                    const bounds = calculatePathBounds(d.path, d.center);
 
-                    // Find bounding box with buffer
-                    const buffer = 80;
-                    let x0, y0, x1, y1;
-
-                    // Try to use the path points to find bounds
-                    const pathPoints = d.path.match(/[0-9]+,[0-9]+/g);
-                    if (pathPoints && pathPoints.length > 0) {
-                        let pathMinX = Infinity, pathMaxX = -Infinity;
-                        let pathMinY = Infinity, pathMaxY = -Infinity;
-
-                        pathPoints.forEach(point => {
-                            const [x, y] = point.split(',').map(Number);
-                            pathMinX = Math.min(pathMinX, x);
-                            pathMaxX = Math.max(pathMaxX, x);
-                            pathMinY = Math.min(pathMinY, y);
-                            pathMaxY = Math.max(pathMaxY, y);
-                        });
-
-                        x0 = pathMinX - buffer;
-                        y0 = pathMinY - buffer;
-                        x1 = pathMaxX + buffer;
-                        y1 = pathMaxY + buffer;
-                    } else {
-                        // Fallback to using center point
-                        const [cx, cy] = d.center;
-                        x0 = cx - buffer;
-                        y0 = cy - buffer;
-                        x1 = cx + buffer;
-                        y1 = cy + buffer;
-                    }
-
-                    // Ensure bounds are within the overall extents
-                    x0 = Math.max(minX, x0);
-                    y0 = Math.max(minY, y0);
-                    x1 = Math.min(maxX, x1);
-                    y1 = Math.min(maxY, y1);
-
-                    const containerWidth = containerRef.current.clientWidth;
-                    const containerHeight = containerRef.current.clientHeight;
-
-                    // Calculate the appropriate scale
-                    const scale = Math.min(8, 0.9 / Math.max((x1 - x0) / containerWidth, (y1 - y0) / containerHeight));
-
-                    // Create a new transform
-                    const transform = d3.zoomIdentity
-                        .translate(containerWidth / 2, containerHeight / 2)
-                        .scale(scale)
-                        .translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
+                    // Calculate transform
+                    const transform = calculateZoomTransform(
+                        containerWidth,
+                        containerHeight,
+                        bounds
+                    );
 
                     // Apply the transform with a transition
                     svg.transition()
@@ -351,7 +318,7 @@ export function Map() {
                         .call(zoom.transform, transform);
                 };
 
-                const paths = g.selectAll("path")
+                const paths = g.selectAll<SVGPathElement, KecamatanData>("path")
                     .data(kecamatanData)
                     .enter()
                     .append("path")
@@ -375,7 +342,7 @@ export function Map() {
                             .attr("opacity", 1);
                     });
 
-                mapInstanceRef.current.paths = paths;
+                mapInstanceRef.current.paths = paths as unknown as d3.Selection<d3.BaseType, KecamatanData, SVGGElement, unknown>;
 
                 paths.append("title")
                     .text(d => d.name);
@@ -395,174 +362,29 @@ export function Map() {
                     .style("text-shadow", "0px 0px 3px rgba(0,0,0,0.6)")
                     .text(d => d.name);
 
-                svg.append("text")
-                    .attr("class", "map-title")
-                    .attr("x", containerWidth / 2)
-                    .attr("y", 40)
-                    .attr("text-anchor", "middle")
-                    .attr("font-size", "24px")
-                    .attr("font-weight", "bold")
-                    .attr("fill", "#1f2937")
-                    .text("Peta Kabupaten Bondowoso");
-
-                svg.append("text")
-                    .attr("class", "map-footer")
-                    .attr("x", containerWidth / 2)
-                    .attr("y", containerHeight - 30)
-                    .attr("text-anchor", "middle")
-                    .attr("fill", "#1f2937")
-                    .attr("font-size", "14px")
-                    .text("© 2025 Peta Interaktif Bondowoso | Data: BPS Kab. Bondowoso");
-
-                const kecamatanInfo = svg.append("g")
-                    .attr("class", "kecamatan-info")
-                    .attr("transform", `translate(${containerWidth - 220}, 50)`)
-                    .style("opacity", 0);
-
-                mapInstanceRef.current.kecamatanInfo = kecamatanInfo;
-
-                kecamatanInfo.append("rect")
-                    .attr("width", 205)
-                    .attr("height", 105)
-                    .attr("fill", "white")
-                    .attr("stroke", "#e5e7eb")
-                    .attr("stroke-width", 1)
-                    .attr("rx", 8)
-                    .style("filter", "drop-shadow(0px 1px 2px rgba(0,0,0,0.1))");
-
-                const kecamatanTitle = kecamatanInfo.append("text")
-                    .attr("x", 15)
-                    .attr("y", 30)
-                    .attr("font-size", "18px")
-                    .attr("font-weight", "bold")
-                    .attr("fill", "#7c3aed")
-                    .text("");
-
-                mapInstanceRef.current.kecamatanTitle = kecamatanTitle;
-
-                const kecamatanPopulation = kecamatanInfo.append("text")
-                    .attr("x", 15)
-                    .attr("y", 60)
-                    .attr("font-size", "14px")
-                    .attr("fill", "#1f2937")
-                    .text("");
-
-                mapInstanceRef.current.kecamatanPopulation = kecamatanPopulation;
-
-                const kecamatanArea = kecamatanInfo.append("text")
-                    .attr("x", 15)
-                    .attr("y", 85)
-                    .attr("font-size", "14px")
-                    .attr("fill", "#1f2937")
-                    .text("");
-
-                mapInstanceRef.current.kecamatanArea = kecamatanArea;
-
-                // Improved zoom controls with better event handling
-                const zoomControls = svg.append("g")
-                    .attr("class", "zoom-controls")
-                    .attr("transform", `translate(${containerWidth - 60}, ${containerHeight / 2 - 50})`);
-
-                zoomControls.append("rect")
-                    .attr("width", 40)
-                    .attr("height", 100)
-                    .attr("fill", "white")
-                    .attr("stroke", "#e5e7eb")
-                    .attr("rx", 8)
-                    .style("filter", "drop-shadow(0px 1px 2px rgba(0,0,0,0.1))");
-
-                const zoomInBtn = zoomControls.append("g")
-                    .attr("cursor", "pointer")
-                    .on("click", (event) => {
-                        event.stopPropagation(); // Prevent event bubbling
-                        svg.transition()
-                            .duration(300)
-                            .call(zoom.scaleBy, 1.5); // Increased scale factor
-                    });
-
-                zoomInBtn.append("circle")
-                    .attr("cx", 20)
-                    .attr("cy", 25)
-                    .attr("r", 15)
-                    .attr("fill", "#4f46e5")
-                    .attr("opacity", 0.9);
-
-                zoomInBtn.append("text")
-                    .attr("x", 20)
-                    .attr("y", 30)
-                    .attr("text-anchor", "middle")
-                    .attr("font-size", "20px")
-                    .attr("fill", "white")
-                    .attr("font-weight", "bold")
-                    .text("+");
-
-                const zoomOutBtn = zoomControls.append("g")
-                    .attr("cursor", "pointer")
-                    .on("click", (event) => {
-                        event.stopPropagation(); // Prevent event bubbling
-                        svg.transition()
-                            .duration(300)
-                            .call(zoom.scaleBy, 0.7);
-                    });
-
-                zoomOutBtn.append("circle")
-                    .attr("cx", 20)
-                    .attr("cy", 75)
-                    .attr("r", 15)
-                    .attr("fill", "#4f46e5")
-                    .attr("opacity", 0.9);
-
-                zoomOutBtn.append("text")
-                    .attr("x", 20)
-                    .attr("y", 80)
-                    .attr("text-anchor", "middle")
-                    .attr("font-size", "24px")
-                    .attr("fill", "white")
-                    .attr("font-weight", "bold")
-                    .text("-");
-
-                const resetBtn = zoomControls.append("g")
-                    .attr("cursor", "pointer")
-                    .on("click", (event) => {
-                        event.stopPropagation(); // Prevent event bubbling
-                        reset();
-                    });
-
-                resetBtn.append("circle")
-                    .attr("cx", 20)
-                    .attr("cy", 50)
-                    .attr("r", 15)
-                    .attr("fill", "#06b6d4")
-                    .attr("opacity", 0.9);
-
-                resetBtn.append("text")
-                    .attr("x", 20)
-                    .attr("y", 55)
-                    .attr("text-anchor", "middle")
-                    .attr("font-size", "14px")
-                    .attr("fill", "white")
-                    .attr("font-weight", "bold")
-                    .text("R");
-
                 // Create a proper initial transform
-                const initialTransform = d3.zoomIdentity
-                    .translate(containerWidth / 2, containerHeight / 2)
-                    .scale(1)
-                    .translate(-(minX + maxX) / 2, -(minY + maxY) / 2);
+                const initialTransform = calculateZoomTransform(
+                    containerWidth,
+                    containerHeight,
+                    { minX, maxX, minY, maxY }
+                );
 
-                // Apply the initial transform
+                initialTransform.x += 175;
+                initialTransform.y -= 175;
+
+                // Apply the modified transform
                 svg.call(zoom.transform, initialTransform);
 
-            } catch (error) {
+            } catch (error: any) {
                 console.error("Error creating map:", error);
-                setMapError(`Error membuat peta: ${error.message}`);
+                setMapError(`Error creating map: ${error.message}`);
             }
         };
 
         // Initial creation after DOM is ready
         const timer = setTimeout(() => {
             createMap();
-        }, 100); // Increased timeout to ensure DOM is fully ready
+        }, 100);
 
         const handleResize = () => {
             createMap();
@@ -586,21 +408,43 @@ export function Map() {
 
             <div
                 ref={containerRef}
-                className={`h-full transition-all duration-300 ${isSidebarOpen ? 'ml-80' : 'ml-0'}`}
+                className={`h-full transition-all duration-300`}
             >
                 {mapError ? (
                     <div className="flex h-full w-full items-center justify-center bg-gray-100">
                         <div className="bg-white p-8 rounded-lg shadow-md text-center">
-                            <h2 className="text-2xl font-bold text-red-600 mb-4">Error Peta</h2>
+                            <h2 className="text-2xl font-bold text-red-600 mb-4">Map Error</h2>
                             <p className="text-gray-700">{mapError}</p>
-                            <p className="mt-4 text-gray-600">Periksa konsol untuk detil lebih lanjut</p>
+                            <p className="mt-4 text-gray-600">Check console for more details</p>
                         </div>
                     </div>
                 ) : (
-                    <svg
-                        ref={svgRef}
-                        className="w-full h-full"
-                    ></svg>
+                    <>
+                        <svg
+                            ref={svgRef}
+                                className={`w-full h-full`}
+                        ></svg>
+
+                        {/* KecamatanDetail component */}
+                        {mapInstanceRef.current.svg && (
+                            <KecamatanDetail
+                                containerWidth={containerDimensions.width}
+                                containerHeight={containerDimensions.height}
+                                kecamatan={selectedKecamatan}
+                                svg={mapInstanceRef.current.svg}
+                            />
+                        )}
+
+                        {mapInstanceRef.current.svg && mapInstanceRef.current.zoom && (
+                            <Controls
+                                svg={mapInstanceRef.current.svg}
+                                zoom={mapInstanceRef.current.zoom}
+                                containerWidth={containerDimensions.width}
+                                containerHeight={containerDimensions.height}
+                                resetView={resetView}
+                            />
+                        )}
+                    </>
                 )}
             </div>
         </div>
