@@ -32,7 +32,7 @@ export function Controls({
             .attr("id", "controlsClipPath")
             .append("rect")
             .attr("width", 40)
-            .attr("height", 120)
+            .attr("height", 126)
             .attr("rx", 8);
 
         // 2. Create a container for background with shadow (not clipped)
@@ -43,10 +43,10 @@ export function Controls({
         // Background rectangle with shadow
         shadowContainer.append("rect")
             .attr("width", 40)
-            .attr("height", 120)
+            .attr("height", 126)
             .attr("fill", "white")
             .attr("rx", 8)
-            .style("filter", "drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15))");
+            .style("filter", "drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2))");
 
         // 3. Create separate container for controls (with clipping)
         const controlsContainer = svg.append("g")
@@ -60,6 +60,7 @@ export function Controls({
             .attr("transform", "translate(0, 0)")
             .on("click", (event) => {
                 event.stopPropagation();
+                event.stopImmediatePropagation();
                 svg.transition()
                     .duration(300)
                     .call(zoom.scaleBy, 1.5);
@@ -69,7 +70,7 @@ export function Controls({
             .attr("x", 0)
             .attr("y", 0)
             .attr("width", 40)
-            .attr("height", 40)
+            .attr("height", 50)
             .attr("fill", "#f9fafb");
 
         zoomInBtn.append("text")
@@ -88,6 +89,7 @@ export function Controls({
             .attr("transform", "translate(0, 40)")
             .on("click", (event) => {
                 event.stopPropagation();
+                event.stopImmediatePropagation();
                 svg.transition()
                     .duration(300)
                     .call(zoom.scaleBy, 0.7);
@@ -97,12 +99,12 @@ export function Controls({
             .attr("x", 0)
             .attr("y", 0)
             .attr("width", 40)
-            .attr("height", 40)
+            .attr("height", 50)
             .attr("fill", "#f9fafb");
 
         zoomOutBtn.append("text")
             .attr("x", 20)
-            .attr("y", 25)
+            .attr("y", 28)
             .attr("text-anchor", "middle")
             .attr("font-size", "22px")
             .attr("font-family", "system-ui, -apple-system, sans-serif")
@@ -116,6 +118,7 @@ export function Controls({
             .attr("transform", "translate(0, 80)")
             .on("click", (event) => {
                 event.stopPropagation();
+                event.stopImmediatePropagation();
                 resetView();
             });
 
@@ -123,13 +126,13 @@ export function Controls({
             .attr("x", 0)
             .attr("y", 0)
             .attr("width", 40)
-            .attr("height", 40)
+            .attr("height", 50)
             .attr("fill", "#f9fafb");
 
         // Apply shadow to the circle
         resetBtn.append("circle")
             .attr("cx", 20)
-            .attr("cy", 20)
+            .attr("cy", 25)
             .attr("r", 10)
             .attr("fill", "white")
             .attr("stroke", "#6366f1")
@@ -138,7 +141,7 @@ export function Controls({
 
         // Updated path for the arrow to be centered in the circle
         resetBtn.append("path")
-            .attr("d", "M20,15 L17,23 L20,20 L23,23 Z") // Moved down 5 units to center it
+            .attr("d", "M20,20 L16,28 L20,25 L24,28 Z")
             .attr("fill", "#6366f1")
             .style("filter", "drop-shadow(0px 1px 1px rgba(0,0,0,0.1))");
 
@@ -213,8 +216,8 @@ export function calculateZoomTransform(width: number, height: number, bounds: an
     }
 
     // Calculate final translation
-    const translateX = width / 2 - scale * centerX - 175;
-    const translateY = height / 2 - scale * centerY + 175;
+    const translateX = width / 2 - scale * centerX - 230;
+    const translateY = height / 2 - scale * centerY + 150;
 
     // Final check to ensure no NaN values
     if (isNaN(translateX) || isNaN(translateY) || isNaN(scale)) {

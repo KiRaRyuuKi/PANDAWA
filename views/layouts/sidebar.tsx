@@ -90,7 +90,7 @@ export function Sidebar({ onSelectKecamatan, isOpen, toggleSidebar }) {
                     // Collapsed sidebar search icon
                     <div className="flex justify-center pb-2">
                         <button
-                            className="p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors"
+                                className="p-2 rounded-md bg-gray-100 hover:bg-gray-200 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
                             onClick={toggleSidebar}
                             title="Search kecamatan"
                         >
@@ -159,7 +159,8 @@ export function Sidebar({ onSelectKecamatan, isOpen, toggleSidebar }) {
                     {isOpen ? (
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-xs text-gray-500">© 2025 Peta Interaktif Bondowoso Data: BPS Kab. Bondowoso</p>
+                                <p className="text-xs text-gray-500">Peta Interaktif Bondowoso</p>
+                                <p className="text-xs text-gray-500">Data BPS Kabupaten Bondowoso</p>
                             </div>
                             <div className="text-xs px-2.5 py-1.5 bg-gray-100 rounded-md text-gray-500">
                                 ?
@@ -167,7 +168,7 @@ export function Sidebar({ onSelectKecamatan, isOpen, toggleSidebar }) {
                         </div>
                     ) : (
                         <div className="flex flex-col items-center justify-center">
-                            <div className="text-xs px-2.5 py-1.5 bg-gray-100 rounded-md text-gray-500 mb-1">
+                                <div className="text-xs px-2.5 py-1.5 bg-gray-100 rounded-md text-gray-500 mb-1 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
                                 ?
                             </div>
                         </div>

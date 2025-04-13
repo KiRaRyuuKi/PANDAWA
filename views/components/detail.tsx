@@ -39,17 +39,15 @@ export function KecamatanDetail({ containerWidth, containerHeight, kecamatan, sv
 
         const kecamatanInfo = svg.append("g")
             .attr("class", "kecamatan-info")
-            .attr("transform", `translate(${containerWidth - 205}, ${containerHeight - 115})`)
+            .attr("transform", `translate(${containerWidth - 290}, ${containerHeight - 115})`)
             .style("opacity", 0);
 
         detailRef.current.kecamatanInfo = kecamatanInfo as d3.Selection<SVGGElement, unknown, null, undefined>;
 
         kecamatanInfo.append("rect")
-            .attr("width", 185)
+            .attr("width", 270)
             .attr("height", 95)
             .attr("fill", "white")
-            .attr("stroke", "#e5e7eb")
-            .attr("stroke-width", 1)
             .attr("rx", 8)
             .style("filter", "drop-shadow(0px 1px 2px rgba(0,0,0,0.1))");
 
@@ -111,7 +109,7 @@ export function KecamatanDetail({ containerWidth, containerHeight, kecamatan, sv
     useEffect(() => {
         if (detailRef.current.kecamatanInfo && containerWidth && containerHeight) {
             detailRef.current.kecamatanInfo
-                .attr("transform", `translate(${containerWidth - 205}, ${containerHeight - 115})`);
+                .attr("transform", `translate(${containerWidth - 290}, ${containerHeight - 115})`);
         }
     }, [containerWidth, containerHeight]);
 

@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
+import { type PinData, createPins, updatePinVisibility, pinCategories, resetPins } from '../components/pin';
 import { Controls, calculateZoomTransform, calculatePathBounds } from '../components/control';
 import { KecamatanDetail, hideKecamatanInfo } from '../components/detail';
+import { FilterPanel } from '../components/filter';
+import { InfoPanel } from '../components/info';
 import { Kecamatan } from '../data/kecamatan';
+import { dataSebaran } from '../data/sebaran';
 import { Sidebar } from './sidebar';
 
 interface KecamatanData {
@@ -22,6 +26,12 @@ export function Map() {
     const [containerDimensions, setContainerDimensions] = useState({ width: 0, height: 0 });
     const [selectedKecamatan, setSelectedKecamatan] = useState<KecamatanData | null>(null);
 
+    // Pin related states
+    const [pins, setPins] = useState<PinData[]>(dataSebaran);
+    const [activePinFilters, setActivePinFilters] = useState<Set<string>>(new Set(['all']));
+    const [selectedPin, setSelectedPin] = useState<PinData | null>(null);
+    const [showPins, setShowPins] = useState(true);
+
     const mapInstanceRef = useRef({
         svg: null as d3.Selection<SVGSVGElement, unknown, null, undefined> | null,
         g: null as d3.Selection<SVGGElement, unknown, null, undefined> | null,
@@ -35,7 +45,6 @@ export function Map() {
     const [mapError, setMapError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Check data availability
         if (!Kecamatan || Kecamatan.length === 0) {
             setMapError("Kecamatan data is not available");
             console.error("Kecamatan data is not available or empty");
@@ -44,20 +53,63 @@ export function Map() {
         setKecamatanData(Kecamatan);
     }, []);
 
-    // Update container dimensions when sidebar state changes
     useEffect(() => {
         if (containerRef.current) {
-            // Short delay to allow the DOM to update
             const timer = setTimeout(() => {
                 setContainerDimensions({
                     width: containerRef.current!.clientWidth,
                     height: containerRef.current!.clientHeight
                 });
-            }, 300); // Match the transition duration
+            }, 300);
 
             return () => clearTimeout(timer);
         }
     }, [isSidebarOpen]);
+
+    // New effect to close pin info panel when sidebar opens
+    useEffect(() => {
+        if (isSidebarOpen) {
+            setSelectedPin(null);
+        }
+    }, [isSidebarOpen]);
+
+    const togglePinFilter = (categoryId: string) => {
+        const newFilters = new Set(activePinFilters);
+
+        if (categoryId === 'all') {
+            if (newFilters.has('all')) {
+                newFilters.clear();
+            } else {
+                newFilters.clear();
+                newFilters.add('all');
+            }
+        } else {
+            newFilters.delete('all');
+            if (newFilters.has(categoryId)) {
+                newFilters.delete(categoryId);
+            } else {
+                newFilters.add(categoryId);
+            }
+
+            if (newFilters.size === 0) {
+                newFilters.add('all');
+            }
+        }
+
+        setActivePinFilters(newFilters);
+        updatePinVisibility(mapInstanceRef.current.svg, newFilters, showPins);
+    };
+
+    const toggleAllPins = () => {
+        const newShowPins = !showPins;
+        setShowPins(newShowPins);
+
+        if (mapInstanceRef.current.svg) {
+            mapInstanceRef.current.svg.selectAll(".pin-group")
+                .style("display", newShowPins ? "block" : "none");
+            updatePinVisibility(mapInstanceRef.current.svg, activePinFilters, newShowPins);
+        }
+    };
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -66,13 +118,11 @@ export function Map() {
     const handleSelectKecamatan = (kecamatan: KecamatanData) => {
         if (!mapInstanceRef.current.svg || !mapInstanceRef.current.paths) return;
 
-        // Reset all paths to default color
         mapInstanceRef.current.paths
             .transition()
             .duration(300)
-            .style("fill", d => d.defaultColor || "#5b9bd5");
+            .style("fill", d => d.defaultColor || "white");
 
-        // Find and highlight the selected kecamatan
         const selectedPath = mapInstanceRef.current.paths.filter(d => d.name === kecamatan.name);
         if (selectedPath.size() > 0) {
             selectedPath
@@ -80,10 +130,8 @@ export function Map() {
                 .duration(300)
                 .style("fill", "#ec4899");
 
-            // Update the selected kecamatan state
             setSelectedKecamatan(kecamatan);
-
-            // Zoom to the selected kecamatan
+            setSelectedPin(null);
             zoomToKecamatan(kecamatan);
         }
     };
@@ -95,16 +143,13 @@ export function Map() {
         const containerWidth = containerRef.current.clientWidth;
         const containerHeight = containerRef.current.clientHeight;
 
-        // Ensure kecamatan has the required properties
         if (!kecamatan || !kecamatan.path) {
             console.error('Invalid kecamatan data for zoom:', kecamatan);
             return;
         }
 
-        // Calculate path bounds using the utility function
         const bounds = calculatePathBounds(kecamatan.path, kecamatan.center);
 
-        // Validate bounds before using
         if (!bounds || typeof bounds !== 'object' ||
             isNaN(bounds.minX) || isNaN(bounds.maxX) ||
             isNaN(bounds.minY) || isNaN(bounds.maxY)) {
@@ -112,20 +157,17 @@ export function Map() {
             return;
         }
 
-        // Calculate transform using the utility function
         const transform = calculateZoomTransform(
             containerWidth,
             containerHeight,
             bounds
         );
 
-        // Validate transform before applying
         if (!transform || isNaN(transform.x) || isNaN(transform.y) || isNaN(transform.k)) {
             console.error('Invalid transform:', transform);
             return;
         }
 
-        // Apply the transform with a transition
         svg.transition()
             .duration(750)
             .call(zoom.transform, transform);
@@ -135,35 +177,39 @@ export function Map() {
         const { svg, zoom, g, mapBounds } = mapInstanceRef.current;
         if (!svg || !zoom || !containerRef.current) return;
 
-        // Reset all path colors
+        // Reset seleksi
+        setSelectedPin(null);
+        setSelectedKecamatan(null);
+
+        // Reset warna kecamatan
         g!.selectAll("path")
             .transition()
             .duration(300)
-            .style("fill", d => (d as any).defaultColor || "#5b9bd5");
+            .style("fill", d => (d as any).defaultColor || "white");
 
-        // Clear the selected kecamatan
-        setSelectedKecamatan(null);
+        resetPins(svg);
 
-        // Hide info panel using the utility function from detail.tsx
-        hideKecamatanInfo(svg);
+        // Update visibilitas pin
+        updatePinVisibility(svg, activePinFilters, showPins);
 
+        // Kembalikan zoom ke posisi awal
         const containerWidth = containerRef.current.clientWidth;
         const containerHeight = containerRef.current.clientHeight;
-
-        // Create a proper initial transform
         const initialTransform = calculateZoomTransform(
             containerWidth,
             containerHeight,
             mapBounds
         );
-
-        // Apply the transform with a transition
-        svg.transition()
-            .duration(750)
-            .call(zoom.transform, initialTransform);
+        svg.transition().call(zoom.transform, initialTransform);
     };
 
-    // Update SVG dimensions when container dimensions change
+    // Modified function to handle pin selection
+    const handlePinSelect = (pin: PinData) => {
+        setSelectedPin(pin);
+        // Close sidebar when a pin is selected
+        setIsSidebarOpen(false);
+    };
+
     useEffect(() => {
         if (mapInstanceRef.current.svg && containerDimensions.width && containerDimensions.height) {
             mapInstanceRef.current.svg
@@ -183,7 +229,6 @@ export function Map() {
                     return;
                 }
 
-                // Get container dimensions
                 const containerWidth = containerRef.current.clientWidth;
                 const containerHeight = containerRef.current.clientHeight;
 
@@ -213,7 +258,6 @@ export function Map() {
 
                 let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
 
-                // Calculate map bounds from kecamatan data
                 kecamatanData.forEach(kecamatan => {
                     const pathPoints = kecamatan.path.match(/[0-9]+,[0-9]+/g);
                     if (pathPoints) {
@@ -233,86 +277,71 @@ export function Map() {
                 maxX += padding;
                 maxY += padding;
 
-                // Store map bounds in ref
                 mapInstanceRef.current.mapBounds = { minX, maxX, minY, maxY };
 
-                // Improved zoom definition
                 const zoom = d3.zoom<SVGSVGElement, unknown>()
-                    .scaleExtent([0.5, 8]) // Allow zooming out a bit more
+                    .scaleExtent([0.5, 8])
                     .extent([[0, 0], [containerWidth, containerHeight]])
                     .on("zoom", (event) => {
                         g.attr("transform", event.transform);
-                        // Update stroke width based on zoom level
                         g.selectAll("path").attr("stroke-width", 1 / event.transform.k);
-                        // Also scale the text labels 
-                        g.selectAll("text").attr("font-size", `${10 / event.transform.k}px`);
+                        g.selectAll("text.kecamatan-label").attr("font-size", `${10 / event.transform.k}px`);
                     });
 
                 mapInstanceRef.current.zoom = zoom;
 
-                // Apply zoom behavior to the SVG
                 svg.call(zoom)
                     .call(zoom.translateTo, (minX + maxX) / 2, (minY + maxY) / 2)
-                    .on("dblclick.zoom", null); // Disable default double-click zoom
+                    .on("dblclick.zoom", null);
 
-                // Use dblclick for reset
                 svg.on("dblclick", resetView);
 
-                // Add grid pattern
                 const defs = svg.append("defs");
 
-                // Create grid pattern
                 const pattern = defs.append("pattern")
                     .attr("id", "grid-pattern")
-                    .attr("width", 20)  // Grid size
+                    .attr("width", 20)
                     .attr("height", 20)
                     .attr("patternUnits", "userSpaceOnUse");
 
-                // Add background for pattern (base color)
                 pattern.append("rect")
                     .attr("width", 20)
                     .attr("height", 20)
                     .attr("fill", "#f9fafb");
 
-                // Add lines to create grid
                 pattern.append("path")
                     .attr("d", "M 20 0 L 0 0 0 20")
                     .attr("fill", "none")
-                    .attr("stroke", "#e5e7eb")  // Grid line color
+                    .attr("stroke", "#e5e7eb")
                     .attr("stroke-width", 1);
 
-                svg.select("rect")  // Select existing background rect
+                svg.select("rect")
                     .attr("fill", "url(#grid-pattern)");
 
                 const clicked = (event: any, d: KecamatanData) => {
                     event.stopPropagation();
 
-                    // Reset all colors
                     g.selectAll("path")
                         .transition()
                         .duration(300)
-                        .style("fill", (kec: any) => kec.defaultColor || "#5b9bd5");
+                        .style("fill", (kec: any) => kec.defaultColor || "white");
 
-                    // Highlight clicked kecamatan
                     d3.select(event.currentTarget)
                         .transition()
                         .duration(300)
                         .style("fill", "#ec4899");
 
-                    // Set the selected kecamatan
                     setSelectedKecamatan(d);
+                    setSelectedPin(null);
 
-                    // Calculate path bounds
                     const bounds = calculatePathBounds(d.path, d.center);
 
-                    // Calculate transform
                     const transform = calculateZoomTransform(
                         containerWidth,
                         containerHeight,
                         bounds
                     );
 
-                    // Apply the transform with a transition
                     svg.transition()
                         .duration(750)
                         .call(zoom.transform, transform);
@@ -344,13 +373,11 @@ export function Map() {
 
                 mapInstanceRef.current.paths = paths as unknown as d3.Selection<d3.BaseType, KecamatanData, SVGGElement, unknown>;
 
-                paths.append("title")
-                    .text(d => d.name);
-
                 g.selectAll("text")
                     .data(kecamatanData)
                     .enter()
                     .append("text")
+                    .attr("class", "kecamatan-label")
                     .attr("x", d => d.center[0])
                     .attr("y", d => d.center[1])
                     .attr("text-anchor", "middle")
@@ -362,17 +389,27 @@ export function Map() {
                     .style("text-shadow", "0px 0px 3px rgba(0,0,0,0.6)")
                     .text(d => d.name);
 
-                // Create a proper initial transform
+                // Create pins using the imported function, but pass the modified handler
+                createPins(
+                    svg,
+                    g,
+                    pins,
+                    activePinFilters,
+                    showPins,
+                    containerRef,
+                    handlePinSelect, // Use the new handler that also closes sidebar
+                    zoom
+                );
+
                 const initialTransform = calculateZoomTransform(
                     containerWidth,
                     containerHeight,
                     { minX, maxX, minY, maxY }
                 );
 
-                initialTransform.x += 175;
-                initialTransform.y -= 175;
+                initialTransform.x += 230;
+                initialTransform.y -= 150;
 
-                // Apply the modified transform
                 svg.call(zoom.transform, initialTransform);
 
             } catch (error: any) {
@@ -381,7 +418,6 @@ export function Map() {
             }
         };
 
-        // Initial creation after DOM is ready
         const timer = setTimeout(() => {
             createMap();
         }, 100);
@@ -397,6 +433,27 @@ export function Map() {
             window.removeEventListener('resize', handleResize);
         };
     }, [kecamatanData]);
+
+    useEffect(() => {
+        updatePinVisibility(mapInstanceRef.current.svg, activePinFilters, showPins);
+    }, [activePinFilters, showPins]);
+
+    useEffect(() => {
+        if (!svgRef.current) return;
+
+        const svg = d3.select(svgRef.current);
+        svg.on("click", (event) => {
+            // Hanya trigger jika mengklik langsung pada SVG (bukan elemen child)
+            if (event.target === svg.node()) {
+                setSelectedPin(null);
+                setSelectedKecamatan(null);
+            }
+        });
+
+        return () => {
+            svg.on("click", null);
+        };
+    }, []);
 
     return (
         <div className="relative w-full h-screen">
@@ -422,17 +479,34 @@ export function Map() {
                     <>
                         <svg
                             ref={svgRef}
-                                className={`w-full h-full`}
+                            className={`w-full h-full`}
                         ></svg>
 
-                        {/* KecamatanDetail component */}
                         {mapInstanceRef.current.svg && (
-                            <KecamatanDetail
-                                containerWidth={containerDimensions.width}
-                                containerHeight={containerDimensions.height}
-                                kecamatan={selectedKecamatan}
-                                svg={mapInstanceRef.current.svg}
-                            />
+                            <>
+                                <FilterPanel
+                                    activePinFilters={activePinFilters}
+                                    togglePinFilter={togglePinFilter}
+                                    pinCategories={pinCategories}
+                                />
+
+                                {selectedPin && (
+                                    <InfoPanel
+                                        pin={selectedPin}
+                                        onClose={() => setSelectedPin(null)}
+                                        pinCategories={pinCategories}
+                                    />
+                                )}
+
+                                {!selectedPin && (
+                                    <KecamatanDetail
+                                        containerWidth={containerDimensions.width}
+                                        containerHeight={containerDimensions.height}
+                                        kecamatan={selectedKecamatan}
+                                        svg={mapInstanceRef.current.svg}
+                                    />
+                                )}
+                            </>
                         )}
 
                         {mapInstanceRef.current.svg && mapInstanceRef.current.zoom && (
