@@ -1,40 +1,40 @@
 {
   "name": "pandawa",
+  "version": "1.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "build": "react-router build",
-    "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.0",
-    "@heroicons/react": "^2.2.0",
-    "@react-router/node": "^7.2.0",
-    "@react-router/serve": "^7.2.0",
+    "@prisma/client": "^6.6.0",
+    "@react-jvectormap/core": "^1.0.4",
+    "@react-jvectormap/world": "^1.1.2",
+    "apexcharts": "^4.5.0",
     "d3": "^7.9.0",
-    "framer-motion": "^12.4.10",
-    "install": "^0.13.0",
-    "isbot": "^5.1.17",
-    "lucide-react": "^0.479.0",
-    "npm": "^11.1.0",
+    "next": "15.3.0",
+    "pg": "^8.14.1",
+    "postcss": "^8.5.3",
+    "prisma": "^6.6.0",
     "react": "^19.0.0",
+    "react-apexcharts": "^1.7.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.2.0",
-    "tamagui": "^1.125.26"
+    "tailwind-merge": "^3.2.0"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.2.0",
-    "@tailwindcss/vite": "^4.0.0",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.4",
     "@types/d3": "^7.4.3",
+    "@types/flatpickr": "^3.0.2",
     "@types/node": "^20",
-    "@types/react": "^19.0.1",
-    "@types/react-dom": "^19.0.1",
-    "react-router-devtools": "^1.1.0",
-    "tailwindcss": "^4.0.0",
-    "typescript": "^5.7.2",
-    "vite": "^6.2.1",
-    "vite-tsconfig-paths": "^5.1.4"
+    "@types/pg": "^8.11.13",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.0",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5"
   }
 }
