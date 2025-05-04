@@ -1,0 +1,108 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource database {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String    @id @default(uuid())
+  name              String?
+  email             String?   @unique
+  password          String
+  created_at        DateTime  @default(now()) @map("created_at")
+  updated_at        DateTime  @updatedAt @map("updated_at")
+
+  detail            Detail?
+
+  @@map("users")
+}
+
+model Detail {
+  tax_id            String    @id
+  phone             String
+  bio               String
+  city              String
+  county            String
+  post_kode         String
+  photo_profile     String
+
+  user              User      @relation(fields: [tax_id], references: [id])
+
+  @@map("detail")
+}
+
+model Kecamatan {
+  id_kecamatan      Int       @id @default(autoincrement())
+  id_komoditas      Int
+  komoditas         Komoditas @relation(fields: [id_komoditas], references: [id_komoditas])
+  nama_kecamatan    String    @database.VarChar(100)
+  deskripsi         String    @database.Text
+  gambar            String    @database.Text
+  area              Float
+  posisi_x          Int
+  posisi_y          Int
+  penduduk          Penduduk[]
+  hasil_panen       HasilPanen[]
+  prediksi_panen    PrediksiPanen[]
+
+  @@map("data_kecamatan")
+}
+
+model Penduduk {
+  id_penduduk       Int       @id @default(autoincrement())
+  id_kecamatan      Int
+  kecamatan         Kecamatan @relation(fields: [id_kecamatan], references: [id_kecamatan])
+  data_tahun        Int
+  jumlah_penduduk   Float
+  laju_pertumbuhan  String    @database.VarChar(30)
+
+  @@map("data_penduduk")
+}
+
+model Komoditas {
+  id_komoditas      Int       @id @default(autoincrement())
+  nama_komoditas    String    @database.VarChar(100)
+  posisi_x          Int
+  posisi_y          Int
+  kecamatan         Kecamatan[]
+  hasil_panen       HasilPanen[]
+  prediksi_panen    PrediksiPanen[]
+
+  @@map("data_komoditas")
+}
+
+model HasilPanen {
+  id_panen          Int       @id @default(autoincrement())
+  id_kecamatan      Int
+  kecamatan         Kecamatan @relation(fields: [id_kecamatan], references: [id_kecamatan])
+  id_komoditas      Int
+  komoditas         Komoditas @relation(fields: [id_komoditas], references: [id_komoditas])
+  tahun_panen       Int
+  produksi          Float
+  luas_panen        Float
+  produktivitas     Float
+
+  @@map("hasil_panen")
+}
+
+model PrediksiPanen {
+  id_prediksi       Int       @id @default(autoincrement())
+  id_kecamatan      Int
+  kecamatan         Kecamatan @relation(fields: [id_kecamatan], references: [id_kecamatan])
+  id_komoditas      Int
+  komoditas         Komoditas @relation(fields: [id_komoditas], references: [id_komoditas])
+  tahun_prediksi    Int
+  hasil_prediksi    Int
+
+  @@map("prediksi_panen")
+}
