@@ -8,10 +8,18 @@ import Button from "@/components/ui/button/Button";
 import Link from "next/link";
 import Image from 'next/image';
 import React, { useState } from "react";
+import { loginAction, loginWithGoogle } from "@/lib/actions";
+import { useFormState } from "react-dom";
+
+const initialState = {
+    error: null,
+};
 
 export default function AppAuth() {
     const [showPassword, setShowPassword] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const [state, formAction] = useFormState(loginAction, initialState);
+
     return (
         <div className="flex flex-col flex-1 lg:w-1/2 w-full">
             <div className="flex flex-col flex-1 justify-center w-full max-w-md mx-auto">
@@ -26,7 +34,10 @@ export default function AppAuth() {
                     </div>
                     <div>
                         <div className="grid grid-cols-1">
-                            <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
+                            <button
+                                className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
+                                onClick={() => loginWithGoogle()}
+                            >
                                 <svg
                                     width="20"
                                     height="20"
@@ -64,13 +75,23 @@ export default function AppAuth() {
                                 </span>
                             </div>
                         </div>
-                        <form>
+                        <form action={formAction}>
+                            {state?.error && (
+                                <div className="p-3 mb-4 text-sm text-error-500 bg-error-50 rounded-lg dark:bg-error-900/20 dark:text-error-300">
+                                    {state.error}
+                                </div>
+                            )}
                             <div className="space-y-5">
                                 <div>
                                     <Label>
                                         Email <span className="text-error-500">*</span>{" "}
                                     </Label>
-                                    <Input placeholder="pandawa@gmail.com" type="email" />
+                                    <Input
+                                        placeholder="pandawa@gmail.com"
+                                        type="email"
+                                        name="email"
+                                        required
+                                    />
                                 </div>
                                 <div>
                                     <Label>
@@ -80,6 +101,8 @@ export default function AppAuth() {
                                         <Input
                                             type={showPassword ? "text" : "password"}
                                             placeholder="Enter your password"
+                                            name="password"
+                                            required
                                         />
                                         <span
                                             onClick={() => setShowPassword(!showPassword)}
@@ -102,7 +125,7 @@ export default function AppAuth() {
                                     </div>
                                 </div>
                                 <div>
-                                    <Button className="w-full" size="sm">
+                                    <Button className="w-full" size="sm" type="submit">
                                         Log in
                                     </Button>
                                 </div>
@@ -114,4 +137,3 @@ export default function AppAuth() {
         </div>
     );
 }
-

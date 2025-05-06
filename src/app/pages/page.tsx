@@ -1,5 +1,5 @@
 import React from "react";
-import { Auth } from "@/lib/auth"
+import { auth } from "@/lib/auth"
 import type { Metadata } from "next";
 import { redirect } from "next/navigation"
 import MonthlyChart from "@/components/pages/MonthlyChart";
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function DashboardPage() {
-  const session = await Auth()
+  const session = await auth()
 
   if (!session) {
     redirect("/auth")

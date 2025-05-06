@@ -1,8 +1,8 @@
 import { object, string } from "zod";
 
-export const LogInSchema = object ({
-    email: string().email("Invalid Email"),
+export const LogInSchema = object({
+    email: string().email("Email tidak valid"),
     password: string()
-        .min(8, "Pass")
-        .max(32, "Pass")
-})
+        .min(8, "Password minimal 8 karakter")
+        .max(32, "Password maksimal 32 karakter")
+});

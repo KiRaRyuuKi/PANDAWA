@@ -1,16 +1,21 @@
 import { Metadata } from "next";
 import AppAuth from "@/layout/AppAuth";
-import { Auth } from "@/lib/auth";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "PANDAWA",
+  title: "PANDAWA - Login",
   description: "Pantau Sumber Daya Alam Bondowoso",
 };
 
 const AuthPage = async () => {
-  const session = await Auth();
+  const session = await auth();
+
+  if (session) {
+    redirect("/pages");
+  }
 
   return <AppAuth />;
 }
 
-export default AuthPage
+export default AuthPage;
