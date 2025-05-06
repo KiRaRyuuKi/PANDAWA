@@ -1,5 +1,5 @@
 import React from "react";
-import { auth } from "@/lib/auth"
+import { auth } from "@/api/auth"
 import type { Metadata } from "next";
 import { redirect } from "next/navigation"
 import MonthlyChart from "@/components/pages/MonthlyChart";
