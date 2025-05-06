@@ -1,8 +1,10 @@
 "use client";
+
 import Checkbox from "@/components/form/input/Checkbox";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
 import Button from "@/components/ui/button/Button";
+
 import Link from "next/link";
 import Image from 'next/image';
 import React, { useState } from "react";
@@ -98,12 +100,6 @@ export default function AppAuth() {
                                             Keep me logged in
                                         </span>
                                     </div>
-                                    <Link
-                                        href="/reset-password"
-                                        className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
-                                    >
-                                        Forgot password?
-                                    </Link>
                                 </div>
                                 <div>
                                     <Button className="w-full" size="sm">

@@ -20,8 +20,11 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@prisma/*": [
-        "./lib/generated/prisma/*"
+      "@/lib/*": [
+        "./lib/*"
+      ],
+      "@/prisma/*": [
+        "./prisma/generated/prisma/*"
       ]
     }
   },
