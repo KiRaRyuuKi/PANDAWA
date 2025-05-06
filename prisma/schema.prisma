@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/prisma"
+  output   = "../libs/generated/prisma"
 }
 
 datasource database {
@@ -31,7 +31,8 @@ model User {
 }
 
 model Detail {
-  tax_id            String    @id
+  id                String    @id @default(uuid())
+  id_tax            String    @unique
   phone             String
   bio               String
   city              String
@@ -39,14 +40,14 @@ model Detail {
   post_kode         String
   photo_profile     String
 
-  user              User      @relation(fields: [tax_id], references: [id])
+  user              User      @relation(fields: [id_tax], references: [id])
 
   @@map("detail")
 }
 
 model Account {
   id                String    @id @default(cuid())
-  id_user           String
+  id_user           String    @map("id_user")
   id_provider       String
   id_token          String?   @database.Text
   type              String
@@ -66,7 +67,7 @@ model Account {
 
 model Session {
   id                String    @id @default(cuid())
-  id_user           String
+  id_user           String    @map("id_user")
   session_token     String    @unique
   expires           DateTime
 

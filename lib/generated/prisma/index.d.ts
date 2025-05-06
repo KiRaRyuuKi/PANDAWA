@@ -2983,7 +2983,8 @@ export namespace Prisma {
   }
 
   export type DetailMinAggregateOutputType = {
-    tax_id: string | null
+    id: string | null
+    id_tax: string | null
     phone: string | null
     bio: string | null
     city: string | null
@@ -2993,7 +2994,8 @@ export namespace Prisma {
   }
 
   export type DetailMaxAggregateOutputType = {
-    tax_id: string | null
+    id: string | null
+    id_tax: string | null
     phone: string | null
     bio: string | null
     city: string | null
@@ -3003,7 +3005,8 @@ export namespace Prisma {
   }
 
   export type DetailCountAggregateOutputType = {
-    tax_id: number
+    id: number
+    id_tax: number
     phone: number
     bio: number
     city: number
@@ -3015,7 +3018,8 @@ export namespace Prisma {
 
 
   export type DetailMinAggregateInputType = {
-    tax_id?: true
+    id?: true
+    id_tax?: true
     phone?: true
     bio?: true
     city?: true
@@ -3025,7 +3029,8 @@ export namespace Prisma {
   }
 
   export type DetailMaxAggregateInputType = {
-    tax_id?: true
+    id?: true
+    id_tax?: true
     phone?: true
     bio?: true
     city?: true
@@ -3035,7 +3040,8 @@ export namespace Prisma {
   }
 
   export type DetailCountAggregateInputType = {
-    tax_id?: true
+    id?: true
+    id_tax?: true
     phone?: true
     bio?: true
     city?: true
@@ -3118,7 +3124,8 @@ export namespace Prisma {
   }
 
   export type DetailGroupByOutputType = {
-    tax_id: string
+    id: string
+    id_tax: string
     phone: string
     bio: string
     city: string
@@ -3145,7 +3152,8 @@ export namespace Prisma {
 
 
   export type DetailSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    tax_id?: boolean
+    id?: boolean
+    id_tax?: boolean
     phone?: boolean
     bio?: boolean
     city?: boolean
@@ -3156,7 +3164,8 @@ export namespace Prisma {
   }, ExtArgs["result"]["detail"]>
 
   export type DetailSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    tax_id?: boolean
+    id?: boolean
+    id_tax?: boolean
     phone?: boolean
     bio?: boolean
     city?: boolean
@@ -3167,7 +3176,8 @@ export namespace Prisma {
   }, ExtArgs["result"]["detail"]>
 
   export type DetailSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    tax_id?: boolean
+    id?: boolean
+    id_tax?: boolean
     phone?: boolean
     bio?: boolean
     city?: boolean
@@ -3178,7 +3188,8 @@ export namespace Prisma {
   }, ExtArgs["result"]["detail"]>
 
   export type DetailSelectScalar = {
-    tax_id?: boolean
+    id?: boolean
+    id_tax?: boolean
     phone?: boolean
     bio?: boolean
     city?: boolean
@@ -3187,7 +3198,7 @@ export namespace Prisma {
     photo_profile?: boolean
   }
 
-  export type DetailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"tax_id" | "phone" | "bio" | "city" | "county" | "post_kode" | "photo_profile", ExtArgs["result"]["detail"]>
+  export type DetailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "id_tax" | "phone" | "bio" | "city" | "county" | "post_kode" | "photo_profile", ExtArgs["result"]["detail"]>
   export type DetailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -3204,7 +3215,8 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      tax_id: string
+      id: string
+      id_tax: string
       phone: string
       bio: string
       city: string
@@ -3294,8 +3306,8 @@ export namespace Prisma {
      * // Get first 10 Details
      * const details = await prisma.detail.findMany({ take: 10 })
      * 
-     * // Only select the `tax_id`
-     * const detailWithTax_idOnly = await prisma.detail.findMany({ select: { tax_id: true } })
+     * // Only select the `id`
+     * const detailWithIdOnly = await prisma.detail.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends DetailFindManyArgs>(args?: SelectSubset<T, DetailFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -3339,9 +3351,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Details and only return the `tax_id`
-     * const detailWithTax_idOnly = await prisma.detail.createManyAndReturn({
-     *   select: { tax_id: true },
+     * // Create many Details and only return the `id`
+     * const detailWithIdOnly = await prisma.detail.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -3430,9 +3442,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Details and only return the `tax_id`
-     * const detailWithTax_idOnly = await prisma.detail.updateManyAndReturn({
-     *   select: { tax_id: true },
+     * // Update zero or more Details and only return the `id`
+     * const detailWithIdOnly = await prisma.detail.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3635,7 +3647,8 @@ export namespace Prisma {
    * Fields of the Detail model
    */
   interface DetailFieldRefs {
-    readonly tax_id: FieldRef<"Detail", 'String'>
+    readonly id: FieldRef<"Detail", 'String'>
+    readonly id_tax: FieldRef<"Detail", 'String'>
     readonly phone: FieldRef<"Detail", 'String'>
     readonly bio: FieldRef<"Detail", 'String'>
     readonly city: FieldRef<"Detail", 'String'>
@@ -13182,7 +13195,8 @@ export namespace Prisma {
 
 
   export const DetailScalarFieldEnum: {
-    tax_id: 'tax_id',
+    id: 'id',
+    id_tax: 'id_tax',
     phone: 'phone',
     bio: 'bio',
     city: 'city',
@@ -13464,7 +13478,8 @@ export namespace Prisma {
     AND?: DetailWhereInput | DetailWhereInput[]
     OR?: DetailWhereInput[]
     NOT?: DetailWhereInput | DetailWhereInput[]
-    tax_id?: StringFilter<"Detail"> | string
+    id?: StringFilter<"Detail"> | string
+    id_tax?: StringFilter<"Detail"> | string
     phone?: StringFilter<"Detail"> | string
     bio?: StringFilter<"Detail"> | string
     city?: StringFilter<"Detail"> | string
@@ -13475,7 +13490,8 @@ export namespace Prisma {
   }
 
   export type DetailOrderByWithRelationInput = {
-    tax_id?: SortOrder
+    id?: SortOrder
+    id_tax?: SortOrder
     phone?: SortOrder
     bio?: SortOrder
     city?: SortOrder
@@ -13486,7 +13502,8 @@ export namespace Prisma {
   }
 
   export type DetailWhereUniqueInput = Prisma.AtLeast<{
-    tax_id?: string
+    id?: string
+    id_tax?: string
     AND?: DetailWhereInput | DetailWhereInput[]
     OR?: DetailWhereInput[]
     NOT?: DetailWhereInput | DetailWhereInput[]
@@ -13497,10 +13514,11 @@ export namespace Prisma {
     post_kode?: StringFilter<"Detail"> | string
     photo_profile?: StringFilter<"Detail"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "tax_id">
+  }, "id" | "id_tax">
 
   export type DetailOrderByWithAggregationInput = {
-    tax_id?: SortOrder
+    id?: SortOrder
+    id_tax?: SortOrder
     phone?: SortOrder
     bio?: SortOrder
     city?: SortOrder
@@ -13516,7 +13534,8 @@ export namespace Prisma {
     AND?: DetailScalarWhereWithAggregatesInput | DetailScalarWhereWithAggregatesInput[]
     OR?: DetailScalarWhereWithAggregatesInput[]
     NOT?: DetailScalarWhereWithAggregatesInput | DetailScalarWhereWithAggregatesInput[]
-    tax_id?: StringWithAggregatesFilter<"Detail"> | string
+    id?: StringWithAggregatesFilter<"Detail"> | string
+    id_tax?: StringWithAggregatesFilter<"Detail"> | string
     phone?: StringWithAggregatesFilter<"Detail"> | string
     bio?: StringWithAggregatesFilter<"Detail"> | string
     city?: StringWithAggregatesFilter<"Detail"> | string
@@ -14175,6 +14194,7 @@ export namespace Prisma {
   }
 
   export type DetailCreateInput = {
+    id?: string
     phone: string
     bio: string
     city: string
@@ -14185,7 +14205,8 @@ export namespace Prisma {
   }
 
   export type DetailUncheckedCreateInput = {
-    tax_id: string
+    id?: string
+    id_tax: string
     phone: string
     bio: string
     city: string
@@ -14195,6 +14216,7 @@ export namespace Prisma {
   }
 
   export type DetailUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
@@ -14205,7 +14227,8 @@ export namespace Prisma {
   }
 
   export type DetailUncheckedUpdateInput = {
-    tax_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    id_tax?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
@@ -14215,7 +14238,8 @@ export namespace Prisma {
   }
 
   export type DetailCreateManyInput = {
-    tax_id: string
+    id?: string
+    id_tax: string
     phone: string
     bio: string
     city: string
@@ -14225,6 +14249,7 @@ export namespace Prisma {
   }
 
   export type DetailUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
@@ -14234,7 +14259,8 @@ export namespace Prisma {
   }
 
   export type DetailUncheckedUpdateManyInput = {
-    tax_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    id_tax?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
@@ -15007,7 +15033,8 @@ export namespace Prisma {
   }
 
   export type DetailCountOrderByAggregateInput = {
-    tax_id?: SortOrder
+    id?: SortOrder
+    id_tax?: SortOrder
     phone?: SortOrder
     bio?: SortOrder
     city?: SortOrder
@@ -15017,7 +15044,8 @@ export namespace Prisma {
   }
 
   export type DetailMaxOrderByAggregateInput = {
-    tax_id?: SortOrder
+    id?: SortOrder
+    id_tax?: SortOrder
     phone?: SortOrder
     bio?: SortOrder
     city?: SortOrder
@@ -15027,7 +15055,8 @@ export namespace Prisma {
   }
 
   export type DetailMinOrderByAggregateInput = {
-    tax_id?: SortOrder
+    id?: SortOrder
+    id_tax?: SortOrder
     phone?: SortOrder
     bio?: SortOrder
     city?: SortOrder
@@ -16251,6 +16280,7 @@ export namespace Prisma {
   }
 
   export type DetailCreateWithoutUserInput = {
+    id?: string
     phone: string
     bio: string
     city: string
@@ -16260,6 +16290,7 @@ export namespace Prisma {
   }
 
   export type DetailUncheckedCreateWithoutUserInput = {
+    id?: string
     phone: string
     bio: string
     city: string
@@ -16345,6 +16376,7 @@ export namespace Prisma {
   }
 
   export type DetailUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string
@@ -16354,6 +16386,7 @@ export namespace Prisma {
   }
 
   export type DetailUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     city?: StringFieldUpdateOperationsInput | string

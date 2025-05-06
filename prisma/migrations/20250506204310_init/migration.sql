@@ -13,7 +13,8 @@ CREATE TABLE "users" (
 
 -- CreateTable
 CREATE TABLE "detail" (
-    "tax_id" TEXT NOT NULL,
+    "id" TEXT NOT NULL,
+    "id_tax" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "bio" TEXT NOT NULL,
     "city" TEXT NOT NULL,
@@ -21,7 +22,7 @@ CREATE TABLE "detail" (
     "post_kode" TEXT NOT NULL,
     "photo_profile" TEXT NOT NULL,
 
-    CONSTRAINT "detail_pkey" PRIMARY KEY ("tax_id")
+    CONSTRAINT "detail_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -133,6 +134,9 @@ CREATE TABLE "prediksi_panen" (
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "detail_id_tax_key" ON "detail"("id_tax");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "account_provider_id_provider_key" ON "account"("provider", "id_provider");
 
 -- CreateIndex
@@ -145,7 +149,7 @@ CREATE UNIQUE INDEX "token_token_key" ON "token"("token");
 CREATE UNIQUE INDEX "token_identifier_token_key" ON "token"("identifier", "token");
 
 -- AddForeignKey
-ALTER TABLE "detail" ADD CONSTRAINT "detail_tax_id_fkey" FOREIGN KEY ("tax_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "detail" ADD CONSTRAINT "detail_id_tax_fkey" FOREIGN KEY ("id_tax") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "account" ADD CONSTRAINT "account_id_user_fkey" FOREIGN KEY ("id_user") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -5,20 +5,14 @@ import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
 import Button from "@/components/ui/button/Button";
 
-import Link from "next/link";
 import Image from 'next/image';
-import React, { useState } from "react";
-import { loginAction, loginWithGoogle } from "@/lib/actions";
-import { useFormState } from "react-dom";
-
-const initialState = {
-    error: null,
-};
+import React, { useActionState, useState } from "react";
+import { AuthCredentials } from "../../lib/actions";
 
 export default function AppAuth() {
     const [showPassword, setShowPassword] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
-    const [state, formAction] = useFormState(loginAction, initialState);
+    const [formState, formAction] = useActionState(AuthCredentials, { error: "" });
 
     return (
         <div className="flex flex-col flex-1 lg:w-1/2 w-full">
@@ -36,7 +30,7 @@ export default function AppAuth() {
                         <div className="grid grid-cols-1">
                             <button
                                 className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
-                                onClick={() => loginWithGoogle()}
+                            // onClick={() => loginWithGoogle()}
                             >
                                 <svg
                                     width="20"
@@ -76,9 +70,9 @@ export default function AppAuth() {
                             </div>
                         </div>
                         <form action={formAction}>
-                            {state?.error && (
+                            {formState.error && (
                                 <div className="p-3 mb-4 text-sm text-error-500 bg-error-50 rounded-lg dark:bg-error-900/20 dark:text-error-300">
-                                    {state.error}
+                                    {formState.error}
                                 </div>
                             )}
                             <div className="space-y-5">
@@ -90,7 +84,7 @@ export default function AppAuth() {
                                         placeholder="pandawa@gmail.com"
                                         type="email"
                                         name="email"
-                                        required
+                                        required={true}
                                     />
                                 </div>
                                 <div>
@@ -102,7 +96,7 @@ export default function AppAuth() {
                                             type={showPassword ? "text" : "password"}
                                             placeholder="Enter your password"
                                             name="password"
-                                            required
+                                            required={true}
                                         />
                                         <span
                                             onClick={() => setShowPassword(!showPassword)}
@@ -125,7 +119,7 @@ export default function AppAuth() {
                                     </div>
                                 </div>
                                 <div>
-                                    <Button className="w-full" size="sm" type="submit">
+                                    <Button type="submit" className="w-full" size="sm">
                                         Log in
                                     </Button>
                                 </div>

@@ -1,52 +1,54 @@
-"use server";
+"use server"
 
-import { LogInSchema } from "./zod";
-import { signIn } from "./auth";
+import { AuthSchema } from "./zod";
 import { redirect } from "next/navigation";
+import { AuthError } from "next-auth";
+import { signIn } from "@/api/auth";
 
-function isAuthError(error: unknown): error is { type: string } {
-    return typeof error === "object" && error !== null && "type" in error;
-}
-
-export async function loginAction(formData: FormData) {
-    const validateFields = LogInSchema.safeParse(
+export const AuthCredentials = async (
+    prevState: { error?: string } | undefined,
+    formData: FormData
+) => {
+    const validatedFields = AuthSchema.safeParse(
         Object.fromEntries(formData.entries())
     );
 
-    if (!validateFields.success) {
+    if (!validatedFields.success) {
         return {
-            error: validateFields.error.flatten().fieldErrors,
+            error: 'Invalid fields',
+            details: validatedFields.error.flatten().fieldErrors,
         };
     }
 
-    const { email, password } = validateFields.data;
+    const { email, password } = validatedFields.data;
 
     try {
-        await signIn("credentials", {
+        const result = await signIn("credentials", {
             email,
             password,
-            redirect: false,
+            redirect: false
         });
 
-        redirect("/dashboard");
-    } catch (error) {
-        if (isAuthError(error)) {
-            switch (error.type) {
-                case "CredentialsSignin":
-                    return { error: "Email atau password salah" };
-                default:
-                    return { error: "Terjadi kesalahan saat login" };
+        if (result?.error) {
+            if (result.error === "CredentialsSignin") {
+                return { error: "Invalid credentials. Please try again." };
             }
+            return { error: result.error };
         }
 
-        return { error: "Terjadi kesalahan saat login" };
-    }
-}
+        redirect("/pages");
+        return { success: true };
 
-export async function loginWithGoogle() {
-    try {
-        await signIn("google", { callbackUrl: "/dashboard" });
     } catch (error) {
-        return { error: "Terjadi kesalahan saat login dengan Google" };
+        console.error("Log in error:", error);
+
+        if (error instanceof AuthError) {
+            if (error.message.includes("AccessDenied")) {
+                return { error: "Account not activated. Please check your email." };
+            }
+            return { error: error.message || "Authentication failed." };
+        }
+
+        return { error: "An unexpected error occurred. Please try again." };
     }
-}
+};
