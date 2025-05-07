@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import AppAuth from "@/layout/AppAuth";
 import { auth } from "@/api/auth";
+import AppAuth from "@/layout/AppAuth";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {

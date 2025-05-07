@@ -1,9 +1,9 @@
 import NextAuth from "next-auth"
-import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from "@/lib/prisma"
-import Credentials from "next-auth/providers/credentials"
 import { AuthSchema } from "@/lib/zod"
 import { compareSync } from "bcrypt-ts"
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import Credentials from "next-auth/providers/credentials"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: PrismaAdapter(prisma),
@@ -28,13 +28,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                     where: { email }
                 });
 
-                if (!user || user.password !== password) {
-                    throw new Error("No user found");
+                if (!user || !user.password) {
+                    return null;
                 }
 
                 const passwordMatch = compareSync(password, user.password);
 
-                if (!passwordMatch) return null;
+                if (!passwordMatch) {
+                    return null;
+                }
 
                 return user;
             }

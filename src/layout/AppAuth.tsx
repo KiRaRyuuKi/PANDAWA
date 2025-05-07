@@ -6,8 +6,8 @@ import Label from "@/components/form/Label";
 import Button from "@/components/ui/button/Button";
 
 import Image from 'next/image';
+import { AuthCredentials } from "@/lib/actions";
 import React, { useActionState, useState } from "react";
-import { AuthCredentials } from "../../lib/actions";
 
 export default function AppAuth() {
     const [showPassword, setShowPassword] = useState(false);

@@ -30,7 +30,7 @@
         "./lib/*"
       ],
       "@/prisma/*": [
-        "./lib/generated/prisma/*"
+        "./prisma/generated/prisma/*"
       ]
     }
   },

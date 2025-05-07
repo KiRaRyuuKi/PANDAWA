@@ -1,9 +1,11 @@
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+
+// import { Providers } from "./providers";
+
 import GridShape from "@/components/common/GridShape";
 import ThemeTogglerTwo from "@/components/common/ThemeTogglerTwo";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { Providers } from "./providers";
 
 export default function AuthLayout({
   children,
@@ -11,7 +13,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Providers>
+    // <Providers>
       <div className="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
         <div className="relative flex lg:flex-row w-full h-screen justify-center flex-col dark:bg-gray-900 sm:p-0">
           {children}
@@ -40,6 +42,6 @@ export default function AuthLayout({
           </div>
         </div>
       </div>
-    </Providers>
+    // </Providers>
   );
 }
