@@ -271,7 +271,7 @@ export default function TablePenduduk() {
                 </TableRow>
               ) : currentItems.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="px-5 py-3 text-center text-theme-sm text-gray-500 dark:text-gray-400">
+                  <TableCell colSpan={7} className="px-5 py-5 text-center text-theme-sm text-gray-500 dark:text-gray-400">
                     Tidak ada data yang sesuai dengan filter
                   </TableCell>
                 </TableRow>
