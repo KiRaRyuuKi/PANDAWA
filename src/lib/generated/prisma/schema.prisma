@@ -10,16 +10,19 @@ generator client {
 }
 
 datasource database {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model User {
   id             String    @id @default(uuid())
-  name           String?
+  first_name     String?
+  last_name      String?
   email          String?   @unique
   email_verified DateTime?
   password       String?
+  image          String?
   created_at     DateTime  @default(now()) @map("created_at")
   updated_at     DateTime  @updatedAt @map("updated_at")
 
@@ -31,14 +34,13 @@ model User {
 }
 
 model Detail {
-  id_detail     String @id @default(uuid())
-  id_tax        String @unique
-  phone         String
-  bio           String
-  city          String
-  county        String
-  post_kode     String
-  photo_profile String
+  id_detail String @id @default(uuid())
+  id_tax    String @unique
+  phone     String
+  bio       String
+  city      String
+  country   String
+  post_kode String
 
   user User @relation(fields: [id_tax], references: [id])
 

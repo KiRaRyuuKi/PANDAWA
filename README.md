@@ -2,16 +2,51 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+# Project Name
+
+## Deskripsi
+Proyek ini menggunakan Node.js dengan Prisma sebagai ORM (Object-Relational Mapping) untuk mengelola database.
+
+## Persyaratan
+- Node.js
+- NPM
+- Database (PostgreSQL/MySQL/SQLite/etc, sesuai konfigurasi Prisma)
+
+## Getting Started
+
+### Instalasi
+Install semua dependency yang diperlukan:
+
+```bash
+npm install
+```
+
+### Menjalankan Development Server
+Untuk menjalankan server dalam mode development:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+
+### Migrasi Database
+Untuk membuat skema database awal:
+
+```bash
+npx prisma migrate dev --name init
+```
+
+### Seed Database
+Untuk mengisi database dengan data awal:
+
+```bash
+npx prisma db seed
+```
+
+### Reset Database
+Jika ingin mereset database tanpa menjalankan seed:
+
+```bash
+npx prisma migrate reset --skip-seed
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
