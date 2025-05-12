@@ -42,6 +42,12 @@ Untuk mengisi database dengan data awal:
 npx prisma db seed
 ```
 
+### Prisma Studio
+
+```bash
+npx prisma studio
+```
+
 ### Reset Database
 Jika ingin mereset database tanpa menjalankan seed:
 
