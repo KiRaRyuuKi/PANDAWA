@@ -2,12 +2,19 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import { Dropdown } from "../ui/dropdown/Dropdown";
+import { Dropdown } from "../ui/dropdown/DropdownMenu";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
-import { signOut } from "next-auth/react";
+import { Modal } from "../ui/modal/Modal";
+import Button from "../ui/button/Button";
+import { useModal } from "@/hooks/useModal";
+import { useSession } from "next-auth/react";
+import { logoutAuth } from "@/api/auth/logout";
 
 export default function UserDropdown() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
+  const [openDropdown, setIsOpen] = useState(false);
+  const { isOpen, openModal, closeModal } = useModal();
+  const profileImage = session?.user?.image;
 
   function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.stopPropagation();
@@ -17,6 +24,7 @@ export default function UserDropdown() {
   function closeDropdown() {
     setIsOpen(false);
   }
+
   return (
     <div className="relative">
       <button
@@ -27,23 +35,23 @@ export default function UserDropdown() {
           <Image
             width={44}
             height={44}
-            src="/images/user/owner.jpg"
+            src={profileImage ?? "/images/user/user-default.png"}
             alt="User"
           />
         </span>
       </button>
 
       <Dropdown
-        isOpen={isOpen}
+        isOpen={openDropdown}
         onClose={closeDropdown}
         className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark"
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            Musharof Chowdhury
+            {session?.user?.name || "Loading..."}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-            randomuser@pimjo.com
+            {session?.user?.email || "Loading..."}
           </span>
         </div>
 
@@ -124,12 +132,10 @@ export default function UserDropdown() {
             </DropdownItem>
           </li>
         </ul>
-        <a
-          onClick={() => {
-            closeDropdown();
-            signOut({ callbackUrl: "/auth" });
-          } }
-          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300" href={""}        >
+        <button
+          onClick={openModal}
+          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+        >
           <svg
             className="fill-gray-500 group-hover:fill-gray-700 dark:group-hover:fill-gray-300"
             width="24"
@@ -146,8 +152,30 @@ export default function UserDropdown() {
             />
           </svg>
           Sign out
-        </a>
+        </button>
       </Dropdown>
+      <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[500px] m-4">
+        <div className="no-scrollbar relative w-full max-w-[500px] overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
+          <div className="px-2 pr-14">
+            <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
+              Sign Out
+            </h4>
+            <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
+              Keluar dari
+            </p>
+          </div>
+          <form action={logoutAuth} className="flex flex-col">
+            <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">
+              <Button size="sm" variant="outline" onClick={closeModal}>
+                Close
+              </Button>
+              <Button size="sm" type="submit" className="bg-red-600 hover:bg-red-500" >
+                Sign Out
+              </Button>
+            </div>
+          </form>
+        </div>
+      </Modal>
     </div>
   );
 }

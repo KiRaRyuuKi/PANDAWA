@@ -18,7 +18,7 @@ type MonthData = {
     day: number;
     isCurrentMonth: boolean;
     isToday: boolean;
-    isSelected: boolean; // Fixed: removed null possibility
+    isSelected: boolean;
   }[][];
 };
 

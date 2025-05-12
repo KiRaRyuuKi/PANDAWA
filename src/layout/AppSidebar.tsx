@@ -16,23 +16,28 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     name: "Dashboard",
-    icon: <Image src="/icons/grid.svg" width={20} height={20} alt="Grid" />,
-    path: "/pages",
+    icon: <Image src="/images/icons/grid.svg" width={20} height={20} alt="Grid" />,
+    path: "/dashboard",
   },
   {
     name: "Data Kecamatan",
-    icon: <Image src="/icons/box-cube.svg" width={20} height={20} alt="Box Cube" />,
-    path: "/pages/kecamatan",
+    icon: <Image src="/images/icons/box-cube.svg" width={20} height={20} alt="Box Cube" />,
+    path: "/kecamatan",
   },
   {
     name: "Data Komoditas",
-    icon: <Image src="/icons/list.svg" width={20} height={20} alt="List" />,
-    path: "/pages/commodity",
+    icon: <Image src="/images/icons/list.svg" width={20} height={20} alt="List" />,
+    path: "/commodity",
+  },
+  {
+    name: "Data Penduduk",
+    icon: <Image src="/images/icons/group.svg" width={20} height={20} alt="List" />,
+    path: "/penduduk",
   },
   {
     name: "Prediksi Panen",
-    icon: <Image src="/icons/task.svg" width={20} height={20} alt="Task" />,
-    path: "/pages/prediction",
+    icon: <Image src="/images/icons/task.svg" width={20} height={20} alt="Task" />,
+    path: "/prediction",
   },
 ];
 
@@ -70,7 +75,7 @@ const AppSidebar: React.FC = () => {
                 <span className={`menu-item-text`}>{nav.name}</span>
               )}
               {(isExpanded || isHovered || isMobileOpen) && (
-                <Image src="/icons/chevron-down.svg" width={20} height={20} alt="Chevron Down"
+                <Image src="/images/icons/chevron-down.svg" width={20} height={20} alt="Chevron Down"
                   className={`ml-auto w-5 h-5 transition-transform duration-200  ${openSubmenu?.type === menuType &&
                     openSubmenu?.index === index
                     ? "rotate-180 text-brand-500"
@@ -264,7 +269,7 @@ const AppSidebar: React.FC = () => {
                   {isExpanded || isHovered || isMobileOpen ? (
                     "Menu"
                   ) : (
-                    <Image src="/icons/horizontal-dots.svg" width={20} height={20} alt="Horizontal Dots" />
+                    <Image src="/images/icons/horizontal-dots.svg" width={20} height={20} alt="Horizontal Dots" />
                   )}
                 </h2>
                 {renderMenuItems(navItems, "main")}

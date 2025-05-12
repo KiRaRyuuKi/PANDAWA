@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { auth } from "@/api/auth";
+import { auth } from "@/api/auth/auth";
 import AppAuth from "@/layout/AppAuth";
 import { redirect } from "next/navigation";
 
@@ -12,7 +12,7 @@ const AuthPage = async () => {
   const session = await auth();
 
   if (session) {
-    redirect("/pages");
+    redirect("/dashboard");
   }
 
   return <AppAuth />;

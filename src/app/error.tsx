@@ -17,8 +17,6 @@ export default function Error({ error, reset }: ErrorProps) {
 
     if (error.message.includes("503")) {
         errorType = "503";
-    } else if (error.message.includes("maintenance")) {
-        errorType = "maintenance";
     }
 
     return (

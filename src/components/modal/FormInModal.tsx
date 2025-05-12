@@ -2,9 +2,9 @@
 import React from "react";
 import ComponentCard from "../common/ComponentCard";
 import Button from "../ui/button/Button";
-import { Modal } from "../ui/modal";
-import Label from "../form/Label";
-import Input from "../form/input/InputField";
+import { Modal } from "../ui/modal/Modal";
+import Label from "../ui/label/Label";
+import Input from "../ui/input/InputField";
 import { useModal } from "@/hooks/useModal";
 
 export default function FormInModal() {
