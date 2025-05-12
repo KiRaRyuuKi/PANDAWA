@@ -16,10 +16,12 @@ datasource database {
 
 model User {
   id                String    @id @default(uuid())
-  name              String?
+  firs_name         String?
+  last_name         String?
   email             String?   @unique
   email_verified    DateTime?
   password          String?
+  image             String?
   created_at        DateTime  @default(now()) @map("created_at")
   updated_at        DateTime  @updatedAt @map("updated_at")
 
@@ -36,9 +38,8 @@ model Detail {
   phone             String
   bio               String
   city              String
-  county            String
+  country            String
   post_kode         String
-  photo_profile     String
 
   user              User      @relation(fields: [id_tax], references: [id])
 

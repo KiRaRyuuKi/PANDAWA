@@ -134,10 +134,10 @@ export default function UserDropdown() {
         </ul>
         <button
           onClick={openModal}
-          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-red-600 hover:text-white dark:text-gray-400 dark:hover:bg-red-600 dark:hover:text-white"
         >
           <svg
-            className="fill-gray-500 group-hover:fill-gray-700 dark:group-hover:fill-gray-300"
+            className="fill-gray-500 group-hover:fill-white dark:group-hover:fill-white"
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -161,7 +161,7 @@ export default function UserDropdown() {
               Sign Out
             </h4>
             <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-              Keluar dari
+              Keluar dari dari admin panel?
             </p>
           </div>
           <form action={logoutAuth} className="flex flex-col">

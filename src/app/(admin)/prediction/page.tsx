@@ -1,21 +1,21 @@
 import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
-import TableCommodity from "@/components/tables/TableCommodity";
+import TablePrediction from "@/components/tables/TablePrediction";
 import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "PANDAWA | Commodity",
+  title: "PANDAWA | Prediction",
   description:
     "PANDAWA",
 };
 
-export default function CommodityPage() {
+export default function PredictionPage() {
   return (
     <div>
       <div className="space-y-6">
-        <ComponentCard title="Table Commodity">
-          <TableCommodity />
+        <ComponentCard title="Table Prediction">
+          <TablePrediction />
         </ComponentCard>
       </div>
     </div>

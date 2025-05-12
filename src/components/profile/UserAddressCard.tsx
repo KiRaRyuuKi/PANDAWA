@@ -5,8 +5,10 @@ import { Modal } from "../ui/modal/Modal";
 import Button from "../ui/button/Button";
 import Input from "../ui/input/InputField";
 import Label from "../ui/label/Label";
+import { useSession } from "next-auth/react";
 
 export default function UserAddressCard() {
+  const { data: session } = useSession();
   const { isOpen, openModal, closeModal } = useModal();
   const handleSave = () => {
     // Handle save logic here
@@ -28,7 +30,7 @@ export default function UserAddressCard() {
                   Country
                 </p>
                 <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  United States
+                  {session?.user?.detail?.country || "Loading..."}
                 </p>
               </div>
 
@@ -37,7 +39,7 @@ export default function UserAddressCard() {
                   City/State
                 </p>
                 <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  Phoenix, Arizona, United States.
+                  {session?.user?.detail?.city || "Loading..."}
                 </p>
               </div>
 
@@ -46,7 +48,7 @@ export default function UserAddressCard() {
                   Postal Code
                 </p>
                 <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  ERT 2489
+                  {session?.user?.detail?.post_kode || "Loading..."}
                 </p>
               </div>
 
@@ -55,7 +57,7 @@ export default function UserAddressCard() {
                   TAX ID
                 </p>
                 <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  AS4568384
+                  {session?.user?.detail?.id_tax || "Loading..."}
                 </p>
               </div>
             </div>
@@ -99,22 +101,22 @@ export default function UserAddressCard() {
               <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                 <div>
                   <Label>Country</Label>
-                  <Input type="text" defaultValue="United States" />
+                  <Input type="text" />
                 </div>
 
                 <div>
                   <Label>City/State</Label>
-                  <Input type="text" defaultValue="Arizona, United States." />
+                  <Input type="text" />
                 </div>
 
                 <div>
                   <Label>Postal Code</Label>
-                  <Input type="text" defaultValue="ERT 2489" />
+                  <Input type="text" />
                 </div>
 
                 <div>
                   <Label>TAX ID</Label>
-                  <Input type="text" defaultValue="AS4568384" />
+                  <Input type="text" />
                 </div>
               </div>
             </div>
