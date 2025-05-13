@@ -1,6 +1,4 @@
 # PANDAWA
-
-## Deskripsi
 Proyek ini menggunakan Node.js dengan Prisma sebagai ORM (Object-Relational Mapping) untuk mengelola database.
 
 ## Persyaratan
