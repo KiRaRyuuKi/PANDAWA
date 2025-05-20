@@ -22,11 +22,16 @@ import Pagination from './Pagination';
 import Select from '../ui/select/Select';
 import ShowEntriesSelect from './ShowEntriesSelect';
 
+interface Kecamatan {
+  nama_kecamatan: string;
+}
+
 interface Penduduk {
   id_penduduk: number;
-  nama_kecamatan: string;
+  id_kecamatan: number;
+  kecamatan: Kecamatan;
   laju_pertumbuhan: string;
-  jumlah_penduduk: string;
+  jumlah_penduduk: number;
   data_tahun: number;
 }
 
@@ -74,8 +79,8 @@ export default function TablePenduduk() {
 
         // Extract unique kecamatan names for filter options
         const uniqueKecamatan = Array.from(
-          new Set(result.map((item: Penduduk) => item.nama_kecamatan))
-        ).map(kecamatan => ({
+          new Set(result.map((item: Penduduk) => item.kecamatan?.nama_kecamatan))
+        ).filter(Boolean).map(kecamatan => ({
           value: kecamatan as string,
           label: kecamatan as string
         }));
@@ -122,7 +127,7 @@ export default function TablePenduduk() {
 
     if (filters.kecamatan) {
       result = result.filter(item =>
-        item.nama_kecamatan?.toLowerCase() === filters.kecamatan.toLowerCase()
+        item.kecamatan?.nama_kecamatan?.toLowerCase() === filters.kecamatan.toLowerCase()
       );
     }
 
@@ -166,20 +171,28 @@ export default function TablePenduduk() {
     field: keyof Penduduk
   ) => {
     if (selectedPenduduk) {
-      let value: string | number = e.target.value;
+      const inputValue = e.target.value;
 
-      // Convert to number for data_tahun field
-      if (field === 'data_tahun' && value !== '') {
-        value = parseInt(value);
-        if (isNaN(value)) {
-          value = new Date().getFullYear();
-        }
+      // Handle each field with proper type
+      if (field === 'data_tahun') {
+        const numericValue = parseInt(inputValue) || new Date().getFullYear();
+        setSelectedPenduduk({
+          ...selectedPenduduk,
+          [field]: numericValue
+        });
+      } else if (field === 'jumlah_penduduk') {
+        const numericValue = parseFloat(inputValue) || 0;
+        setSelectedPenduduk({
+          ...selectedPenduduk,
+          [field]: numericValue
+        });
+      } else {
+        // For string fields like 'laju_pertumbuhan'
+        setSelectedPenduduk({
+          ...selectedPenduduk,
+          [field]: inputValue
+        });
       }
-
-      setSelectedPenduduk({
-        ...selectedPenduduk,
-        [field]: value
-      });
     }
   };
 
@@ -194,7 +207,7 @@ export default function TablePenduduk() {
       return;
     }
 
-    if (!selectedPenduduk.jumlah_penduduk) {
+    if (selectedPenduduk.jumlah_penduduk === undefined || selectedPenduduk.jumlah_penduduk < 0) {
       toast.error('Jumlah penduduk tidak boleh kosong');
       return;
     }
@@ -208,8 +221,8 @@ export default function TablePenduduk() {
 
     const updatedData = {
       laju_pertumbuhan: selectedPenduduk.laju_pertumbuhan.trim(),
-      jumlah_penduduk: selectedPenduduk.jumlah_penduduk.trim(),
-      tahun: selectedPenduduk.data_tahun
+      jumlah_penduduk: selectedPenduduk.jumlah_penduduk,
+      data_tahun: selectedPenduduk.data_tahun
     };
 
     try {
@@ -233,7 +246,7 @@ export default function TablePenduduk() {
                 ...item,
                 laju_pertumbuhan: updatedData.laju_pertumbuhan,
                 jumlah_penduduk: updatedData.jumlah_penduduk,
-                data_tahun: updatedData.tahun
+                data_tahun: updatedData.data_tahun
               }
               : item
           )
@@ -380,7 +393,7 @@ export default function TablePenduduk() {
               currentItems.map((item) => (
                 <TableRow key={item.id_penduduk}>
                   <TableCell className="px-5 py-3 text-theme-sm text-gray-800 dark:text-white/90">
-                    {item.nama_kecamatan}
+                    {item.kecamatan?.nama_kecamatan || 'N/A'}
                   </TableCell>
                   <TableCell className="px-5 py-3 text-theme-sm text-gray-500 text-justify dark:text-gray-400">
                     {item.laju_pertumbuhan}
@@ -446,8 +459,7 @@ export default function TablePenduduk() {
                     <Input
                       id="nama_kecamatan"
                       type="text"
-                      value={selectedPenduduk?.nama_kecamatan || ''}
-                      onChange={(e) => handleInputChange(e, 'nama_kecamatan')}
+                      value={selectedPenduduk?.kecamatan?.nama_kecamatan || ''}
                       disabled={true}
                       className="bg-gray-50"
                     />
