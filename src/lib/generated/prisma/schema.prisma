@@ -124,8 +124,6 @@ model Penduduk {
 model Komoditas {
   id_komoditas   Int    @id @default(autoincrement())
   nama_komoditas String @database.VarChar(100)
-  posisi_x       Int
-  posisi_y       Int
 
   created_at DateTime  @default(now()) @map("created_at")
   updated_at DateTime  @updatedAt @map("updated_at")
@@ -144,6 +142,7 @@ model HasilPanen {
   kecamatan     Kecamatan @relation(fields: [id_kecamatan], references: [id_kecamatan])
   id_komoditas  Int
   komoditas     Komoditas @relation(fields: [id_komoditas], references: [id_komoditas])
+  nama_panen    String
   tahun_panen   Int
   produksi      Float
   luas_panen    Float

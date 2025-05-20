@@ -346,8 +346,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.8.2
+   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
    */
   export type PrismaVersion = {
     client: string
@@ -9682,21 +9682,15 @@ export namespace Prisma {
 
   export type KomoditasAvgAggregateOutputType = {
     id_komoditas: number | null
-    posisi_x: number | null
-    posisi_y: number | null
   }
 
   export type KomoditasSumAggregateOutputType = {
     id_komoditas: number | null
-    posisi_x: number | null
-    posisi_y: number | null
   }
 
   export type KomoditasMinAggregateOutputType = {
     id_komoditas: number | null
     nama_komoditas: string | null
-    posisi_x: number | null
-    posisi_y: number | null
     created_at: Date | null
     updated_at: Date | null
     deleted_at: Date | null
@@ -9705,8 +9699,6 @@ export namespace Prisma {
   export type KomoditasMaxAggregateOutputType = {
     id_komoditas: number | null
     nama_komoditas: string | null
-    posisi_x: number | null
-    posisi_y: number | null
     created_at: Date | null
     updated_at: Date | null
     deleted_at: Date | null
@@ -9715,8 +9707,6 @@ export namespace Prisma {
   export type KomoditasCountAggregateOutputType = {
     id_komoditas: number
     nama_komoditas: number
-    posisi_x: number
-    posisi_y: number
     created_at: number
     updated_at: number
     deleted_at: number
@@ -9726,21 +9716,15 @@ export namespace Prisma {
 
   export type KomoditasAvgAggregateInputType = {
     id_komoditas?: true
-    posisi_x?: true
-    posisi_y?: true
   }
 
   export type KomoditasSumAggregateInputType = {
     id_komoditas?: true
-    posisi_x?: true
-    posisi_y?: true
   }
 
   export type KomoditasMinAggregateInputType = {
     id_komoditas?: true
     nama_komoditas?: true
-    posisi_x?: true
-    posisi_y?: true
     created_at?: true
     updated_at?: true
     deleted_at?: true
@@ -9749,8 +9733,6 @@ export namespace Prisma {
   export type KomoditasMaxAggregateInputType = {
     id_komoditas?: true
     nama_komoditas?: true
-    posisi_x?: true
-    posisi_y?: true
     created_at?: true
     updated_at?: true
     deleted_at?: true
@@ -9759,8 +9741,6 @@ export namespace Prisma {
   export type KomoditasCountAggregateInputType = {
     id_komoditas?: true
     nama_komoditas?: true
-    posisi_x?: true
-    posisi_y?: true
     created_at?: true
     updated_at?: true
     deleted_at?: true
@@ -9856,8 +9836,6 @@ export namespace Prisma {
   export type KomoditasGroupByOutputType = {
     id_komoditas: number
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
@@ -9885,8 +9863,6 @@ export namespace Prisma {
   export type KomoditasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_komoditas?: boolean
     nama_komoditas?: boolean
-    posisi_x?: boolean
-    posisi_y?: boolean
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
@@ -9899,8 +9875,6 @@ export namespace Prisma {
   export type KomoditasSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_komoditas?: boolean
     nama_komoditas?: boolean
-    posisi_x?: boolean
-    posisi_y?: boolean
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
@@ -9909,8 +9883,6 @@ export namespace Prisma {
   export type KomoditasSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_komoditas?: boolean
     nama_komoditas?: boolean
-    posisi_x?: boolean
-    posisi_y?: boolean
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
@@ -9919,14 +9891,12 @@ export namespace Prisma {
   export type KomoditasSelectScalar = {
     id_komoditas?: boolean
     nama_komoditas?: boolean
-    posisi_x?: boolean
-    posisi_y?: boolean
     created_at?: boolean
     updated_at?: boolean
     deleted_at?: boolean
   }
 
-  export type KomoditasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_komoditas" | "nama_komoditas" | "posisi_x" | "posisi_y" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["komoditas"]>
+  export type KomoditasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_komoditas" | "nama_komoditas" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["komoditas"]>
   export type KomoditasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     kecamatan?: boolean | Komoditas$kecamatanArgs<ExtArgs>
     hasil_panen?: boolean | Komoditas$hasil_panenArgs<ExtArgs>
@@ -9946,8 +9916,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id_komoditas: number
       nama_komoditas: string
-      posisi_x: number
-      posisi_y: number
       created_at: Date
       updated_at: Date
       deleted_at: Date | null
@@ -10379,8 +10347,6 @@ export namespace Prisma {
   interface KomoditasFieldRefs {
     readonly id_komoditas: FieldRef<"Komoditas", 'Int'>
     readonly nama_komoditas: FieldRef<"Komoditas", 'String'>
-    readonly posisi_x: FieldRef<"Komoditas", 'Int'>
-    readonly posisi_y: FieldRef<"Komoditas", 'Int'>
     readonly created_at: FieldRef<"Komoditas", 'DateTime'>
     readonly updated_at: FieldRef<"Komoditas", 'DateTime'>
     readonly deleted_at: FieldRef<"Komoditas", 'DateTime'>
@@ -10898,6 +10864,7 @@ export namespace Prisma {
     id_panen: number | null
     id_kecamatan: number | null
     id_komoditas: number | null
+    nama_panen: string | null
     tahun_panen: number | null
     produksi: number | null
     luas_panen: number | null
@@ -10910,6 +10877,7 @@ export namespace Prisma {
     id_panen: number | null
     id_kecamatan: number | null
     id_komoditas: number | null
+    nama_panen: string | null
     tahun_panen: number | null
     produksi: number | null
     luas_panen: number | null
@@ -10922,6 +10890,7 @@ export namespace Prisma {
     id_panen: number
     id_kecamatan: number
     id_komoditas: number
+    nama_panen: number
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -10956,6 +10925,7 @@ export namespace Prisma {
     id_panen?: true
     id_kecamatan?: true
     id_komoditas?: true
+    nama_panen?: true
     tahun_panen?: true
     produksi?: true
     luas_panen?: true
@@ -10968,6 +10938,7 @@ export namespace Prisma {
     id_panen?: true
     id_kecamatan?: true
     id_komoditas?: true
+    nama_panen?: true
     tahun_panen?: true
     produksi?: true
     luas_panen?: true
@@ -10980,6 +10951,7 @@ export namespace Prisma {
     id_panen?: true
     id_kecamatan?: true
     id_komoditas?: true
+    nama_panen?: true
     tahun_panen?: true
     produksi?: true
     luas_panen?: true
@@ -11079,6 +11051,7 @@ export namespace Prisma {
     id_panen: number
     id_kecamatan: number
     id_komoditas: number
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -11110,6 +11083,7 @@ export namespace Prisma {
     id_panen?: boolean
     id_kecamatan?: boolean
     id_komoditas?: boolean
+    nama_panen?: boolean
     tahun_panen?: boolean
     produksi?: boolean
     luas_panen?: boolean
@@ -11124,6 +11098,7 @@ export namespace Prisma {
     id_panen?: boolean
     id_kecamatan?: boolean
     id_komoditas?: boolean
+    nama_panen?: boolean
     tahun_panen?: boolean
     produksi?: boolean
     luas_panen?: boolean
@@ -11138,6 +11113,7 @@ export namespace Prisma {
     id_panen?: boolean
     id_kecamatan?: boolean
     id_komoditas?: boolean
+    nama_panen?: boolean
     tahun_panen?: boolean
     produksi?: boolean
     luas_panen?: boolean
@@ -11152,6 +11128,7 @@ export namespace Prisma {
     id_panen?: boolean
     id_kecamatan?: boolean
     id_komoditas?: boolean
+    nama_panen?: boolean
     tahun_panen?: boolean
     produksi?: boolean
     luas_panen?: boolean
@@ -11160,7 +11137,7 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type HasilPanenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_panen" | "id_kecamatan" | "id_komoditas" | "tahun_panen" | "produksi" | "luas_panen" | "produktivitas" | "created_at" | "updated_at", ExtArgs["result"]["hasilPanen"]>
+  export type HasilPanenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_panen" | "id_kecamatan" | "id_komoditas" | "nama_panen" | "tahun_panen" | "produksi" | "luas_panen" | "produktivitas" | "created_at" | "updated_at", ExtArgs["result"]["hasilPanen"]>
   export type HasilPanenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     kecamatan?: boolean | KecamatanDefaultArgs<ExtArgs>
     komoditas?: boolean | KomoditasDefaultArgs<ExtArgs>
@@ -11184,6 +11161,7 @@ export namespace Prisma {
       id_panen: number
       id_kecamatan: number
       id_komoditas: number
+      nama_panen: string
       tahun_panen: number
       produksi: number
       luas_panen: number
@@ -11618,6 +11596,7 @@ export namespace Prisma {
     readonly id_panen: FieldRef<"HasilPanen", 'Int'>
     readonly id_kecamatan: FieldRef<"HasilPanen", 'Int'>
     readonly id_komoditas: FieldRef<"HasilPanen", 'Int'>
+    readonly nama_panen: FieldRef<"HasilPanen", 'String'>
     readonly tahun_panen: FieldRef<"HasilPanen", 'Int'>
     readonly produksi: FieldRef<"HasilPanen", 'Float'>
     readonly luas_panen: FieldRef<"HasilPanen", 'Float'>
@@ -13291,8 +13270,6 @@ export namespace Prisma {
   export const KomoditasScalarFieldEnum: {
     id_komoditas: 'id_komoditas',
     nama_komoditas: 'nama_komoditas',
-    posisi_x: 'posisi_x',
-    posisi_y: 'posisi_y',
     created_at: 'created_at',
     updated_at: 'updated_at',
     deleted_at: 'deleted_at'
@@ -13305,6 +13282,7 @@ export namespace Prisma {
     id_panen: 'id_panen',
     id_kecamatan: 'id_kecamatan',
     id_komoditas: 'id_komoditas',
+    nama_panen: 'nama_panen',
     tahun_panen: 'tahun_panen',
     produksi: 'produksi',
     luas_panen: 'luas_panen',
@@ -13913,8 +13891,6 @@ export namespace Prisma {
     NOT?: KomoditasWhereInput | KomoditasWhereInput[]
     id_komoditas?: IntFilter<"Komoditas"> | number
     nama_komoditas?: StringFilter<"Komoditas"> | string
-    posisi_x?: IntFilter<"Komoditas"> | number
-    posisi_y?: IntFilter<"Komoditas"> | number
     created_at?: DateTimeFilter<"Komoditas"> | Date | string
     updated_at?: DateTimeFilter<"Komoditas"> | Date | string
     deleted_at?: DateTimeNullableFilter<"Komoditas"> | Date | string | null
@@ -13926,8 +13902,6 @@ export namespace Prisma {
   export type KomoditasOrderByWithRelationInput = {
     id_komoditas?: SortOrder
     nama_komoditas?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     deleted_at?: SortOrderInput | SortOrder
@@ -13942,8 +13916,6 @@ export namespace Prisma {
     OR?: KomoditasWhereInput[]
     NOT?: KomoditasWhereInput | KomoditasWhereInput[]
     nama_komoditas?: StringFilter<"Komoditas"> | string
-    posisi_x?: IntFilter<"Komoditas"> | number
-    posisi_y?: IntFilter<"Komoditas"> | number
     created_at?: DateTimeFilter<"Komoditas"> | Date | string
     updated_at?: DateTimeFilter<"Komoditas"> | Date | string
     deleted_at?: DateTimeNullableFilter<"Komoditas"> | Date | string | null
@@ -13955,8 +13927,6 @@ export namespace Prisma {
   export type KomoditasOrderByWithAggregationInput = {
     id_komoditas?: SortOrder
     nama_komoditas?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     deleted_at?: SortOrderInput | SortOrder
@@ -13973,8 +13943,6 @@ export namespace Prisma {
     NOT?: KomoditasScalarWhereWithAggregatesInput | KomoditasScalarWhereWithAggregatesInput[]
     id_komoditas?: IntWithAggregatesFilter<"Komoditas"> | number
     nama_komoditas?: StringWithAggregatesFilter<"Komoditas"> | string
-    posisi_x?: IntWithAggregatesFilter<"Komoditas"> | number
-    posisi_y?: IntWithAggregatesFilter<"Komoditas"> | number
     created_at?: DateTimeWithAggregatesFilter<"Komoditas"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Komoditas"> | Date | string
     deleted_at?: DateTimeNullableWithAggregatesFilter<"Komoditas"> | Date | string | null
@@ -13987,6 +13955,7 @@ export namespace Prisma {
     id_panen?: IntFilter<"HasilPanen"> | number
     id_kecamatan?: IntFilter<"HasilPanen"> | number
     id_komoditas?: IntFilter<"HasilPanen"> | number
+    nama_panen?: StringFilter<"HasilPanen"> | string
     tahun_panen?: IntFilter<"HasilPanen"> | number
     produksi?: FloatFilter<"HasilPanen"> | number
     luas_panen?: FloatFilter<"HasilPanen"> | number
@@ -14001,6 +13970,7 @@ export namespace Prisma {
     id_panen?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    nama_panen?: SortOrder
     tahun_panen?: SortOrder
     produksi?: SortOrder
     luas_panen?: SortOrder
@@ -14018,6 +13988,7 @@ export namespace Prisma {
     NOT?: HasilPanenWhereInput | HasilPanenWhereInput[]
     id_kecamatan?: IntFilter<"HasilPanen"> | number
     id_komoditas?: IntFilter<"HasilPanen"> | number
+    nama_panen?: StringFilter<"HasilPanen"> | string
     tahun_panen?: IntFilter<"HasilPanen"> | number
     produksi?: FloatFilter<"HasilPanen"> | number
     luas_panen?: FloatFilter<"HasilPanen"> | number
@@ -14032,6 +14003,7 @@ export namespace Prisma {
     id_panen?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    nama_panen?: SortOrder
     tahun_panen?: SortOrder
     produksi?: SortOrder
     luas_panen?: SortOrder
@@ -14052,6 +14024,7 @@ export namespace Prisma {
     id_panen?: IntWithAggregatesFilter<"HasilPanen"> | number
     id_kecamatan?: IntWithAggregatesFilter<"HasilPanen"> | number
     id_komoditas?: IntWithAggregatesFilter<"HasilPanen"> | number
+    nama_panen?: StringWithAggregatesFilter<"HasilPanen"> | string
     tahun_panen?: IntWithAggregatesFilter<"HasilPanen"> | number
     produksi?: FloatWithAggregatesFilter<"HasilPanen"> | number
     luas_panen?: FloatWithAggregatesFilter<"HasilPanen"> | number
@@ -14656,8 +14629,6 @@ export namespace Prisma {
 
   export type KomoditasCreateInput = {
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -14669,8 +14640,6 @@ export namespace Prisma {
   export type KomoditasUncheckedCreateInput = {
     id_komoditas?: number
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -14681,8 +14650,6 @@ export namespace Prisma {
 
   export type KomoditasUpdateInput = {
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14694,8 +14661,6 @@ export namespace Prisma {
   export type KomoditasUncheckedUpdateInput = {
     id_komoditas?: IntFieldUpdateOperationsInput | number
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14707,8 +14672,6 @@ export namespace Prisma {
   export type KomoditasCreateManyInput = {
     id_komoditas?: number
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -14716,8 +14679,6 @@ export namespace Prisma {
 
   export type KomoditasUpdateManyMutationInput = {
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -14726,14 +14687,13 @@ export namespace Prisma {
   export type KomoditasUncheckedUpdateManyInput = {
     id_komoditas?: IntFieldUpdateOperationsInput | number
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type HasilPanenCreateInput = {
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -14748,6 +14708,7 @@ export namespace Prisma {
     id_panen?: number
     id_kecamatan: number
     id_komoditas: number
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -14757,6 +14718,7 @@ export namespace Prisma {
   }
 
   export type HasilPanenUpdateInput = {
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number
@@ -14771,6 +14733,7 @@ export namespace Prisma {
     id_panen?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number
@@ -14783,6 +14746,7 @@ export namespace Prisma {
     id_panen?: number
     id_kecamatan: number
     id_komoditas: number
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -14792,6 +14756,7 @@ export namespace Prisma {
   }
 
   export type HasilPanenUpdateManyMutationInput = {
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number
@@ -14804,6 +14769,7 @@ export namespace Prisma {
     id_panen?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number
@@ -15429,8 +15395,6 @@ export namespace Prisma {
   export type KomoditasCountOrderByAggregateInput = {
     id_komoditas?: SortOrder
     nama_komoditas?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     deleted_at?: SortOrder
@@ -15438,15 +15402,11 @@ export namespace Prisma {
 
   export type KomoditasAvgOrderByAggregateInput = {
     id_komoditas?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
   }
 
   export type KomoditasMaxOrderByAggregateInput = {
     id_komoditas?: SortOrder
     nama_komoditas?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     deleted_at?: SortOrder
@@ -15455,8 +15415,6 @@ export namespace Prisma {
   export type KomoditasMinOrderByAggregateInput = {
     id_komoditas?: SortOrder
     nama_komoditas?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     deleted_at?: SortOrder
@@ -15464,14 +15422,13 @@ export namespace Prisma {
 
   export type KomoditasSumOrderByAggregateInput = {
     id_komoditas?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
   }
 
   export type HasilPanenCountOrderByAggregateInput = {
     id_panen?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    nama_panen?: SortOrder
     tahun_panen?: SortOrder
     produksi?: SortOrder
     luas_panen?: SortOrder
@@ -15494,6 +15451,7 @@ export namespace Prisma {
     id_panen?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    nama_panen?: SortOrder
     tahun_panen?: SortOrder
     produksi?: SortOrder
     luas_panen?: SortOrder
@@ -15506,6 +15464,7 @@ export namespace Prisma {
     id_panen?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    nama_panen?: SortOrder
     tahun_panen?: SortOrder
     produksi?: SortOrder
     luas_panen?: SortOrder
@@ -16698,8 +16657,6 @@ export namespace Prisma {
 
   export type KomoditasCreateWithoutKecamatanInput = {
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -16710,8 +16667,6 @@ export namespace Prisma {
   export type KomoditasUncheckedCreateWithoutKecamatanInput = {
     id_komoditas?: number
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -16752,6 +16707,7 @@ export namespace Prisma {
   }
 
   export type HasilPanenCreateWithoutKecamatanInput = {
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -16764,6 +16720,7 @@ export namespace Prisma {
   export type HasilPanenUncheckedCreateWithoutKecamatanInput = {
     id_panen?: number
     id_komoditas: number
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -16822,8 +16779,6 @@ export namespace Prisma {
 
   export type KomoditasUpdateWithoutKecamatanInput = {
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16834,8 +16789,6 @@ export namespace Prisma {
   export type KomoditasUncheckedUpdateWithoutKecamatanInput = {
     id_komoditas?: IntFieldUpdateOperationsInput | number
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -16895,6 +16848,7 @@ export namespace Prisma {
     id_panen?: IntFilter<"HasilPanen"> | number
     id_kecamatan?: IntFilter<"HasilPanen"> | number
     id_komoditas?: IntFilter<"HasilPanen"> | number
+    nama_panen?: StringFilter<"HasilPanen"> | string
     tahun_panen?: IntFilter<"HasilPanen"> | number
     produksi?: FloatFilter<"HasilPanen"> | number
     luas_panen?: FloatFilter<"HasilPanen"> | number
@@ -17046,6 +17000,7 @@ export namespace Prisma {
   }
 
   export type HasilPanenCreateWithoutKomoditasInput = {
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -17058,6 +17013,7 @@ export namespace Prisma {
   export type HasilPanenUncheckedCreateWithoutKomoditasInput = {
     id_panen?: number
     id_kecamatan: number
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -17203,8 +17159,6 @@ export namespace Prisma {
 
   export type KomoditasCreateWithoutHasil_panenInput = {
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -17215,8 +17169,6 @@ export namespace Prisma {
   export type KomoditasUncheckedCreateWithoutHasil_panenInput = {
     id_komoditas?: number
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -17282,8 +17234,6 @@ export namespace Prisma {
 
   export type KomoditasUpdateWithoutHasil_panenInput = {
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -17294,8 +17244,6 @@ export namespace Prisma {
   export type KomoditasUncheckedUpdateWithoutHasil_panenInput = {
     id_komoditas?: IntFieldUpdateOperationsInput | number
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -17339,8 +17287,6 @@ export namespace Prisma {
 
   export type KomoditasCreateWithoutPrediksi_panenInput = {
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -17351,8 +17297,6 @@ export namespace Prisma {
   export type KomoditasUncheckedCreateWithoutPrediksi_panenInput = {
     id_komoditas?: number
     nama_komoditas: string
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     deleted_at?: Date | string | null
@@ -17418,8 +17362,6 @@ export namespace Prisma {
 
   export type KomoditasUpdateWithoutPrediksi_panenInput = {
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -17430,8 +17372,6 @@ export namespace Prisma {
   export type KomoditasUncheckedUpdateWithoutPrediksi_panenInput = {
     id_komoditas?: IntFieldUpdateOperationsInput | number
     nama_komoditas?: StringFieldUpdateOperationsInput | string
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -17531,6 +17471,7 @@ export namespace Prisma {
   export type HasilPanenCreateManyKecamatanInput = {
     id_panen?: number
     id_komoditas: number
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -17575,6 +17516,7 @@ export namespace Prisma {
   }
 
   export type HasilPanenUpdateWithoutKecamatanInput = {
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number
@@ -17587,6 +17529,7 @@ export namespace Prisma {
   export type HasilPanenUncheckedUpdateWithoutKecamatanInput = {
     id_panen?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number
@@ -17598,6 +17541,7 @@ export namespace Prisma {
   export type HasilPanenUncheckedUpdateManyWithoutKecamatanInput = {
     id_panen?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number
@@ -17647,6 +17591,7 @@ export namespace Prisma {
   export type HasilPanenCreateManyKomoditasInput = {
     id_panen?: number
     id_kecamatan: number
+    nama_panen: string
     tahun_panen: number
     produksi: number
     luas_panen: number
@@ -17706,6 +17651,7 @@ export namespace Prisma {
   }
 
   export type HasilPanenUpdateWithoutKomoditasInput = {
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number
@@ -17718,6 +17664,7 @@ export namespace Prisma {
   export type HasilPanenUncheckedUpdateWithoutKomoditasInput = {
     id_panen?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number
@@ -17729,6 +17676,7 @@ export namespace Prisma {
   export type HasilPanenUncheckedUpdateManyWithoutKomoditasInput = {
     id_panen?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
+    nama_panen?: StringFieldUpdateOperationsInput | string
     tahun_panen?: IntFieldUpdateOperationsInput | number
     produksi?: FloatFieldUpdateOperationsInput | number
     luas_panen?: FloatFieldUpdateOperationsInput | number

@@ -9,9 +9,17 @@ export default function SidebarWidget() {
       <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">
         PANDAWA | Dashboard
       </h3>
-      <p className="text-gray-500 text-theme-sm dark:text-gray-400">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      <p className="text-gray-500 text-theme-sm p-2 dark:text-gray-400">
+        Aplikasi ini sedang dalam tahap pengembangan.
       </p>
+      <a
+        href="#"
+        target="_blank"
+        rel="nofollow"
+        className="flex items-center justify-center mt-3 p-2 font-medium text-white rounded-lg bg-brand-500 text-theme-sm"
+      >
+        version 0.8.2-beta
+      </a>
     </div>
   );
 }

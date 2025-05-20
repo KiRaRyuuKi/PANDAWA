@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.8.2
+ * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.8.2",
+  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -196,8 +196,6 @@ exports.Prisma.PendudukScalarFieldEnum = {
 exports.Prisma.KomoditasScalarFieldEnum = {
   id_komoditas: 'id_komoditas',
   nama_komoditas: 'nama_komoditas',
-  posisi_x: 'posisi_x',
-  posisi_y: 'posisi_y',
   created_at: 'created_at',
   updated_at: 'updated_at',
   deleted_at: 'deleted_at'
@@ -207,6 +205,7 @@ exports.Prisma.HasilPanenScalarFieldEnum = {
   id_panen: 'id_panen',
   id_kecamatan: 'id_kecamatan',
   id_komoditas: 'id_komoditas',
+  nama_panen: 'nama_panen',
   tahun_panen: 'tahun_panen',
   produksi: 'produksi',
   luas_panen: 'luas_panen',

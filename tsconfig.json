@@ -29,6 +29,9 @@
       "@/lib/*": [
         "./src/lib/*"
       ],
+      "@/api/*": [
+        "./src/app/api/*"
+      ],
       "@/prisma/*": [
         "./src/lib/generated/prisma/*"
       ]

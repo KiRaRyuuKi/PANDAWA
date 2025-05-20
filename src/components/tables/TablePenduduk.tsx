@@ -24,8 +24,8 @@ interface Penduduk {
   id_penduduk: number;
   nama_kecamatan: string;
   laju_pertumbuhan: string;
-  jml_penduduk: string;
-  tahun: number;
+  jumlah_penduduk: string;
+  data_tahun: number;
 }
 
 export default function TablePenduduk() {
@@ -77,7 +77,7 @@ export default function TablePenduduk() {
 
         setKecamatanOptions([{ value: '', label: 'Semua Kecamatan' }, ...uniqueKecamatan]);
 
-        const uniqueTahun = Array.from(new Set(result.map((item: Penduduk) => item.tahun)))
+        const uniqueTahun = Array.from(new Set(result.map((item: Penduduk) => item.data_tahun)))
           .map(tahun => ({
             value: String(tahun),
             label: String(tahun)
@@ -113,7 +113,7 @@ export default function TablePenduduk() {
     }
 
     if (filters.tahun) {
-      result = result.filter(item => String(item.tahun) === filters.tahun);
+      result = result.filter(item => String(item.data_tahun) === filters.tahun);
     }
 
     setFilteredData(result);
@@ -144,7 +144,7 @@ export default function TablePenduduk() {
     if (selectedPenduduk) {
       setSelectedPenduduk({
         ...selectedPenduduk,
-        [field]: field === 'tahun' ? parseInt(e.target.value) : e.target.value
+        [field]: field === 'data_tahun' ? parseInt(e.target.value) : e.target.value
       });
     }
   };
@@ -157,8 +157,8 @@ export default function TablePenduduk() {
 
     const updatedData = {
       laju_pertumbuhan: selectedPenduduk.laju_pertumbuhan,
-      jml_penduduk: selectedPenduduk.jml_penduduk,
-      tahun: selectedPenduduk.tahun
+      jumlah_penduduk: selectedPenduduk.jumlah_penduduk,
+      tahun: selectedPenduduk.data_tahun
     };
 
     try {
@@ -285,10 +285,10 @@ export default function TablePenduduk() {
                       {item.laju_pertumbuhan}
                     </TableCell>
                     <TableCell className="px-5 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-                      <Badge size="sm" color="success">{item.jml_penduduk}</Badge>
+                      <Badge size="sm" color="success">{item.jumlah_penduduk}</Badge>
                     </TableCell>
                     <TableCell className="px-5 py-3 text-theme-sm text-gray-500 text-justify dark:text-gray-400">
-                      {item.tahun}
+                      {item.data_tahun}
                     </TableCell>
                     <TableCell className="px-5 py-3 text-theme-sm text-center">
                       <button
@@ -354,8 +354,8 @@ export default function TablePenduduk() {
                     <Label>Tahun</Label>
                     <Input
                       type="number"
-                      value={selectedPenduduk?.tahun || ''}
-                      onChange={(e) => handleInputChange(e, 'tahun')}
+                      value={selectedPenduduk?.data_tahun || ''}
+                      onChange={(e) => handleInputChange(e, 'data_tahun')}
                       disabled={isLoading}
                     />
                   </div>
@@ -374,8 +374,8 @@ export default function TablePenduduk() {
                     <Label>Jumlah Penduduk</Label>
                     <Input
                       type="text"
-                      value={selectedPenduduk?.jml_penduduk || ''}
-                      onChange={(e) => handleInputChange(e, 'jml_penduduk')}
+                      value={selectedPenduduk?.jumlah_penduduk || ''}
+                      onChange={(e) => handleInputChange(e, 'jumlah_penduduk')}
                       disabled={isLoading}
                     />
                   </div>
