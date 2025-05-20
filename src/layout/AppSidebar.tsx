@@ -27,7 +27,7 @@ const navItems: NavItem[] = [
   {
     name: "Data Komoditas",
     icon: <Image src="/images/icons/list.svg" width={20} height={20} alt="List" />,
-    path: "/commodity",
+    path: "/komoditas",
   },
   {
     name: "Data Penduduk",

@@ -1,6 +1,6 @@
 import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
-import TableCommodity from "@/components/tables/TableCommodity";
+import TableCommodity from "@/components/tables/TableKomoditas";
 import { Metadata } from "next";
 import React from "react";
 
