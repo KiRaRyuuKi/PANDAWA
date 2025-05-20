@@ -7,11 +7,14 @@ import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Modal } from "../ui/modal/Modal";
 import Button from "../ui/button/Button";
 import { useModal } from "@/hooks/useModal";
-import { useSession } from "next-auth/react";
 import { logoutAuth } from "@/api/auth/logout";
+import { Session } from "next-auth";
 
-export default function UserDropdown() {
-  const { data: session } = useSession();
+interface UserDropdownProps {
+  session: Session | null;
+}
+
+export default function UserDropdown({ session }: UserDropdownProps) {
   const [openDropdown, setIsOpen] = useState(false);
   const { isOpen, openModal, closeModal } = useModal();
   const profileImage = session?.user?.image;
@@ -48,7 +51,7 @@ export default function UserDropdown() {
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            {session?.user?.name || "Loading..."}
+            {session?.user?.email || "Loading..."}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
             {session?.user?.email || "Loading..."}

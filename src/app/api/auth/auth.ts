@@ -64,12 +64,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             return true;
         },
 
-        jwt({ token, user }) {
+        async jwt({ token, user }) {
             if (user) token.email = user.email ?? "";
             return token;
         },
 
-        session({ session, token }) {
+        async session({ session, token }) {
             session.user.id = token.sub;
             session.user.email = token.email ?? "";
             return session;
