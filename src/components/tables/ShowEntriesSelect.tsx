@@ -14,11 +14,6 @@ const ShowEntriesSelect: React.FC<ShowEntriesSelectProps> = ({
     itemsPerPage,
     onItemsPerPageChange,
 }) => {
-    const pagesAroundCurrent = Array.from(
-        { length: Math.min(3, totalPages) },
-        (_, i) => i + Math.max(currentPage - 1, 1)
-    );
-
     const entriesOptions = [5, 10, 25, 50, 100];
 
     return (

@@ -63,8 +63,7 @@ export default function TableKecamatan() {
     komoditas: ''
   });
   const { isOpen, openModal, closeModal } = useModal();
-
-  const itemsPerPage = 5;
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   // Format a Kecamatan object for display, handling nested komoditas
   const formatKecamatan = useCallback((item: any): Kecamatan => {
@@ -117,7 +116,7 @@ export default function TableKecamatan() {
 
   const fetchKomoditasData = useCallback(async () => {
     try {
-      const res = await fetch('/api/komoditas', {
+      const res = await fetch('/api/jeniskomoditas', {
         headers: {
           'Cache-Control': 'no-cache'
         }
@@ -129,26 +128,40 @@ export default function TableKecamatan() {
 
       const result = await res.json();
 
-      const komoditasOptions = [
-        { value: '', label: 'Semua Komoditas' },
-        ...result.map((item: Komoditas) => ({
-          value: item.id_komoditas,
-          label: item.nama_komoditas
-        }))
-      ];
+      // Extract unique komoditas names from data since API might not be returning expected format
+      const uniqueKomoditas = Array.from(
+        new Set(data.filter(item => item.nama_komoditas).map(item => item.nama_komoditas))
+      ).map(komoditas => ({
+        value: komoditas as string,
+        label: komoditas as string
+      }));
 
-      setKomoditasOptions(komoditasOptions);
+      setKomoditasOptions([{ value: '', label: 'Semua Komoditas' }, ...uniqueKomoditas]);
     } catch (error) {
       console.error('Gagal mengambil data komoditas:', error);
-      setError('Gagal memuat data komoditas');
-      toast.error('Gagal mengambil data komoditas');
+      // Don't set an error here, just use the data we already have
+      // Extract komoditas options from current kecamatan data as fallback
+      const uniqueKomoditas = Array.from(
+        new Set(data.filter(item => item.nama_komoditas).map(item => item.nama_komoditas))
+      ).map(komoditas => ({
+        value: komoditas as string,
+        label: komoditas as string
+      }));
+
+      setKomoditasOptions([{ value: '', label: 'Semua Komoditas' }, ...uniqueKomoditas]);
     }
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     fetchKecamatanData();
-    fetchKomoditasData();
-  }, [fetchKecamatanData, fetchKomoditasData]);
+  }, [fetchKecamatanData]);
+
+  // Fetch komoditas data after kecamatan data is loaded
+  useEffect(() => {
+    if (data.length > 0) {
+      fetchKomoditasData();
+    }
+  }, [fetchKomoditasData, data]);
 
   // Apply filters when filters or data change
   useEffect(() => {
@@ -178,6 +191,11 @@ export default function TableKecamatan() {
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleItemsPerPageChange = (value: number) => {
+    setItemsPerPage(value);
+    setCurrentPage(1);
   };
 
   const handleKecamatanFilterChange = (value: string) => {
@@ -295,12 +313,12 @@ export default function TableKecamatan() {
     return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   };
 
-  // Custom loading spinner component
+  // Loading spinner component that matches the button loading style
   const LoadingSpinner = () => (
-    <div className="flex justify-center items-center space-x-2">
-      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-      <span>Loading...</span>
-    </div>
+    <svg className="animate-spin h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
   );
 
   return (
@@ -312,10 +330,8 @@ export default function TableKecamatan() {
             <ShowEntriesSelect
               currentPage={currentPage}
               totalPages={totalPages}
-              itemsPerPage={0}
-              onItemsPerPageChange={function (value: number): void {
-                throw new Error('Function not implemented.');
-              }}
+              itemsPerPage={itemsPerPage}
+              onItemsPerPageChange={handleItemsPerPageChange}
             />
           </div>
           <div className="flex flex-wrap justify-end gap-2 w-full sm:w-auto">
@@ -406,11 +422,11 @@ export default function TableKecamatan() {
               <TableRow>
                 <TableCell colSpan={5} className="px-5 py-8 text-center text-gray-500 dark:text-gray-400">
                   <div className="flex flex-col items-center justify-center py-6">
-                    <div className="mb-3 relative">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-400 dark:border-gray-200"></div>
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 dark:text-gray-300">
-                        <span className="sr-only">Loading...</span>
-                      </div>
+                    <div className="mb-3 flex justify-center">
+                      <svg className="animate-spin h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
                     </div>
                     <p className="text-gray-600 dark:text-gray-300">Sedang memuat data...</p>
                   </div>
