@@ -21,6 +21,7 @@ import Badge from '../ui/badge/Badge';
 import Button from '../ui/button/Button';
 import Pagination from './Pagination';
 import Select from '../ui/select/Select';
+import ShowEntriesSelect from './ShowEntriesSelect';
 
 interface Kecamatan {
   id_kecamatan: number;
@@ -33,8 +34,8 @@ interface Kecamatan {
   deskripsi: string;
   gambar?: string;
   area: number;
-  posisi_x?: string;
-  posisi_y?: string;
+  posisi_x?: number;
+  posisi_y?: number;
 }
 
 interface Komoditas {
@@ -54,7 +55,7 @@ export default function TableKecamatan() {
   const [komoditasOptions, setKomoditasOptions] = useState<SelectOption[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedKecamatan, setSelectedKecamatan] = useState<Kecamatan | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState({
@@ -69,7 +70,8 @@ export default function TableKecamatan() {
   const formatKecamatan = useCallback((item: any): Kecamatan => {
     return {
       ...item,
-      nama_komoditas: item.komoditas?.nama_komoditas || item.nama_komoditas || 'Tidak ada'
+      nama_komoditas: item.komoditas?.nama_komoditas || item.nama_komoditas || 'Tidak ada',
+      area: typeof item.area === 'string' ? parseFloat(item.area) : item.area
     };
   }, []);
 
@@ -103,7 +105,7 @@ export default function TableKecamatan() {
         label: kecamatan as string
       }));
 
-      setKecamatanOptions([{ value: '', label: '--Semua Kecamatan--' }, ...uniqueKecamatan]);
+      setKecamatanOptions([{ value: '', label: 'Semua Kecamatan' }, ...uniqueKecamatan]);
     } catch (error) {
       console.error('Gagal mengambil data kecamatan:', error);
       setError('Terjadi kesalahan saat mengambil data kecamatan');
@@ -128,9 +130,9 @@ export default function TableKecamatan() {
       const result = await res.json();
 
       const komoditasOptions = [
-        { value: '', label: '--Semua Komoditas--' },
+        { value: '', label: 'Semua Komoditas' },
         ...result.map((item: Komoditas) => ({
-          value: item.nama_komoditas,
+          value: item.id_komoditas,
           label: item.nama_komoditas
         }))
       ];
@@ -138,6 +140,7 @@ export default function TableKecamatan() {
       setKomoditasOptions(komoditasOptions);
     } catch (error) {
       console.error('Gagal mengambil data komoditas:', error);
+      setError('Gagal memuat data komoditas');
       toast.error('Gagal mengambil data komoditas');
     }
   }, []);
@@ -149,7 +152,9 @@ export default function TableKecamatan() {
 
   // Apply filters when filters or data change
   useEffect(() => {
-    applyFilters();
+    if (data.length > 0) {
+      applyFilters();
+    }
   }, [filters, data]);
 
   const applyFilters = () => {
@@ -196,9 +201,19 @@ export default function TableKecamatan() {
     field: keyof Kecamatan
   ) => {
     if (selectedKecamatan) {
+      let value: string | number = e.target.value;
+
+      // Convert area to number for the area field
+      if (field === 'area' && value !== '') {
+        value = parseFloat(value);
+        if (isNaN(value)) {
+          value = 0;
+        }
+      }
+
       setSelectedKecamatan({
         ...selectedKecamatan,
-        [field]: e.target.value
+        [field]: value
       });
     }
   };
@@ -219,8 +234,8 @@ export default function TableKecamatan() {
       return;
     }
 
-    if (!selectedKecamatan.area) {
-      toast.error('Area tidak boleh kosong');
+    if (!selectedKecamatan.area || selectedKecamatan.area <= 0) {
+      toast.error('Area harus diisi dengan nilai yang valid');
       return;
     }
 
@@ -249,15 +264,12 @@ export default function TableKecamatan() {
         setData(prevData =>
           prevData.map(item =>
             item.id_kecamatan === selectedKecamatan.id_kecamatan
-              ? { ...item, ...updatedData }
+              ? { ...item, ...updatedData, nama_komoditas: item.nama_komoditas }
               : item
           )
         );
 
         closeModal();
-
-        // Refresh data to ensure consistency
-        fetchKecamatanData();
       } else {
         const errorData = await res.json();
         toast.error(`Gagal update: ${errorData.error || 'Unknown error'}`);
@@ -283,20 +295,38 @@ export default function TableKecamatan() {
     return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   };
 
+  // Custom loading spinner component
+  const LoadingSpinner = () => (
+    <div className="flex justify-center items-center space-x-2">
+      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+      <span>Loading...</span>
+    </div>
+  );
+
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
       {/* Header, Filter dan Tombol Tambah */}
       <div className="p-5 border-b border-gray-100 dark:border-white/[0.05]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <h4 className="text-lg font-medium text-gray-800 dark:text-white/90">Data Kecamatan</h4>
+          <div className="flex justify-between items-center border-gray-200 dark:border-white/[0.05]">
+            <ShowEntriesSelect
+              currentPage={currentPage}
+              totalPages={totalPages}
+              itemsPerPage={0}
+              onItemsPerPageChange={function (value: number): void {
+                throw new Error('Function not implemented.');
+              }}
+            />
+          </div>
           <div className="flex flex-wrap justify-end gap-2 w-full sm:w-auto">
             <div className="relative flex-1 sm:flex-none min-w-[150px]">
               <Select
                 options={kecamatanOptions}
-                placeholder="Kecamatan"
+                placeholder="--Select an Kecamatan--"
                 onChange={handleKecamatanFilterChange}
                 className="dark:bg-dark-900 w-full"
                 value={filters.kecamatan}
+                disabled={isLoading}
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 pointer-events-none">
                 <Image src="/images/icons/chevron-down.svg" width={20} height={20} alt="Chevron Down" />
@@ -305,15 +335,39 @@ export default function TableKecamatan() {
             <div className="relative flex-1 sm:flex-none min-w-[150px]">
               <Select
                 options={komoditasOptions}
-                placeholder="Komoditas"
+                placeholder="--Select an Komoditas--"
                 onChange={handleKomoditasFilterChange}
                 className="dark:bg-dark-900 w-full"
                 value={filters.komoditas}
+                disabled={isLoading}
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 pointer-events-none">
                 <Image src="/images/icons/chevron-down.svg" width={20} height={20} alt="Chevron Down" />
               </span>
             </div>
+            <Button
+              size="sm"
+              className="flex-shrink-0"
+              onClick={() => fetchKecamatanData()}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className="flex items-center">
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Refresh
+                </span>
+              ) : (
+                <span className="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  Refresh
+                </span>
+              )}
+            </Button>
           </div>
         </div>
 
@@ -351,28 +405,14 @@ export default function TableKecamatan() {
             {isLoading ? (
               <TableRow>
                 <TableCell colSpan={5} className="px-5 py-8 text-center text-gray-500 dark:text-gray-400">
-                  <div className="flex justify-center items-center space-x-2">
-                    <svg
-                      className="animate-spin h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    <span>Loading...</span>
+                  <div className="flex flex-col items-center justify-center py-6">
+                    <div className="mb-3 relative">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-400 dark:border-gray-200"></div>
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs font-semibold text-gray-500 dark:text-gray-300">
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300">Sedang memuat data...</p>
                   </div>
                 </TableCell>
               </TableRow>
@@ -394,7 +434,7 @@ export default function TableKecamatan() {
                     </div>
                   </TableCell>
                   <TableCell className="px-5 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-                    {item.area}
+                    {item.area.toLocaleString('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
                   </TableCell>
                   <TableCell className="px-5 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
                     <Badge size="sm" color="success">
@@ -420,7 +460,7 @@ export default function TableKecamatan() {
         {/* Pagination */}
         <div className="flex justify-between items-center p-4 border-t border-gray-100 dark:border-white/[0.05]">
           <div className="text-sm text-gray-500 dark:text-gray-400">
-            Showing {Math.min(indexOfLastItem, filteredData.length)} of {filteredData.length} entries
+            Showing {filteredData.length > 0 ? indexOfFirstItem + 1 : 0} - {Math.min(indexOfLastItem, filteredData.length)} of {filteredData.length} entries
           </div>
           <Pagination
             currentPage={currentPage}
@@ -475,10 +515,12 @@ export default function TableKecamatan() {
                     <Label htmlFor="area">Luas Area (ha)<span className="text-red-500">*</span></Label>
                     <Input
                       id="area"
-                      type="text"
+                      type="number"
                       value={selectedKecamatan?.area || ''}
                       onChange={(e) => handleInputChange(e, 'area')}
                       disabled={isSubmitting}
+                      step={0.001}
+                      min="0"
                       required
                     />
                   </div>
@@ -494,7 +536,7 @@ export default function TableKecamatan() {
                     className="text-gray-600"
                     required
                   />
-                </div>                
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">
