@@ -18,7 +18,7 @@ export default function SidebarWidget() {
         rel="nofollow"
         className="flex items-center justify-center mt-3 p-2 font-medium text-white rounded-lg bg-brand-500 text-theme-sm"
       >
-        Version - 0.8.2-beta
+        Version - 0.8.2-Beta
       </a>
     </div>
   );

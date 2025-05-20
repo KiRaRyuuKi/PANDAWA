@@ -503,7 +503,6 @@ export default function TableKecamatan() {
                 <h5 className="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6">
                   Data Kecamatan
                 </h5>
-
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-4">
                   <div className="col-span-2 lg:col-span-1">
                     <Label htmlFor="nama_kecamatan">Nama Kecamatan<span className="text-red-500">*</span></Label>
@@ -535,7 +534,7 @@ export default function TableKecamatan() {
                       value={selectedKecamatan?.area || ''}
                       onChange={(e) => handleInputChange(e, 'area')}
                       disabled={isSubmitting}
-                      step={0.001}
+                      step={0.000}
                       min="0"
                       required
                     />
