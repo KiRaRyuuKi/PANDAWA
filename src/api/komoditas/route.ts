@@ -1,11 +1,18 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { auth } from '@/api/auth/auth';
 
 export async function GET() {
   try {
-    const panens = await prisma.hasil_panen.findMany({
+    // Verify authentication
+    const session = await auth();
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const panens = await prisma.hasilPanen.findMany({
       include: {
-        data_kecamatan: {
+        kecamatan: {
           select: { nama_kecamatan: true },
         },
         komoditas: {
@@ -18,6 +25,100 @@ export async function GET() {
     console.error('Error saat mengambil data hasil panen:', error);
     return NextResponse.json(
       { error: 'Terjadi kesalahan saat mengambil data hasil panen' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(req: Request) {
+  try {
+    // Verify authentication
+    const session = await auth();
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const {
+      id_kecamatan,
+      id_komoditas,
+      tahun_panen,
+      luas_panen,
+      produksi,
+      produktivitas,
+    } = await req.json();
+
+    if (
+      id_kecamatan == null ||
+      id_komoditas == null ||
+      tahun_panen == null ||
+      luas_panen == null ||
+      produksi == null ||
+      produktivitas == null
+    ) {
+      return NextResponse.json(
+        { error: 'Data tidak lengkap' },
+        { status: 400 }
+      );
+    }
+
+    // Verifikasi kecamatan dan komoditas ada
+    const kecamatan = await prisma.kecamatan.findUnique({
+      where: { id_kecamatan },
+    });
+
+    if (!kecamatan) {
+      return NextResponse.json(
+        { error: 'Kecamatan tidak ditemukan' },
+        { status: 404 }
+      );
+    }
+
+    const komoditas = await prisma.komoditas.findUnique({
+      where: { id_komoditas },
+    });
+
+    if (!komoditas) {
+      return NextResponse.json(
+        { error: 'Komoditas tidak ditemukan' },
+        { status: 404 }
+      );
+    }
+
+    const newPanen = await prisma.hasilPanen.create({
+      data: {
+        id_kecamatan,
+        id_komoditas,
+        tahun_panen,
+        luas_panen,
+        produksi,
+        produktivitas,
+      },
+      include: {
+        kecamatan: {
+          select: { nama_kecamatan: true },
+        },
+        komoditas: {
+          select: { nama_komoditas: true },
+        },
+      },
+    });
+
+    return NextResponse.json({
+      message: 'Data hasil panen berhasil ditambahkan',
+      data: newPanen,
+    }, { status: 201 });
+  } catch (error: any) {
+    console.error('Error creating hasil panen data:', error);
+
+    if (error.code === 'P2002') {
+      return NextResponse.json(
+        { error: 'Data hasil panen untuk kombinasi kecamatan, komoditas, dan tahun ini sudah ada' },
+        { status: 409 }
+      );
+    }
+
+    return NextResponse.json(
+      { error: 'Gagal menambahkan data hasil panen' },
       { status: 500 }
     );
   }

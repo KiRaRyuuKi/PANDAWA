@@ -1,6 +1,40 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+export async function GET(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = Number(params.id);
+  if (isNaN(id)) {
+    return NextResponse.json({ error: 'ID tidak valid' }, { status: 400 });
+  }
+
+  try {
+    const penduduk = await prisma.penduduk.findUnique({
+      where: { id_penduduk: id },
+      include: {
+        kecamatan: true
+      }
+    });
+
+    if (!penduduk) {
+      return NextResponse.json(
+        { error: 'Data penduduk tidak ditemukan' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(penduduk);
+  } catch (error) {
+    console.error('Error saat mengambil data penduduk:', error);
+    return NextResponse.json(
+      { error: 'Terjadi kesalahan saat mengambil data' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function PUT(
   req: Request,
   { params }: { params: { id: string } }
@@ -11,12 +45,12 @@ export async function PUT(
   }
 
   try {
-    const { laju_pertumbuhan, jml_penduduk, tahun } = await req.json();
+    const { jumlah_penduduk, laju_pertumbuhan, data_tahun } = await req.json();
 
     if (
-      laju_pertumbuhan == null ||
-      jml_penduduk == null ||
-      tahun == null
+      jumlah_penduduk === undefined ||
+      !laju_pertumbuhan ||
+      !data_tahun
     ) {
       return NextResponse.json(
         { error: 'Data tidak lengkap' },
@@ -24,12 +58,12 @@ export async function PUT(
       );
     }
 
-    const updated = await prisma.data_penduduk.update({
+    const updated = await prisma.penduduk.update({
       where: { id_penduduk: id },
       data: {
+        jumlah_penduduk,
         laju_pertumbuhan,
-        jml_penduduk,
-        tahun,
+        data_tahun,
       },
     });
 
@@ -49,6 +83,40 @@ export async function PUT(
 
     return NextResponse.json(
       { error: 'Gagal mengupdate data penduduk' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = Number(params.id);
+  if (isNaN(id)) {
+    return NextResponse.json({ error: 'ID tidak valid' }, { status: 400 });
+  }
+
+  try {
+    await prisma.penduduk.delete({
+      where: { id_penduduk: id }
+    });
+
+    return NextResponse.json({
+      message: 'Data penduduk berhasil dihapus'
+    });
+  } catch (error: any) {
+    console.error('Error deleting penduduk data:', error);
+
+    if (error.code === 'P2025') {
+      return NextResponse.json(
+        { error: 'Data penduduk tidak ditemukan' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { error: 'Gagal menghapus data penduduk' },
       { status: 500 }
     );
   }

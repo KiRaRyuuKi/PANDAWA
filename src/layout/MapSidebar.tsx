@@ -25,7 +25,7 @@ export function Sidebar({ onSelectKecamatan, isOpen, toggleSidebar }) {
                 <div className={`flex ${isOpen ? 'justify-between' : 'justify-center'} items-center p-4`}>
                     {isOpen ? (
                         <>
-                            <a href="#" className="flex items-center gap-2">
+                            <a href="/" className="flex items-center gap-2">
                                 <Image src="/images/logo/logo-icon-pandawa.png" width={28} height={28} alt="Logo" />
                                 <span className="font-bold text-gray-800">PANDAWA</span>
                             </a>
@@ -41,13 +41,9 @@ export function Sidebar({ onSelectKecamatan, isOpen, toggleSidebar }) {
                     ) : (
                         // Changed this section to make the logo clickable when sidebar is collapsed
                         <div className="flex justify-center w-full">
-                            <button
-                                onClick={toggleSidebar}
-                                className="cursor-pointer flex items-center justify-center"
-                                title="Expand sidebar"
-                            >
+                            <a href="/" className="flex items-center gap-2">
                                 <Image src="/images/logo/logo-icon-pandawa.png" width={28} height={28} alt="Logo" />
-                            </button>
+                            </a>
                         </div>
                     )}
                 </div>

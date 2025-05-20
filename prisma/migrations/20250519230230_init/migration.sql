@@ -1,10 +1,12 @@
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
-    "name" TEXT,
+    "first_name" TEXT,
+    "last_name" TEXT,
     "email" TEXT,
     "email_verified" TIMESTAMP(3),
     "password" TEXT,
+    "image" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -13,16 +15,15 @@ CREATE TABLE "users" (
 
 -- CreateTable
 CREATE TABLE "detail" (
-    "id" TEXT NOT NULL,
+    "id_detail" TEXT NOT NULL,
     "id_tax" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "bio" TEXT NOT NULL,
     "city" TEXT NOT NULL,
-    "county" TEXT NOT NULL,
+    "country" TEXT NOT NULL,
     "post_kode" TEXT NOT NULL,
-    "photo_profile" TEXT NOT NULL,
 
-    CONSTRAINT "detail_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "detail_pkey" PRIMARY KEY ("id_detail")
 );
 
 -- CreateTable
