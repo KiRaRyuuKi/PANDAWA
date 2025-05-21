@@ -2,16 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 import { useSidebar } from "@/context/SidebarContext";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState ,useEffect,useRef} from "react";
 import UserDropdown from "@/components/header/UserDropdown";
 import { ThemeToggleButton } from "@/components/common/ThemeToggleButton";
-import { useSession } from "next-auth/react";
 
 const AppHeader: React.FC = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession()
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
-
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
 
   const handleToggle = () => {
@@ -27,6 +26,12 @@ const AppHeader: React.FC = () => {
   };
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    if (session?.user?.email === "admin@example.com") {
+      console.log("You are an admin, welcome!");
+    }
+  }, [session]);
+  
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key === "k") {
@@ -82,6 +87,7 @@ const AppHeader: React.FC = () => {
                 />
               </svg>
             )}
+            {/* Cross Icon */}
           </button>
 
           <Link href="/" className="lg:hidden">
@@ -157,8 +163,9 @@ const AppHeader: React.FC = () => {
           </div>
         </div>
         <div
-          className={`${isApplicationMenuOpen ? "flex" : "hidden"
-            } items-center justify-between w-full gap-4 px-5 py-4 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
+          className={`${
+            isApplicationMenuOpen ? "flex" : "hidden"
+          } items-center justify-between w-full gap-4 px-5 py-4 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
         >
           <div className="flex items-center gap-2 2xsm:gap-3">
             {/* <!-- Dark Mode Toggler --> */}
@@ -166,7 +173,7 @@ const AppHeader: React.FC = () => {
             {/* <!-- Dark Mode Toggler --> */}
           </div>
           {/* <!-- User Area --> */}
-          <UserDropdown session={session} />
+          <UserDropdown session={session} /> 
         </div>
       </div>
     </header>

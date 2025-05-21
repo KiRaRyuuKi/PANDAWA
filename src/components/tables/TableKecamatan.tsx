@@ -116,7 +116,7 @@ export default function TableKecamatan() {
 
   const fetchKomoditasData = useCallback(async () => {
     try {
-      const res = await fetch('/api/jeniskomoditas', {
+      const res = await fetch('/api/komoditas', {
         headers: {
           'Cache-Control': 'no-cache'
         }

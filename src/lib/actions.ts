@@ -36,7 +36,6 @@ export const AuthCredentials = async (
             return { error: result.error };
         }
 
-        redirect("/dashboard");
         return { success: true };
 
     } catch (error) {

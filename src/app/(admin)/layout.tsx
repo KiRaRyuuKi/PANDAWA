@@ -1,10 +1,10 @@
 "use client";
 
 import { useSidebar } from "@/context/SidebarContext";
+import { SessionProvider } from "next-auth/react";
 import AppHeader from "@/layout/AppHeader";
 import AppSidebar from "@/layout/AppSidebar";
 import Backdrop from "@/layout/Backdrop";
-import { SessionProvider } from "next-auth/react";
 import React from "react";
 
 export default function PagesLayout({

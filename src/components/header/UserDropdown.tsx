@@ -10,11 +10,7 @@ import { useModal } from "@/hooks/useModal";
 import { logoutAuth } from "@/api/auth/logout";
 import { Session } from "next-auth";
 
-interface UserDropdownProps {
-  session: Session | null;
-}
-
-export default function UserDropdown({ session }: UserDropdownProps) {
+export default function UserDropdown({ session }: { session: Session | null }) {
   const [openDropdown, setIsOpen] = useState(false);
   const { isOpen, openModal, closeModal } = useModal();
   const profileImage = session?.user?.image;
@@ -51,7 +47,7 @@ export default function UserDropdown({ session }: UserDropdownProps) {
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            {session?.user?.email || "Loading..."}
+            {session?.user?.name || "Loading..."}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
             {session?.user?.email || "Loading..."}
