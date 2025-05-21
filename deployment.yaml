@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pandawa-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: pandawa
+  template:
+    metadata:
+      labels:
+        app: pandawa
+    spec:
+      containers:
+        - name: pandawa
+          image: kiraryuuki/pandawa:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: pandawa-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
