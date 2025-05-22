@@ -502,7 +502,7 @@ export default function TablePenduduk() {
                       value={selectedPenduduk?.jumlah_penduduk || ''}
                       onChange={(e) => handleInputChange(e, 'jumlah_penduduk')}
                       disabled={isSubmitting}
-                      step={0.000}
+                      step={0.001}
                       min="0"
                       required
                     />

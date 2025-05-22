@@ -7295,16 +7295,12 @@ export namespace Prisma {
     id_kecamatan: number | null
     id_komoditas: number | null
     area: number | null
-    posisi_x: number | null
-    posisi_y: number | null
   }
 
   export type KecamatanSumAggregateOutputType = {
     id_kecamatan: number | null
     id_komoditas: number | null
     area: number | null
-    posisi_x: number | null
-    posisi_y: number | null
   }
 
   export type KecamatanMinAggregateOutputType = {
@@ -7314,8 +7310,6 @@ export namespace Prisma {
     deskripsi: string | null
     gambar: string | null
     area: number | null
-    posisi_x: number | null
-    posisi_y: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -7327,8 +7321,6 @@ export namespace Prisma {
     deskripsi: string | null
     gambar: string | null
     area: number | null
-    posisi_x: number | null
-    posisi_y: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -7340,8 +7332,6 @@ export namespace Prisma {
     deskripsi: number
     gambar: number
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at: number
     updated_at: number
     _all: number
@@ -7352,16 +7342,12 @@ export namespace Prisma {
     id_kecamatan?: true
     id_komoditas?: true
     area?: true
-    posisi_x?: true
-    posisi_y?: true
   }
 
   export type KecamatanSumAggregateInputType = {
     id_kecamatan?: true
     id_komoditas?: true
     area?: true
-    posisi_x?: true
-    posisi_y?: true
   }
 
   export type KecamatanMinAggregateInputType = {
@@ -7371,8 +7357,6 @@ export namespace Prisma {
     deskripsi?: true
     gambar?: true
     area?: true
-    posisi_x?: true
-    posisi_y?: true
     created_at?: true
     updated_at?: true
   }
@@ -7384,8 +7368,6 @@ export namespace Prisma {
     deskripsi?: true
     gambar?: true
     area?: true
-    posisi_x?: true
-    posisi_y?: true
     created_at?: true
     updated_at?: true
   }
@@ -7397,8 +7379,6 @@ export namespace Prisma {
     deskripsi?: true
     gambar?: true
     area?: true
-    posisi_x?: true
-    posisi_y?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -7497,8 +7477,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at: Date
     updated_at: Date
     _count: KecamatanCountAggregateOutputType | null
@@ -7529,8 +7507,6 @@ export namespace Prisma {
     deskripsi?: boolean
     gambar?: boolean
     area?: boolean
-    posisi_x?: boolean
-    posisi_y?: boolean
     created_at?: boolean
     updated_at?: boolean
     komoditas?: boolean | KomoditasDefaultArgs<ExtArgs>
@@ -7547,8 +7523,6 @@ export namespace Prisma {
     deskripsi?: boolean
     gambar?: boolean
     area?: boolean
-    posisi_x?: boolean
-    posisi_y?: boolean
     created_at?: boolean
     updated_at?: boolean
     komoditas?: boolean | KomoditasDefaultArgs<ExtArgs>
@@ -7561,8 +7535,6 @@ export namespace Prisma {
     deskripsi?: boolean
     gambar?: boolean
     area?: boolean
-    posisi_x?: boolean
-    posisi_y?: boolean
     created_at?: boolean
     updated_at?: boolean
     komoditas?: boolean | KomoditasDefaultArgs<ExtArgs>
@@ -7575,13 +7547,11 @@ export namespace Prisma {
     deskripsi?: boolean
     gambar?: boolean
     area?: boolean
-    posisi_x?: boolean
-    posisi_y?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type KecamatanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_kecamatan" | "id_komoditas" | "nama_kecamatan" | "deskripsi" | "gambar" | "area" | "posisi_x" | "posisi_y" | "created_at" | "updated_at", ExtArgs["result"]["kecamatan"]>
+  export type KecamatanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_kecamatan" | "id_komoditas" | "nama_kecamatan" | "deskripsi" | "gambar" | "area" | "created_at" | "updated_at", ExtArgs["result"]["kecamatan"]>
   export type KecamatanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     komoditas?: boolean | KomoditasDefaultArgs<ExtArgs>
     penduduk?: boolean | Kecamatan$pendudukArgs<ExtArgs>
@@ -7611,8 +7581,6 @@ export namespace Prisma {
       deskripsi: string
       gambar: string
       area: number
-      posisi_x: number
-      posisi_y: number
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["kecamatan"]>
@@ -8048,8 +8016,6 @@ export namespace Prisma {
     readonly deskripsi: FieldRef<"Kecamatan", 'String'>
     readonly gambar: FieldRef<"Kecamatan", 'String'>
     readonly area: FieldRef<"Kecamatan", 'Float'>
-    readonly posisi_x: FieldRef<"Kecamatan", 'Int'>
-    readonly posisi_y: FieldRef<"Kecamatan", 'Int'>
     readonly created_at: FieldRef<"Kecamatan", 'DateTime'>
     readonly updated_at: FieldRef<"Kecamatan", 'DateTime'>
   }
@@ -12033,24 +11999,30 @@ export namespace Prisma {
     id_prediksi: number | null
     id_kecamatan: number | null
     id_komoditas: number | null
+    luas_panen: number | null
     tahun_prediksi: number | null
     hasil_prediksi: number | null
+    hasil_rata_rata: number | null
   }
 
   export type PrediksiPanenSumAggregateOutputType = {
     id_prediksi: number | null
     id_kecamatan: number | null
     id_komoditas: number | null
+    luas_panen: number | null
     tahun_prediksi: number | null
     hasil_prediksi: number | null
+    hasil_rata_rata: number | null
   }
 
   export type PrediksiPanenMinAggregateOutputType = {
     id_prediksi: number | null
     id_kecamatan: number | null
     id_komoditas: number | null
+    luas_panen: number | null
     tahun_prediksi: number | null
     hasil_prediksi: number | null
+    hasil_rata_rata: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -12059,8 +12031,10 @@ export namespace Prisma {
     id_prediksi: number | null
     id_kecamatan: number | null
     id_komoditas: number | null
+    luas_panen: number | null
     tahun_prediksi: number | null
     hasil_prediksi: number | null
+    hasil_rata_rata: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -12069,8 +12043,10 @@ export namespace Prisma {
     id_prediksi: number
     id_kecamatan: number
     id_komoditas: number
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at: number
     updated_at: number
     _all: number
@@ -12081,24 +12057,30 @@ export namespace Prisma {
     id_prediksi?: true
     id_kecamatan?: true
     id_komoditas?: true
+    luas_panen?: true
     tahun_prediksi?: true
     hasil_prediksi?: true
+    hasil_rata_rata?: true
   }
 
   export type PrediksiPanenSumAggregateInputType = {
     id_prediksi?: true
     id_kecamatan?: true
     id_komoditas?: true
+    luas_panen?: true
     tahun_prediksi?: true
     hasil_prediksi?: true
+    hasil_rata_rata?: true
   }
 
   export type PrediksiPanenMinAggregateInputType = {
     id_prediksi?: true
     id_kecamatan?: true
     id_komoditas?: true
+    luas_panen?: true
     tahun_prediksi?: true
     hasil_prediksi?: true
+    hasil_rata_rata?: true
     created_at?: true
     updated_at?: true
   }
@@ -12107,8 +12089,10 @@ export namespace Prisma {
     id_prediksi?: true
     id_kecamatan?: true
     id_komoditas?: true
+    luas_panen?: true
     tahun_prediksi?: true
     hasil_prediksi?: true
+    hasil_rata_rata?: true
     created_at?: true
     updated_at?: true
   }
@@ -12117,8 +12101,10 @@ export namespace Prisma {
     id_prediksi?: true
     id_kecamatan?: true
     id_komoditas?: true
+    luas_panen?: true
     tahun_prediksi?: true
     hasil_prediksi?: true
+    hasil_rata_rata?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -12214,8 +12200,10 @@ export namespace Prisma {
     id_prediksi: number
     id_kecamatan: number
     id_komoditas: number
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at: Date
     updated_at: Date
     _count: PrediksiPanenCountAggregateOutputType | null
@@ -12243,8 +12231,10 @@ export namespace Prisma {
     id_prediksi?: boolean
     id_kecamatan?: boolean
     id_komoditas?: boolean
+    luas_panen?: boolean
     tahun_prediksi?: boolean
     hasil_prediksi?: boolean
+    hasil_rata_rata?: boolean
     created_at?: boolean
     updated_at?: boolean
     kecamatan?: boolean | KecamatanDefaultArgs<ExtArgs>
@@ -12255,8 +12245,10 @@ export namespace Prisma {
     id_prediksi?: boolean
     id_kecamatan?: boolean
     id_komoditas?: boolean
+    luas_panen?: boolean
     tahun_prediksi?: boolean
     hasil_prediksi?: boolean
+    hasil_rata_rata?: boolean
     created_at?: boolean
     updated_at?: boolean
     kecamatan?: boolean | KecamatanDefaultArgs<ExtArgs>
@@ -12267,8 +12259,10 @@ export namespace Prisma {
     id_prediksi?: boolean
     id_kecamatan?: boolean
     id_komoditas?: boolean
+    luas_panen?: boolean
     tahun_prediksi?: boolean
     hasil_prediksi?: boolean
+    hasil_rata_rata?: boolean
     created_at?: boolean
     updated_at?: boolean
     kecamatan?: boolean | KecamatanDefaultArgs<ExtArgs>
@@ -12279,13 +12273,15 @@ export namespace Prisma {
     id_prediksi?: boolean
     id_kecamatan?: boolean
     id_komoditas?: boolean
+    luas_panen?: boolean
     tahun_prediksi?: boolean
     hasil_prediksi?: boolean
+    hasil_rata_rata?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type PrediksiPanenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_prediksi" | "id_kecamatan" | "id_komoditas" | "tahun_prediksi" | "hasil_prediksi" | "created_at" | "updated_at", ExtArgs["result"]["prediksiPanen"]>
+  export type PrediksiPanenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_prediksi" | "id_kecamatan" | "id_komoditas" | "luas_panen" | "tahun_prediksi" | "hasil_prediksi" | "hasil_rata_rata" | "created_at" | "updated_at", ExtArgs["result"]["prediksiPanen"]>
   export type PrediksiPanenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     kecamatan?: boolean | KecamatanDefaultArgs<ExtArgs>
     komoditas?: boolean | KomoditasDefaultArgs<ExtArgs>
@@ -12309,8 +12305,10 @@ export namespace Prisma {
       id_prediksi: number
       id_kecamatan: number
       id_komoditas: number
+      luas_panen: number
       tahun_prediksi: number
       hasil_prediksi: number
+      hasil_rata_rata: number
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["prediksiPanen"]>
@@ -12741,8 +12739,10 @@ export namespace Prisma {
     readonly id_prediksi: FieldRef<"PrediksiPanen", 'Int'>
     readonly id_kecamatan: FieldRef<"PrediksiPanen", 'Int'>
     readonly id_komoditas: FieldRef<"PrediksiPanen", 'Int'>
+    readonly luas_panen: FieldRef<"PrediksiPanen", 'Int'>
     readonly tahun_prediksi: FieldRef<"PrediksiPanen", 'Int'>
     readonly hasil_prediksi: FieldRef<"PrediksiPanen", 'Int'>
+    readonly hasil_rata_rata: FieldRef<"PrediksiPanen", 'Int'>
     readonly created_at: FieldRef<"PrediksiPanen", 'DateTime'>
     readonly updated_at: FieldRef<"PrediksiPanen", 'DateTime'>
   }
@@ -13245,8 +13245,6 @@ export namespace Prisma {
     deskripsi: 'deskripsi',
     gambar: 'gambar',
     area: 'area',
-    posisi_x: 'posisi_x',
-    posisi_y: 'posisi_y',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -13298,8 +13296,10 @@ export namespace Prisma {
     id_prediksi: 'id_prediksi',
     id_kecamatan: 'id_kecamatan',
     id_komoditas: 'id_komoditas',
+    luas_panen: 'luas_panen',
     tahun_prediksi: 'tahun_prediksi',
     hasil_prediksi: 'hasil_prediksi',
+    hasil_rata_rata: 'hasil_rata_rata',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -13737,8 +13737,6 @@ export namespace Prisma {
     deskripsi?: StringFilter<"Kecamatan"> | string
     gambar?: StringFilter<"Kecamatan"> | string
     area?: FloatFilter<"Kecamatan"> | number
-    posisi_x?: IntFilter<"Kecamatan"> | number
-    posisi_y?: IntFilter<"Kecamatan"> | number
     created_at?: DateTimeFilter<"Kecamatan"> | Date | string
     updated_at?: DateTimeFilter<"Kecamatan"> | Date | string
     komoditas?: XOR<KomoditasScalarRelationFilter, KomoditasWhereInput>
@@ -13754,8 +13752,6 @@ export namespace Prisma {
     deskripsi?: SortOrder
     gambar?: SortOrder
     area?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     komoditas?: KomoditasOrderByWithRelationInput
@@ -13774,8 +13770,6 @@ export namespace Prisma {
     deskripsi?: StringFilter<"Kecamatan"> | string
     gambar?: StringFilter<"Kecamatan"> | string
     area?: FloatFilter<"Kecamatan"> | number
-    posisi_x?: IntFilter<"Kecamatan"> | number
-    posisi_y?: IntFilter<"Kecamatan"> | number
     created_at?: DateTimeFilter<"Kecamatan"> | Date | string
     updated_at?: DateTimeFilter<"Kecamatan"> | Date | string
     komoditas?: XOR<KomoditasScalarRelationFilter, KomoditasWhereInput>
@@ -13791,8 +13785,6 @@ export namespace Prisma {
     deskripsi?: SortOrder
     gambar?: SortOrder
     area?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: KecamatanCountOrderByAggregateInput
@@ -13812,8 +13804,6 @@ export namespace Prisma {
     deskripsi?: StringWithAggregatesFilter<"Kecamatan"> | string
     gambar?: StringWithAggregatesFilter<"Kecamatan"> | string
     area?: FloatWithAggregatesFilter<"Kecamatan"> | number
-    posisi_x?: IntWithAggregatesFilter<"Kecamatan"> | number
-    posisi_y?: IntWithAggregatesFilter<"Kecamatan"> | number
     created_at?: DateTimeWithAggregatesFilter<"Kecamatan"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Kecamatan"> | Date | string
   }
@@ -14040,8 +14030,10 @@ export namespace Prisma {
     id_prediksi?: IntFilter<"PrediksiPanen"> | number
     id_kecamatan?: IntFilter<"PrediksiPanen"> | number
     id_komoditas?: IntFilter<"PrediksiPanen"> | number
+    luas_panen?: IntFilter<"PrediksiPanen"> | number
     tahun_prediksi?: IntFilter<"PrediksiPanen"> | number
     hasil_prediksi?: IntFilter<"PrediksiPanen"> | number
+    hasil_rata_rata?: IntFilter<"PrediksiPanen"> | number
     created_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     updated_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     kecamatan?: XOR<KecamatanScalarRelationFilter, KecamatanWhereInput>
@@ -14052,8 +14044,10 @@ export namespace Prisma {
     id_prediksi?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    luas_panen?: SortOrder
     tahun_prediksi?: SortOrder
     hasil_prediksi?: SortOrder
+    hasil_rata_rata?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     kecamatan?: KecamatanOrderByWithRelationInput
@@ -14067,8 +14061,10 @@ export namespace Prisma {
     NOT?: PrediksiPanenWhereInput | PrediksiPanenWhereInput[]
     id_kecamatan?: IntFilter<"PrediksiPanen"> | number
     id_komoditas?: IntFilter<"PrediksiPanen"> | number
+    luas_panen?: IntFilter<"PrediksiPanen"> | number
     tahun_prediksi?: IntFilter<"PrediksiPanen"> | number
     hasil_prediksi?: IntFilter<"PrediksiPanen"> | number
+    hasil_rata_rata?: IntFilter<"PrediksiPanen"> | number
     created_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     updated_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     kecamatan?: XOR<KecamatanScalarRelationFilter, KecamatanWhereInput>
@@ -14079,8 +14075,10 @@ export namespace Prisma {
     id_prediksi?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    luas_panen?: SortOrder
     tahun_prediksi?: SortOrder
     hasil_prediksi?: SortOrder
+    hasil_rata_rata?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: PrediksiPanenCountOrderByAggregateInput
@@ -14097,8 +14095,10 @@ export namespace Prisma {
     id_prediksi?: IntWithAggregatesFilter<"PrediksiPanen"> | number
     id_kecamatan?: IntWithAggregatesFilter<"PrediksiPanen"> | number
     id_komoditas?: IntWithAggregatesFilter<"PrediksiPanen"> | number
+    luas_panen?: IntWithAggregatesFilter<"PrediksiPanen"> | number
     tahun_prediksi?: IntWithAggregatesFilter<"PrediksiPanen"> | number
     hasil_prediksi?: IntWithAggregatesFilter<"PrediksiPanen"> | number
+    hasil_rata_rata?: IntWithAggregatesFilter<"PrediksiPanen"> | number
     created_at?: DateTimeWithAggregatesFilter<"PrediksiPanen"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"PrediksiPanen"> | Date | string
   }
@@ -14467,8 +14467,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     komoditas: KomoditasCreateNestedOneWithoutKecamatanInput
@@ -14484,8 +14482,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     penduduk?: PendudukUncheckedCreateNestedManyWithoutKecamatanInput
@@ -14498,8 +14494,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     komoditas?: KomoditasUpdateOneRequiredWithoutKecamatanNestedInput
@@ -14515,8 +14509,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     penduduk?: PendudukUncheckedUpdateManyWithoutKecamatanNestedInput
@@ -14531,8 +14523,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -14542,8 +14532,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14555,8 +14543,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14779,8 +14765,10 @@ export namespace Prisma {
   }
 
   export type PrediksiPanenCreateInput = {
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at?: Date | string
     updated_at?: Date | string
     kecamatan: KecamatanCreateNestedOneWithoutPrediksi_panenInput
@@ -14791,15 +14779,19 @@ export namespace Prisma {
     id_prediksi?: number
     id_kecamatan: number
     id_komoditas: number
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at?: Date | string
     updated_at?: Date | string
   }
 
   export type PrediksiPanenUpdateInput = {
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     kecamatan?: KecamatanUpdateOneRequiredWithoutPrediksi_panenNestedInput
@@ -14810,8 +14802,10 @@ export namespace Prisma {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14820,15 +14814,19 @@ export namespace Prisma {
     id_prediksi?: number
     id_kecamatan: number
     id_komoditas: number
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at?: Date | string
     updated_at?: Date | string
   }
 
   export type PrediksiPanenUpdateManyMutationInput = {
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14837,8 +14835,10 @@ export namespace Prisma {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15253,8 +15253,6 @@ export namespace Prisma {
     deskripsi?: SortOrder
     gambar?: SortOrder
     area?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -15263,8 +15261,6 @@ export namespace Prisma {
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
     area?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
   }
 
   export type KecamatanMaxOrderByAggregateInput = {
@@ -15274,8 +15270,6 @@ export namespace Prisma {
     deskripsi?: SortOrder
     gambar?: SortOrder
     area?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -15287,8 +15281,6 @@ export namespace Prisma {
     deskripsi?: SortOrder
     gambar?: SortOrder
     area?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -15297,8 +15289,6 @@ export namespace Prisma {
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
     area?: SortOrder
-    posisi_x?: SortOrder
-    posisi_y?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -15487,8 +15477,10 @@ export namespace Prisma {
     id_prediksi?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    luas_panen?: SortOrder
     tahun_prediksi?: SortOrder
     hasil_prediksi?: SortOrder
+    hasil_rata_rata?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -15497,16 +15489,20 @@ export namespace Prisma {
     id_prediksi?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    luas_panen?: SortOrder
     tahun_prediksi?: SortOrder
     hasil_prediksi?: SortOrder
+    hasil_rata_rata?: SortOrder
   }
 
   export type PrediksiPanenMaxOrderByAggregateInput = {
     id_prediksi?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    luas_panen?: SortOrder
     tahun_prediksi?: SortOrder
     hasil_prediksi?: SortOrder
+    hasil_rata_rata?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -15515,8 +15511,10 @@ export namespace Prisma {
     id_prediksi?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    luas_panen?: SortOrder
     tahun_prediksi?: SortOrder
     hasil_prediksi?: SortOrder
+    hasil_rata_rata?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -15525,8 +15523,10 @@ export namespace Prisma {
     id_prediksi?: SortOrder
     id_kecamatan?: SortOrder
     id_komoditas?: SortOrder
+    luas_panen?: SortOrder
     tahun_prediksi?: SortOrder
     hasil_prediksi?: SortOrder
+    hasil_rata_rata?: SortOrder
   }
 
   export type DetailCreateNestedOneWithoutUserInput = {
@@ -15767,14 +15767,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type KomoditasUpdateOneRequiredWithoutKecamatanNestedInput = {
     create?: XOR<KomoditasCreateWithoutKecamatanInput, KomoditasUncheckedCreateWithoutKecamatanInput>
     connectOrCreate?: KomoditasCreateOrConnectWithoutKecamatanInput
@@ -15823,6 +15815,14 @@ export namespace Prisma {
     update?: PrediksiPanenUpdateWithWhereUniqueWithoutKecamatanInput | PrediksiPanenUpdateWithWhereUniqueWithoutKecamatanInput[]
     updateMany?: PrediksiPanenUpdateManyWithWhereWithoutKecamatanInput | PrediksiPanenUpdateManyWithWhereWithoutKecamatanInput[]
     deleteMany?: PrediksiPanenScalarWhereInput | PrediksiPanenScalarWhereInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type PendudukUncheckedUpdateManyWithoutKecamatanNestedInput = {
@@ -16740,8 +16740,10 @@ export namespace Prisma {
   }
 
   export type PrediksiPanenCreateWithoutKecamatanInput = {
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at?: Date | string
     updated_at?: Date | string
     komoditas: KomoditasCreateNestedOneWithoutPrediksi_panenInput
@@ -16750,8 +16752,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedCreateWithoutKecamatanInput = {
     id_prediksi?: number
     id_komoditas: number
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -16880,8 +16884,10 @@ export namespace Prisma {
     id_prediksi?: IntFilter<"PrediksiPanen"> | number
     id_kecamatan?: IntFilter<"PrediksiPanen"> | number
     id_komoditas?: IntFilter<"PrediksiPanen"> | number
+    luas_panen?: IntFilter<"PrediksiPanen"> | number
     tahun_prediksi?: IntFilter<"PrediksiPanen"> | number
     hasil_prediksi?: IntFilter<"PrediksiPanen"> | number
+    hasil_rata_rata?: IntFilter<"PrediksiPanen"> | number
     created_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     updated_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
   }
@@ -16891,8 +16897,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     komoditas: KomoditasCreateNestedOneWithoutKecamatanInput
@@ -16907,8 +16911,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     hasil_panen?: HasilPanenUncheckedCreateNestedManyWithoutKecamatanInput
@@ -16936,8 +16938,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     komoditas?: KomoditasUpdateOneRequiredWithoutKecamatanNestedInput
@@ -16952,8 +16952,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     hasil_panen?: HasilPanenUncheckedUpdateManyWithoutKecamatanNestedInput
@@ -16965,8 +16963,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     penduduk?: PendudukCreateNestedManyWithoutKecamatanInput
@@ -16980,8 +16976,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     penduduk?: PendudukUncheckedCreateNestedManyWithoutKecamatanInput
@@ -17033,8 +17027,10 @@ export namespace Prisma {
   }
 
   export type PrediksiPanenCreateWithoutKomoditasInput = {
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at?: Date | string
     updated_at?: Date | string
     kecamatan: KecamatanCreateNestedOneWithoutPrediksi_panenInput
@@ -17043,8 +17039,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedCreateWithoutKomoditasInput = {
     id_prediksi?: number
     id_kecamatan: number
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -17085,8 +17083,6 @@ export namespace Prisma {
     deskripsi?: StringFilter<"Kecamatan"> | string
     gambar?: StringFilter<"Kecamatan"> | string
     area?: FloatFilter<"Kecamatan"> | number
-    posisi_x?: IntFilter<"Kecamatan"> | number
-    posisi_y?: IntFilter<"Kecamatan"> | number
     created_at?: DateTimeFilter<"Kecamatan"> | Date | string
     updated_at?: DateTimeFilter<"Kecamatan"> | Date | string
   }
@@ -17128,8 +17124,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     komoditas: KomoditasCreateNestedOneWithoutKecamatanInput
@@ -17144,8 +17138,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     penduduk?: PendudukUncheckedCreateNestedManyWithoutKecamatanInput
@@ -17197,8 +17189,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     komoditas?: KomoditasUpdateOneRequiredWithoutKecamatanNestedInput
@@ -17213,8 +17203,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     penduduk?: PendudukUncheckedUpdateManyWithoutKecamatanNestedInput
@@ -17256,8 +17244,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     komoditas: KomoditasCreateNestedOneWithoutKecamatanInput
@@ -17272,8 +17258,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
     penduduk?: PendudukUncheckedCreateNestedManyWithoutKecamatanInput
@@ -17325,8 +17309,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     komoditas?: KomoditasUpdateOneRequiredWithoutKecamatanNestedInput
@@ -17341,8 +17323,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     penduduk?: PendudukUncheckedUpdateManyWithoutKecamatanNestedInput
@@ -17483,8 +17463,10 @@ export namespace Prisma {
   export type PrediksiPanenCreateManyKecamatanInput = {
     id_prediksi?: number
     id_komoditas: number
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -17551,8 +17533,10 @@ export namespace Prisma {
   }
 
   export type PrediksiPanenUpdateWithoutKecamatanInput = {
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     komoditas?: KomoditasUpdateOneRequiredWithoutPrediksi_panenNestedInput
@@ -17561,8 +17545,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedUpdateWithoutKecamatanInput = {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17570,8 +17556,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedUpdateManyWithoutKecamatanInput = {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17582,8 +17570,6 @@ export namespace Prisma {
     deskripsi: string
     gambar: string
     area: number
-    posisi_x: number
-    posisi_y: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -17603,8 +17589,10 @@ export namespace Prisma {
   export type PrediksiPanenCreateManyKomoditasInput = {
     id_prediksi?: number
     id_kecamatan: number
+    luas_panen: number
     tahun_prediksi: number
     hasil_prediksi: number
+    hasil_rata_rata: number
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -17614,8 +17602,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     penduduk?: PendudukUpdateManyWithoutKecamatanNestedInput
@@ -17629,8 +17615,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     penduduk?: PendudukUncheckedUpdateManyWithoutKecamatanNestedInput
@@ -17644,8 +17628,6 @@ export namespace Prisma {
     deskripsi?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     area?: FloatFieldUpdateOperationsInput | number
-    posisi_x?: IntFieldUpdateOperationsInput | number
-    posisi_y?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17686,8 +17668,10 @@ export namespace Prisma {
   }
 
   export type PrediksiPanenUpdateWithoutKomoditasInput = {
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     kecamatan?: KecamatanUpdateOneRequiredWithoutPrediksi_panenNestedInput
@@ -17696,8 +17680,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedUpdateWithoutKomoditasInput = {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17705,8 +17691,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedUpdateManyWithoutKomoditasInput = {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
+    luas_panen?: IntFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
     hasil_prediksi?: IntFieldUpdateOperationsInput | number
+    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

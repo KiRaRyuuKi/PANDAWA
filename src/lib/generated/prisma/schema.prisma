@@ -94,8 +94,6 @@ model Kecamatan {
   deskripsi      String    @database.Text
   gambar         String    @database.Text
   area           Float
-  posisi_x       Int
-  posisi_y       Int
 
   created_at DateTime @default(now()) @map("created_at")
   updated_at DateTime @updatedAt @map("updated_at")
@@ -155,13 +153,15 @@ model HasilPanen {
 }
 
 model PrediksiPanen {
-  id_prediksi    Int       @id @default(autoincrement())
-  id_kecamatan   Int
-  kecamatan      Kecamatan @relation(fields: [id_kecamatan], references: [id_kecamatan])
-  id_komoditas   Int
-  komoditas      Komoditas @relation(fields: [id_komoditas], references: [id_komoditas])
-  tahun_prediksi Int
-  hasil_prediksi Int
+  id_prediksi     Int       @id @default(autoincrement())
+  id_kecamatan    Int
+  kecamatan       Kecamatan @relation(fields: [id_kecamatan], references: [id_kecamatan])
+  id_komoditas    Int
+  komoditas       Komoditas @relation(fields: [id_komoditas], references: [id_komoditas])
+  luas_panen      Int
+  tahun_prediksi  Int
+  hasil_prediksi  Int
+  hasil_rata_rata Int
 
   created_at DateTime @default(now()) @map("created_at")
   updated_at DateTime @updatedAt @map("updated_at")

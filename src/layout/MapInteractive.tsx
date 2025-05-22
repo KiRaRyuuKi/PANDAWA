@@ -16,12 +16,10 @@ import { dataKecamatan, type Kecamatan, type DataKecamatan } from '@/data/kecama
 
 // Enhanced pin data structure with all necessary fields
 export interface EnhancedPinData extends PinData {
-    id_panen: string;
+    nama_panen: string;
     position: [number, number];
     kecamatan?: string;
     category: string;
-    name?: string;
-    title?: string;
     luas_panen?: string;
     produksi?: string;
     produktivitas?: string;
@@ -31,17 +29,19 @@ export interface EnhancedPinData extends PinData {
 interface ApiKecamatanData {
     id_kecamatan: number;
     nama_kecamatan: string;
-    gambar?: string | null;
+    nama_komoditas?: string;
     deskripsi?: string;
-    Luas_area?: string | number;
+    gambar?: string | null;
+    area?: string | number;
+    path: string;
+    center: [number, number];
+    default_color: string;
     jumlah_penduduk?: number;
     laju_pertumbuhan?: string;
-    nama_komoditas?: string;
-    volume_komoditas?: number;
 }
 
 interface ApiKomoditasData {
-    id_panen: string;
+    nama_panen: string;
     nama_komoditas: string;
     nama_kecamatan: string;
     luas_panen?: number;
@@ -49,12 +49,21 @@ interface ApiKomoditasData {
     produktivitas?: number;
 }
 
+// Type untuk detail kecamatan yang diperlukan komponen
+interface KecamatanDetailData {
+    nama_kecamatan: string;
+    title: string;
+    luas_panen: string;
+    produksi: string;
+    produktivitas: string;
+}
+
 export function Map() {
     const svgRef = useRef<SVGSVGElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [containerDimensions, setContainerDimensions] = useState({ width: 0, height: 0 });
-    const [selectedKecamatan, setSelectedKecamatan] = useState<KecamatanData | null>(null);
+    const [selectedKecamatan, setSelectedKecamatan] = useState<ApiKecamatanData | null>(null);
 
     const [komoditasData, setKomoditasData] = useState<EnhancedPinData[]>([]);
 
@@ -70,13 +79,13 @@ export function Map() {
     const mapInstanceRef = useRef({
         svg: null as d3.Selection<SVGSVGElement, unknown, null, undefined> | null,
         g: null as d3.Selection<SVGGElement, unknown, null, undefined> | null,
-        zoom: null as d3.ZoomBehavior<Element, unknown> | null,
-        paths: null as d3.Selection<d3.BaseType, KecamatanData, SVGGElement, unknown> | null,
+        zoom: null as d3.ZoomBehavior<SVGSVGElement, unknown> | null,
+        paths: null as d3.Selection<d3.BaseType, ApiKecamatanData, SVGGElement, unknown> | null,
         mapBounds: { minX: 0, maxX: 0, minY: 0, maxY: 0 }
     });
 
     // Check if Kecamatan data is available
-    const [kecamatanData, setKecamatanData] = useState<KecamatanData[]>([]);
+    const [kecamatanData, setKecamatanData] = useState<ApiKecamatanData[]>([]);
     const [isLoadingKecamatan, setIsLoadingKecamatan] = useState(true);
     const [isLoadingKomoditas, setIsLoadingKomoditas] = useState(true);
 
@@ -98,23 +107,20 @@ export function Map() {
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
 
-                const apiData: ApiKecamatanData[] = await res.json();
-                console.log('API Kecamatan data:', apiData);
+                const apiDataKecamatan: ApiKecamatanData[] = await res.json();
+                console.log('API Data Kecamatan:', apiDataKecamatan);
 
-                const merged: KecamatanData[] = staticKecamatan.map(kecamatan => {
-                    const found = apiData.find((item) => item.id_kecamatan === kecamatan.id_kecamatan);
+                const merged: ApiKecamatanData[] = dataKecamatan.map(kecamatan => {
+                    const found = apiDataKecamatan.find((item) => item.id_kecamatan === kecamatan.id_kecamatan);
 
                     return {
-                        ...kecamatan, // path, center, defaultColor from static data
-                        title: found?.nama_kecamatan || `Kecamatan ${kecamatan.name}`,
+                        ...kecamatan,
+                        nama_kecamatan: found?.nama_kecamatan || kecamatan.nama_kecamatan || `Kecamatan ${kecamatan.id_kecamatan}`,
+                        deskripsi: found?.deskripsi || "",
                         gambar: found?.gambar || null,
-                        deskripsi: found?.deskripsi || "Belum ada deskripsi",
-                        area: found?.area || "Belum tersedia",
-                        population: found?.jumlah_penduduk || Math.floor(Math.random() * 10000), // fallback random
-                        laju: found?.laju_pertumbuhan || `${(Math.random() * 2).toFixed(2)}%`,
-                        komoditastertinggi: found?.nama_komoditas && found?.volume_komoditas
-                            ? `${found.nama_komoditas}<br>(${found.volume_komoditas} ton)`
-                            : "Belum tersedia",
+                        area: found?.area || "",
+                        jumlah_penduduk: found?.jumlah_penduduk || 0,
+                        laju_pertumbuhan: found?.laju_pertumbuhan || "",
                     };
                 });
 
@@ -123,17 +129,16 @@ export function Map() {
             } catch (err) {
                 console.error('Gagal mengambil data kecamatan:', err);
                 // Fallback ke data static dengan informasi minimal
-                const fallbackData: KecamatanData[] = staticKecamatan.map(kecamatan => ({
+                const fallback: ApiKecamatanData[] = dataKecamatan.map(kecamatan => ({
                     ...kecamatan,
-                    title: `Kecamatan ${kecamatan.name}`,
+                    nama_kecamatan: kecamatan.nama_kecamatan || `Kecamatan ${kecamatan.id_kecamatan}`,
+                    deskripsi: "",
                     gambar: null,
-                    deskripsi: "Data tidak tersedia (offline)",
-                    area: "Belum tersedia",
-                    population: Math.floor(Math.random() * 10000),
-                    laju: `${(Math.random() * 2).toFixed(2)}%`,
-                    komoditastertinggi: "Belum tersedia"
+                    area: "",
+                    jumlah_penduduk: 0,
+                    laju_pertumbuhan: ""
                 }));
-                setKecamatanData(fallbackData);
+                setKecamatanData(fallback);
 
                 // Don't set error state here, just log it
                 console.warn('Using fallback kecamatan data due to API error');
@@ -157,7 +162,7 @@ export function Map() {
                 }
 
                 const hasilPanen: ApiKomoditasData[] = await res.json();
-                console.log('API Komoditas data:', hasilPanen);
+                console.log('API Data Komoditas:', hasilPanen);
 
                 // Convert dataKomoditas to accurate EnhancedPinData objects
                 const enhanced: EnhancedPinData[] = dataKomoditas.map((pin) => {
@@ -165,39 +170,43 @@ export function Map() {
                     const match = hasilPanen.find((data) => {
                         // Try multiple matching strategies
                         return (
-                            data.id_panen === pin.id_panen ||
-                            // Match by komoditas name and potential kecamatan reference
+                            data.nama_panen === pin.nama_panen ||
+                            // Match by komoditas nama_kecamatan and potential kecamatan reference
                             (data.nama_komoditas?.toLowerCase().includes(pin.category.toLowerCase()) &&
-                                pin.id_panen?.includes(data.nama_kecamatan?.toLowerCase().replace(/\s+/g, '-')))
+                                pin.nama_panen?.includes(data.nama_kecamatan?.toLowerCase().replace(/\s+/g, '-')))
                         );
                     });
 
                     if (match) {
-                        console.log("Found matching data for pin:", pin.id_panen, match);
+                        console.log("Found matching data for pin:", pin.nama_panen, match);
                         return {
+                            // Include all required PinData properties
                             id_panen: pin.id_panen,
+                            nama_panen: pin.nama_panen,
+                            title: match.nama_komoditas || pin.title || pin.category,
                             position: pin.position,
                             category: pin.category,
-                            name: match.nama_komoditas,
-                            title: match.nama_komoditas || pin.title || pin.category,
-                            luaspanen: match.luas_panen?.toString() || "0",
+                            // Additional EnhancedPinData properties
+                            nama_kecamatan: match.nama_komoditas,
+                            luas_panen: match.luas_panen?.toString() || "0",
                             produksi: match.produksi?.toString() || "0",
                             produktivitas: match.produktivitas?.toString() || "0",
-                            kecamatan: match.nama_kecamatan || pin.id_panen.split('-')[1]?.replace(/-/g, ' ') || "Unknown"
                         };
                     } else {
                         // Fallback data with clear indication it's not found
-                        console.warn(`No data found for pin: ${pin.id_panen}`);
+                        console.warn(`No data found for pin: ${pin.nama_panen}`);
                         return {
+                            // Include all required PinData properties
                             id_panen: pin.id_panen,
+                            nama_panen: pin.nama_panen,
+                            title: pin.title || `${pin.category} (Data tidak tersedia)`,
                             position: pin.position,
                             category: pin.category,
-                            name: pin.category,
-                            title: pin.title || `${pin.category} (Data tidak tersedia)`,
-                            luaspanen: "0",
+                            // Additional EnhancedPinData properties
+                            nama_kecamatan: pin.category,
+                            luas_panen: "0",
                             produksi: "0",
                             produktivitas: "0",
-                            kecamatan: pin.id_panen.split('-')[1]?.replace(/-/g, ' ') || "Unknown"
                         };
                     }
                 });
@@ -209,15 +218,10 @@ export function Map() {
                 // Set fallback data with clear indication it's fallback
                 const fallback: EnhancedPinData[] = dataKomoditas.map(pin => ({
                     ...pin,
-                    id_panen: pin.id_panen,
-                    position: pin.position,
-                    category: pin.category,
-                    name: pin.category,
-                    title: pin.title || `${pin.category} (Data tidak tersedia)`,
-                    luaspanen: "0",
+                    nama_kecamatan: pin.category,
+                    luas_panen: "0",
                     produksi: "0",
                     produktivitas: "0",
-                    kecamatan: pin.id_panen.split('-')[1]?.replace(/-/g, ' ') || "Unknown"
                 }));
                 setKomoditasData(fallback);
                 console.warn('Using fallback komoditas data due to API error');
@@ -291,28 +295,33 @@ export function Map() {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
-    const handleSelectKecamatan = (kecamatan: KecamatanData) => {
+    // Fix: Convert ApiKecamatanData to DataKecamatan format
+    const handleSelectKecamatan = (kecamatan: DataKecamatan) => {
         if (!mapInstanceRef.current.svg || !mapInstanceRef.current.paths) return;
+
+        // Find the corresponding ApiKecamatanData
+        const apiKecamatan = kecamatanData.find(k => k.id_kecamatan === kecamatan.id_kecamatan);
+        if (!apiKecamatan) return;
 
         mapInstanceRef.current.paths
             .transition()
             .duration(300)
-            .style("fill", d => d.defaultColor || "white");
+            .style("fill", d => d.default_color || "white");
 
-        const selectedPath = mapInstanceRef.current.paths.filter(d => d.name === kecamatan.name);
+        const selectedPath = mapInstanceRef.current.paths.filter(d => d.nama_kecamatan === apiKecamatan.nama_kecamatan);
         if (selectedPath.size() > 0) {
             selectedPath
                 .transition()
                 .duration(300)
                 .style("fill", "#CCEEDB");
 
-            setSelectedKecamatan(kecamatan);
+            setSelectedKecamatan(apiKecamatan);
             setSelectedPin(null);
-            zoomToKecamatan(kecamatan);
+            zoomToKecamatan(apiKecamatan);
         }
     };
 
-    const zoomToKecamatan = (kecamatan: KecamatanData) => {
+    const zoomToKecamatan = (kecamatan: ApiKecamatanData) => {
         const { svg, zoom } = mapInstanceRef.current;
         if (!svg || !zoom || !containerRef.current) return;
 
@@ -361,7 +370,7 @@ export function Map() {
         g!.selectAll("path")
             .transition()
             .duration(300)
-            .style("fill", d => (d as any).defaultColor || "white");
+            .style("fill", d => (d as any).default_color || "white");
 
         resetPins(svg);
 
@@ -379,10 +388,12 @@ export function Map() {
         svg.transition().call(zoom.transform, initialTransform);
     };
 
-    // Modified function to handle pin selection
-    const handlePinSelect = (pin: { id_panen: string }) => {
-        console.log("Pin selected:", pin.id_panen);
-        const detail = komoditasData.find((k) => k.id_panen === pin.id_panen);
+    // Modified function to handle pin selection - Fix parameter type
+    const handlePinSelect = (pin: PinData | null) => {
+        if (!pin) return;
+
+        console.log("Pin selected:", pin.nama_panen);
+        const detail = komoditasData.find((k) => k.nama_panen === pin.nama_panen);
         console.log("Found detail:", detail);
 
         if (detail) {
@@ -392,7 +403,7 @@ export function Map() {
             // Close sidebar when a pin is selected
             setIsSidebarOpen(false);
         } else {
-            console.warn(`No matching komoditas data found for pin ${pin.id_panen}`);
+            console.warn(`No matching komoditas data found for pin ${pin.nama_panen}`);
         }
     };
 
@@ -513,13 +524,13 @@ export function Map() {
                 svg.select("rect")
                     .attr("fill", "url(#grid-pattern)");
 
-                const clicked = (event: any, d: KecamatanData) => {
+                const clicked = (event: any, d: ApiKecamatanData) => {
                     event.stopPropagation();
 
                     g.selectAll("path")
                         .transition()
                         .duration(300)
-                        .style("fill", (kecamatan: any) => kecamatan.defaultColor || "white");
+                        .style("fill", (kecamatan: any) => kecamatan.default_color || "white");
 
                     d3.select(event.currentTarget)
                         .transition()
@@ -542,12 +553,12 @@ export function Map() {
                         .call(zoom.transform, transform);
                 };
 
-                const paths = g.selectAll<SVGPathElement, KecamatanData>("path")
+                const paths = g.selectAll<SVGPathElement, ApiKecamatanData>("path")
                     .data(kecamatanData)
                     .enter()
                     .append("path")
                     .attr("d", d => d.path)
-                    .attr("fill", d => d.defaultColor || "#5b9bd5")
+                    .attr("fill", d => d.default_color || "#5b9bd5")
                     .attr("stroke", "#0B3000")
                     .attr("stroke-width", 0.5)
                     .style("cursor", "pointer")
@@ -566,7 +577,7 @@ export function Map() {
                             .attr("opacity", 1);
                     });
 
-                mapInstanceRef.current.paths = paths as unknown as d3.Selection<d3.BaseType, KecamatanData, SVGGElement, unknown>;
+                mapInstanceRef.current.paths = paths as unknown as d3.Selection<d3.BaseType, ApiKecamatanData, SVGGElement, unknown>;
 
                 g.selectAll("text")
                     .data(kecamatanData)
@@ -582,19 +593,21 @@ export function Map() {
                     .attr("font-weight", "bold")
                     .attr("pointer-events", "none")
                     .style("text-shadow", "0px 0px 3px rgba(0,0,0,0.6)")
-                    .text(d => d.name);
+                    .text(d => d.nama_kecamatan);
 
                 // Create pins using the imported function, but pass the modified handler
-                createPins(
-                    svg,
-                    g,
-                    pins,
-                    activePinFilters,
-                    showPins,
-                    containerRef,
-                    handlePinSelect, // Use the new handler that also closes sidebar
-                    zoom
-                );
+                if (containerRef.current) {
+                    createPins(
+                        svg,
+                        g,
+                        pins,
+                        activePinFilters,
+                        showPins,
+                        { current: containerRef.current },
+                        handlePinSelect,
+                        zoom as unknown as d3.ZoomBehavior<Element, unknown>
+                    );
+                }
 
                 const initialTransform = calculateZoomTransform(
                     containerWidth,
@@ -602,10 +615,12 @@ export function Map() {
                     { minX, maxX, minY, maxY }
                 );
 
-                initialTransform.x += 230;
-                initialTransform.y -= 150;
+                // Create a new transform object instead of modifying the existing one
+                const modifiedTransform = d3.zoomIdentity
+                    .translate(initialTransform.x + 230, initialTransform.y - 150)
+                    .scale(initialTransform.k);
 
-                svg.call(zoom.transform, initialTransform);
+                svg.call(zoom.transform, modifiedTransform);
 
             } catch (error: any) {
                 console.error("Error creating map:", error);
@@ -704,14 +719,31 @@ export function Map() {
                                 <FilterPanel
                                     activePinFilters={activePinFilters}
                                     togglePinFilter={togglePinFilter}
-                                    pinCategories={pinCategories}
+                                    pinCategories={pinCategories.map(category => ({
+                                        id: category.id_panen,
+                                        label: category.label,
+                                        color: category.color,
+                                        icon: category.icon
+                                    }))}
                                 />
 
                                 {selectedKecamatan && (
                                     <InfoPanel
-                                        pin={selectedKecamatan}
+                                        pin={selectedKecamatan ? {
+                                            id_panen: `${selectedKecamatan.id_kecamatan}`,
+                                            nama_kecamatan: selectedKecamatan.nama_kecamatan,
+                                            nama_panen: selectedKecamatan.nama_komoditas ?? "-",
+                                            position: selectedKecamatan.center,
+                                            category: selectedKecamatan.nama_komoditas?.toLowerCase() ?? "-",
+                                            title: selectedKecamatan.nama_kecamatan,
+                                        } : null}
                                         onClose={() => setSelectedKecamatan(null)}
-                                        pinCategories={pinCategories}
+                                        pinCategories={pinCategories.map(category => ({
+                                            id: category.id_panen,
+                                            label: category.label,
+                                            color: category.color,
+                                            icon: category.icon
+                                        }))}
                                     />
                                 )}
 
@@ -719,7 +751,13 @@ export function Map() {
                                     <KecamatanDetail
                                         containerWidth={containerDimensions.width}
                                         containerHeight={containerDimensions.height}
-                                        kecamatan={selectedPin}
+                                        kecamatan={{
+                                            nama_kecamatan: selectedPin.nama_kecamatan ?? "-",
+                                            title: selectedPin.title ?? "-",
+                                            luas_panen: selectedPin.luas_panen ?? "0",
+                                            produksi: selectedPin.produksi ?? "0",
+                                            produktivitas: selectedPin.produktivitas ?? "0",
+                                        }}
                                         svg={mapInstanceRef.current.svg}
                                     />
                                 )}
@@ -730,7 +768,7 @@ export function Map() {
                         {isBrowser && mapInstanceRef.current.svg && mapInstanceRef.current.zoom && (
                             <Controls
                                 svg={mapInstanceRef.current.svg}
-                                zoom={mapInstanceRef.current.zoom}
+                                zoom={mapInstanceRef.current.zoom as unknown as d3.ZoomBehavior<Element, unknown>}
                                 containerWidth={containerDimensions.width}
                                 containerHeight={containerDimensions.height}
                                 resetView={resetView}

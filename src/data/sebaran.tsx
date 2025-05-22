@@ -2,220 +2,242 @@ import { PinData } from "@/components/map/PinsSebaran";
 
 export const dataSebaran: PinData[] = [
     // JAGUNG (CORN) DATA
-    { 
-        id_panen: 'jagung-maesan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Maesan', 
         position: [283, 610], 
-        kecamatan: "Maesan",
+        nama_kecamatan: "Maesan",
         category: 'jagung',
         title: 'Jagung', 
         luas_panen: "1557",
         produksi: "8409",
         produktivitas: "5.4"
     },
-    { 
-        id_panen: 'jagung-grujugan', 
+    {
+        id_panen: "2",
+        nama_panen: 'Jagung - Grujugan', 
         position: [191, 553], 
-        kecamatan: "Grujugan",
+        nama_kecamatan: "Grujugan",
         category: 'jagung',
         title: 'Jagung', 
         luas_panen: "407",
         produksi: "2211",
         produktivitas: "5.43"
     },
-    { 
-        id_panen: 'jagung-tamanan', 
+    {
+        id_panen: "3",
+        nama_panen: 'Jagung - Tamanan', 
         position: [326, 632], 
-        kecamatan: "Tamanan",
+        nama_kecamatan: "Tamanan",
         category: 'jagung',
         title: 'Jagung', 
         luas_panen: "330",
         produksi: "1835",
         produktivitas: "5.56"
     },
-    { 
-        id_panen: 'jagung-jambesari', 
+    {
+        id_panen: "4",
+        nama_panen: 'Jagung - Jambesari', 
         position: [372, 568], 
-        kecamatan: "Jambesari",
+        nama_kecamatan: "Jambesari",
         category: 'jagung',
         title: 'Jagung', 
         luas_panen: "322",
         produksi: "1731",
         produktivitas: "5.38"
     },
-    { 
-        id_panen: 'jagung-pujer', 
+    {
+        id_panen: "5",
+        nama_panen: 'Jagung - Pujer', 
         position: [427, 500], 
-        kecamatan: "Pujer",
+        nama_kecamatan: "Pujer",
         category: 'jagung',
         title: 'Jagung', 
         luas_panen: "966",
         produksi: "5390",
         produktivitas: "5.58"
     },
-    { 
-        id_panen: 'jagung-tlogosari', 
+    {
+        id_panen: "6",
+        nama_panen: 'Jagung - Tlogosari', 
         position: [565, 633], 
-        kecamatan: "Tlogosari",
+        nama_kecamatan: "Tlogosari",
         category: 'jagung',
         title: 'Jagung', 
         luas_panen: "616",
         produksi: "3401",
         produktivitas: "5.52"
     },
-    { 
-        id_panen: 'jagung-sukosari', 
+    {
+        id_panen: "7",
+        nama_panen: 'Jagung - Sukosari', 
         position: [490, 480], 
-        kecamatan: "Sukosari",
+        nama_kecamatan: "Sukosari",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "836",
         produksi: "4563",
         produktivitas: "5.46"
     },
-    { 
-        id_panen: 'jagung-sumberwringin', 
+    {
+        id_panen: "8",
+        nama_panen: 'Jagung - Sumber Wringin', 
         position: [600, 502], 
-        kecamatan: "Sumber Wringin",
+        nama_kecamatan: "Sumber Wringin",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "1092",
         produksi: "6005",
         produktivitas: "5.54"
     },
-    { 
-        id_panen: 'jagung-tapen', 
+    {
+        id_panen: "9",
+        nama_panen: 'Jagung - Tapen', 
         position: [472, 413], 
-        kecamatan: "Tapen",
+        nama_kecamatan: "Tapen",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "1414",
         produksi: "7879",
         produktivitas: "5.57"
     },
-    { 
-        id_panen: 'jagung-wonosari', 
+    {
+        id_panen: "10",
+        nama_panen: 'Jagung - Wonosari', 
         position: [448, 495], 
-        kecamatan: "Wonosari",
+        nama_kecamatan: "Wonosari",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "348",
         produksi: "1930",
         produktivitas: "5.55"
     },
-    { 
-        id_panen: 'jagung-tenggarang', 
+    {
+        id_panen: "11",
+        nama_panen: 'Jagung - Tenggarang', 
         position: [378, 469], 
-        kecamatan: "Tenggarang",
+        nama_kecamatan: "Tenggarang",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "315",
         produksi: "1744",
         produktivitas: "5.54"
     },
-    { 
-        id_panen: 'jagung-bondowoso', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Bondowoso', 
         position: [325, 519], 
-        kecamatan: "Bondowoso",
+        nama_kecamatan: "Bondowoso",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "100",
         produksi: "561",
         produktivitas: "5.61"
     },
-    { 
-        id_panen: 'jagung-curahdami', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Curahdami', 
         position: [290, 477], 
-        kecamatan: "Curahdami",
+        nama_kecamatan: "Curahdami",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "619",
         produksi: "3120",
         produktivitas: "5.04"
     },
-    { 
-        id_panen: 'jagung-binakal', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Binakal', 
         position: [200, 472], 
-        kecamatan: "Binakal",
+        nama_kecamatan: "Binakal",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "517",
         produksi: "2610",
         produktivitas: "5.05"
     },
-    { 
-        id_panen: 'jagung-pakem', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Pakem', 
         position: [215, 400], 
-        kecamatan: "Pakem",
+        nama_kecamatan: "Pakem",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "1031",
         produksi: "4804",
         produktivitas: "4.66"
     },
-    { 
-        id_panen: 'jagung-wringin', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Wringin', 
         position: [253, 345], 
-        kecamatan: "Wringin",
+        nama_kecamatan: "Wringin",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "1915",
         produksi: "8849",
         produktivitas: "4.62"
     },
-    { 
-        id_panen: 'jagung-tegalampel', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Tegalampel', 
         position: [332, 433], 
-        kecamatan: "Tegal Ampel",
+        nama_kecamatan: "Tegal Ampel",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "689",
         produksi: "3799",
         produktivitas: "5.51"
     },
-    { 
-        id_panen: 'jagung-tamankrocok', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Taman Krocok', 
         position: [412, 352], 
-        kecamatan: "Taman Krocok",
+        nama_kecamatan: "Taman Krocok",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "2646",
         produksi: "14283",
         produktivitas: "5.4"
     },
-    { 
-        id_panen: 'jagung-klabang', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Klabang', 
         position: [392, 322], 
-        kecamatan: "Klabang",
+        nama_kecamatan: "Klabang",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "2386",
         produksi: "13023",
         produktivitas: "5.46"
     },
-    { 
-        id_panen: 'jagung-botolinggo', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Botolinggo', 
         position: [600, 352], 
-        kecamatan: "Botolinggo",
+        nama_kecamatan: "Botolinggo",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "2598",
         produksi: "14317",
         produktivitas: "5.51"
     },
-    { 
-        id_panen: 'jagung-prajekan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Prajekan', 
         position: [544, 263], 
-        kecamatan: "Prajekan",
+        nama_kecamatan: "Prajekan",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "2598",
         produksi: "14317",
         produktivitas: "5.51"
     },
-    { 
-        id_panen: 'jagung-cermee', 
+    {
+        id_panen: "1",
+        nama_panen: 'Jagung - Cermee', 
         position: [672, 398], 
-        kecamatan: "Cermee",
+        nama_kecamatan: "Cermee",
         title: 'Jagung', 
         category: 'jagung',
         luas_panen: "7368",
@@ -224,220 +246,242 @@ export const dataSebaran: PinData[] = [
     },
 
     // UBI KAYU (CASSAVA) DATA
-    { 
-        id_panen: 'ubi-maesan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Maesan', 
         position: [300, 634], 
-        kecamatan: "Maesan",
+        nama_kecamatan: "Maesan",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "71",
         produksi: "1108",
         produktivitas: "15.61"
     },
-    { 
-        id_panen: 'ubi-grujugan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Grujugan', 
         position: [226, 536], 
-        kecamatan: "Grujugan",
+        nama_kecamatan: "Grujugan",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "151",
         produksi: "3459",
         produktivitas: "22.91"
     },
-    { 
-        id_panen: 'ubi-tamanan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Tamanan', 
         position: [351, 627], 
-        kecamatan: "Tamanan",
+        nama_kecamatan: "Tamanan",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "136",
         produksi: "3115",
         produktivitas: "22.9"
     },
-    { 
-        id_panen: 'ubi-jambesari', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Jambesari', 
         position: [400, 585], 
-        kecamatan: "Jambesari",
+        nama_kecamatan: "Jambesari",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "99",
         produksi: "1611",
         produktivitas: "16.27"
     },
-    { 
-        id_panen: 'ubi-pujer', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Pujer', 
         position: [433, 569], 
-        kecamatan: "Pujer",
+        nama_kecamatan: "Pujer",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "112",
         produksi: "2566",
         produktivitas: "22.91"
     },
-    { 
-        id_panen: 'ubi-tlogosari', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Tlogosari', 
         position: [600, 668], 
-        kecamatan: "Tlogosari",
+        nama_kecamatan: "Tlogosari",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "88",
         produksi: "2020",
         produktivitas: "22.95"
     },
-    { 
-        id_panen: 'ubi-sukosari', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Sukosari', 
         position: [500, 530], 
-        kecamatan: "Sukosari",
+        nama_kecamatan: "Sukosari",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "81",
         produksi: "1866",
         produktivitas: "23.04"
     },
-    { 
-        id_panen: 'ubi-sumberwringin', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Sumber Wringin', 
         position: [642, 667], 
-        kecamatan: "Sumber Wringin",
+        nama_kecamatan: "Sumber Wringin",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "76",
         produksi: "1238",
         produktivitas: "16.29"
     },
-    { 
-        id_panen: 'ubi-tapen', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Tapen', 
         position: [530, 411], 
-        kecamatan: "Tapen",
+        nama_kecamatan: "Tapen",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "72",
         produksi: "1655",
         produktivitas: "22.99"
     },
-    { 
-        id_panen: 'ubi-wonosari', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Wonosari', 
         position: [473, 464], 
-        kecamatan: "Wonosari",
+        nama_kecamatan: "Wonosari",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "3",
         produksi: "69",
         produktivitas: "23"
     },
-    { 
-        id_panen: 'ubi-tenggarang', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Tenggarang', 
         position: [371, 512], 
-        kecamatan: "Tenggarang",
+        nama_kecamatan: "Tenggarang",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "5",
         produksi: "115",
         produktivitas: "23"
     },
-    { 
-        id_panen: 'ubi-bondowoso', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Bondowoso', 
         position: [329, 500], 
-        kecamatan: "Bondowoso",
+        nama_kecamatan: "Bondowoso",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "6",
         produksi: "237",
         produktivitas: "39.5"
     },
-    { 
-        id_panen: 'ubi-curahdami', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Curahdami', 
         position: [243, 499], 
-        kecamatan: "Curahdami",
+        nama_kecamatan: "Curahdami",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "44",
         produksi: "890",
         produktivitas: "20.23"
     },
-    { 
-        id_panen: 'ubi-binakal', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Binakal', 
         position: [245, 449], 
-        kecamatan: "Binakal",
+        nama_kecamatan: "Binakal",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "75",
         produksi: "1714",
         produktivitas: "22.85"
     },
-    { 
-        id_panen: 'ubi-pakem', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Pakem', 
         position: [170, 460], 
-        kecamatan: "Pakem",
+        nama_kecamatan: "Pakem",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "57",
         produksi: "1402",
         produktivitas: "24.6"
     },
-    { 
-        id_panen: 'ubi-wringin', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Wringin', 
         position: [284, 380], 
-        kecamatan: "Wringin",
+        nama_kecamatan: "Wringin",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "884",
         produksi: "20440",
         produktivitas: "23.12"
     },
-    { 
-        id_panen: 'ubi-tegalampel', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Tegalampel', 
         position: [326, 419], 
-        kecamatan: "Tegal Ampel",
+        nama_kecamatan: "Tegal Ampel",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "83",
         produksi: "1903",
         produktivitas: "22.93"
     },
-    { 
-        id_panen: 'ubi-tamankrocok', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Taman Krocok', 
         position: [406, 399], 
-        kecamatan: "Taman Krocok",
+        nama_kecamatan: "Taman Krocok",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "129",
         produksi: "2958",
         produktivitas: "22.93"
     },
-    { 
-        id_panen: 'ubi-klabang', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Klabang', 
         position: [550, 400], 
-        kecamatan: "Klabang",
+        nama_kecamatan: "Klabang",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "232",
         produksi: "4912",
         produktivitas: "21.17"
     },
-    { 
-        id_panen: 'ubi-botolinggo', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Botolinggo', 
         position: [615, 407], 
-        kecamatan: "Botolinggo",
+        nama_kecamatan: "Botolinggo",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "275",
         produksi: "7312",
         produktivitas: "26.59"
     },
-    { 
-        id_panen: 'ubi-prajekan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Prajekan', 
         position: [519, 289], 
-        kecamatan: "Prajekan",
+        nama_kecamatan: "Prajekan",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "275",
         produksi: "7312",
         produktivitas: "26.59"
     },
-    { 
-        id_panen: 'ubi-cermee', 
+    {
+        id_panen: "1",
+        nama_panen: 'Ubi - Cermee', 
         position: [687, 333], 
-        kecamatan: "Cermee",
+        nama_kecamatan: "Cermee",
         title: 'Ubi Kayu', 
         category: 'ubi' ,
         luas_panen: "524",
@@ -446,220 +490,242 @@ export const dataSebaran: PinData[] = [
     },
     
     // PADI (RICE) DATA
-    { 
-        id_panen: 'padi-maesan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Maesan', 
         position: [221, 600], 
-        kecamatan: "Maesan",
+        nama_kecamatan: "Maesan",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "2468",
         produksi: "15558",
         produktivitas: "6.3"
     },
-    { 
-        id_panen: 'padi-grujugan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Grujugan', 
         position: [294, 557], 
-        kecamatan: "Grujugan",
+        nama_kecamatan: "Grujugan",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "3414",
         produksi: "21452",
         produktivitas: "6.28"
     },
-    { 
-        id_panen: 'padi-tamanan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Tamanan', 
         position: [344, 580], 
-        kecamatan: "Tamanan",
+        nama_kecamatan: "Tamanan",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "4145",
         produksi: "26097",
         produktivitas: "6.3"
     },
-    { 
-        id_panen: 'padi-jambesari', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Jambesari', 
         position: [373, 540], 
-        kecamatan: "Jambesari",
+        nama_kecamatan: "Jambesari",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "3171",
         produksi: "19792",
         produktivitas: "6.24"
     },
-    { 
-        id_panen: 'padi-pujer', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Pujer', 
         position: [449, 575], 
-        kecamatan: "Pujer",
+        nama_kecamatan: "Pujer",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "6098",
         produksi: "39051",
         produktivitas: "6.4"
     },
-    { 
-        id_panen: 'padi-tlogosari', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Tlogosari', 
         position: [500, 570], 
-        kecamatan: "Tlogosari",
+        nama_kecamatan: "Tlogosari",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "6069",
         produksi: "38854",
         produktivitas: "6.4"
     },
-    { 
-        id_panen: 'padi-sukosari', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Sukosari', 
         position: [540, 500], 
-        kecamatan: "Sukosari",
+        nama_kecamatan: "Sukosari",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "2378",
         produksi: "14313",
         produktivitas: "6.02"
     },
-    { 
-        id_panen: 'padi-sumberwringin', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Sumber Wringin', 
         position: [600, 573], 
-        kecamatan: "Sumber Wringin",
+        nama_kecamatan: "Sumber Wringin",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "3497",
         produksi: "20794",
         produktivitas: "5.95"
     },
-    { 
-        id_panen: 'padi-tapen', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Tapen', 
         position: [492, 380], 
-        kecamatan: "Tapen",
+        nama_kecamatan: "Tapen",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "6270",
         produksi: "40715",
         produktivitas: "6.49"
     },
-    { 
-        id_panen: 'padi-wonosari', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Wonosari', 
         position: [437, 438], 
-        kecamatan: "Wonosari",
+        nama_kecamatan: "Wonosari",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "3914",
         produksi: "25229",
         produktivitas: "6.45"
     },
-    { 
-        id_panen: 'padi-tenggarang', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Tenggarang', 
         position: [379, 493], 
-        kecamatan: "Tenggarang",
+        nama_kecamatan: "Tenggarang",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "4211",
         produksi: "27299",
         produktivitas: "6.48"
     },
-    { 
-        id_panen: 'padi-bondowoso', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Bondowoso', 
         position: [326, 453], 
-        kecamatan: "Bondowoso",
+        nama_kecamatan: "Bondowoso",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "2577",
         produksi: "16156",
         produktivitas: "6.27"
     },
-    { 
-        id_panen: 'padi-curahdami', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Curahdami', 
         position: [271, 500], 
-        kecamatan: "Curahdami",
+        nama_kecamatan: "Curahdami",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "2627",
         produksi: "14191",
         produktivitas: "5.4"
     },
-    { 
-        id_panen: 'padi-binakal', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Binakal', 
         position: [261, 430], 
-        kecamatan: "Binakal",
+        nama_kecamatan: "Binakal",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "2161",
         produksi: "11842",
         produktivitas: "5.48"
     },
-    { 
-        id_panen: 'padi-pakem', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Pakem', 
         position: [177, 435], 
-        kecamatan: "Pakem",
+        nama_kecamatan: "Pakem",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "2409",
         produksi: "13308",
         produktivitas: "5.48"
     },
-    { 
-        id_panen: 'padi-wringin', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Wringin', 
         position: [276, 354], 
-        kecamatan: "Wringin",
+        nama_kecamatan: "Wringin",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "2447",
         produksi: "13281",
         produktivitas: "5.43"
     },
-    { 
-        id_panen: 'padi-tegalampel', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Tegalampel', 
         position: [347, 421], 
-        kecamatan: "Tegal Ampel",
+        nama_kecamatan: "Tegal Ampel",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "2265",
         produksi: "13700",
         produktivitas: "6.05"
     },
-    { 
-        id_panen: 'padi-tamankrocok', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Taman Krocok', 
         position: [420, 384], 
-        kecamatan: "Taman Krocok",
+        nama_kecamatan: "Taman Krocok",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "1455",
         produksi: "8619",
         produktivitas: "5.92"
     },
-    { 
-        id_panen: 'padi-klabang', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Klabang', 
         position: [495, 323], 
-        kecamatan: "Klabang",
+        nama_kecamatan: "Klabang",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "3824",
         produksi: "23498",
         produktivitas: "6.14"
     },
-    { 
-        id_panen: 'padi-botolinggo', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Botolinggo', 
         position: [667, 500], 
-        kecamatan: "Botolinggo",
+        nama_kecamatan: "Botolinggo",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "3057",
         produksi: "18775",
         produktivitas: "6.18"
     },
-    { 
-        id_panen: 'padi-prajekan', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Prajekan', 
         position: [544, 300], 
-        kecamatan: "Prajekan",
+        nama_kecamatan: "Prajekan",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "3057",
         produksi: "18775",
         produktivitas: "6.18"
     },
-    { 
-        id_panen: 'padi-cermee', 
+    {
+        id_panen: "1",
+        nama_panen: 'Padi - Cermee', 
         position: [690, 420], 
-        kecamatan: "Cermee",
+        nama_kecamatan: "Cermee",
         title: 'Padi', 
         category: 'padi' ,
         luas_panen: "3696",
@@ -669,9 +735,10 @@ export const dataSebaran: PinData[] = [
 
        // KELAPA (COCONUT) DATA
     {
-        id_panen: 'kelapa-maesan',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Maesan',
         position: [260, 615],
-        kecamatan: "Maesan",
+        nama_kecamatan: "Maesan",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -679,9 +746,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-grujugan',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Grujugan',
         position: [245, 565],
-        kecamatan: "Grujugan",
+        nama_kecamatan: "Grujugan",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -689,9 +757,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-tamanan',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Tamanan',
         position: [372, 610],
-        kecamatan: "Tamanan",
+        nama_kecamatan: "Tamanan",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -699,9 +768,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-jambesari',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Jambesari',
         position: [389, 550],
-        kecamatan: "Jambesari Darus Sholah",
+        nama_kecamatan: "Jambesari Darus Sholah",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -709,9 +779,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-sukosari',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Sukosari',
         position: [505, 485],
-        kecamatan: "Sukosari",
+        nama_kecamatan: "Sukosari",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -719,9 +790,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-sumberwringin',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Sumber Wringin',
         position: [635, 630],
-        kecamatan: "Sumber Wringin",
+        nama_kecamatan: "Sumber Wringin",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -729,9 +801,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-tapen',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Tapen',
         position: [515, 465],
-        kecamatan: "Tapen",
+        nama_kecamatan: "Tapen",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -739,9 +812,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-wonosari',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Wonosari',
         position: [415, 465],
-        kecamatan: "Wonosari",
+        nama_kecamatan: "Wonosari",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -749,9 +823,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-bondowoso',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Bondowoso',
         position: [330, 472],
-        kecamatan: "Bondowoso",
+        nama_kecamatan: "Bondowoso",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -759,9 +834,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-curahdami',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Curahdami',
         position: [295, 505],
-        kecamatan: "Curahdami",
+        nama_kecamatan: "Curahdami",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -769,9 +845,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-binakal',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Binakal',
         position: [225, 465],
-        kecamatan: "Binakal",
+        nama_kecamatan: "Binakal",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -779,9 +856,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-pakem',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Pakem',
         position: [189, 425],
-        kecamatan: "Pakem",
+        nama_kecamatan: "Pakem",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -789,9 +867,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-tamankrocok',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Taman Krocok',
         position: [450, 370],
-        kecamatan: "Taman Krocok",
+        nama_kecamatan: "Taman Krocok",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -799,9 +878,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-klabang',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Klabang',
         position: [470, 345],
-        kecamatan: "Klabang",
+        nama_kecamatan: "Klabang",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -809,9 +889,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-botolinggo',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Botolinggo',
         position: [690, 550],
-        kecamatan: "Botolinggo",
+        nama_kecamatan: "Botolinggo",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -819,9 +900,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-prajekan',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Prajekan',
         position: [630, 340],
-        kecamatan: "Prajekan",
+        nama_kecamatan: "Prajekan",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -829,9 +911,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kelapa-cermee',
+        id_panen: "1",
+        nama_panen: 'Kelapa - Cermee',
         position: [710, 480],
-        kecamatan: "Cermee",
+        nama_kecamatan: "Cermee",
         title: 'Kelapa',
         category: 'kelapa',
         luas_panen: "0",
@@ -841,9 +924,10 @@ export const dataSebaran: PinData[] = [
     
     // KOPI (COFFEE) DATA
     {
-        id_panen: 'kopi-maesan',
+        id_panen: "1",
+        nama_panen: 'Kopi - Maesan',
         position: [250, 608],
-        kecamatan: "Maesan",
+        nama_kecamatan: "Maesan",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -851,9 +935,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-grujugan',
+        id_panen: "1",
+        nama_panen: 'Kopi - Grujugan',
         position: [255, 540],
-        kecamatan: "Grujugan",
+        nama_kecamatan: "Grujugan",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -861,9 +946,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-tamanan',
+        id_panen: "1",
+        nama_panen: 'Kopi - Tamanan',
         position: [334, 598],
-        kecamatan: "Tamanan",
+        nama_kecamatan: "Tamanan",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -871,9 +957,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-pujer',
+        id_panen: "1",
+        nama_panen: 'Kopi - Pujer',
         position: [430, 540],
-        kecamatan: "Pujer",
+        nama_kecamatan: "Pujer",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -881,9 +968,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-tlogosari',
+        id_panen: "1",
+        nama_panen: 'Kopi - Tlogosari',
         position: [535, 635],
-        kecamatan: "Tlogosari",
+        nama_kecamatan: "Tlogosari",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -891,9 +979,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-sukosari',
+        id_panen: "1",
+        nama_panen: 'Kopi - Sukosari',
         position: [479, 495],
-        kecamatan: "Sukosari",
+        nama_kecamatan: "Sukosari",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -901,9 +990,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-sumberwringin',
+        id_panen: "1",
+        nama_panen: 'Kopi - Sumber Wringin',
         position: [665, 630],
-        kecamatan: "Sumber Wringin",
+        nama_kecamatan: "Sumber Wringin",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -911,9 +1001,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-curahdami',
+        id_panen: "1",
+        nama_panen: 'Kopi - Curahdami',
         position: [295, 445],
-        kecamatan: "Curahdami",
+        nama_kecamatan: "Curahdami",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -921,9 +1012,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-binakal',
+        id_panen: "1",
+        nama_panen: 'Kopi - Binakal',
         position: [265, 400],
-        kecamatan: "Binakal",
+        nama_kecamatan: "Binakal",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -931,9 +1023,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-pakem',
+        id_panen: "1",
+        nama_panen: 'Kopi - Pakem',
         position: [135, 500],
-        kecamatan: "Pakem",
+        nama_kecamatan: "Pakem",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -941,9 +1034,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-tegalampel',
+        id_panen: "1",
+        nama_panen: 'Kopi - Tegalampel',
         position: [340, 375],
-        kecamatan: "Tegal Ampel",
+        nama_kecamatan: "Tegal Ampel",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -951,9 +1045,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-tamankrocok',
+        id_panen: "1",
+        nama_panen: 'Kopi - Taman Krocok',
         position: [380, 370],
-        kecamatan: "Taman Krocok",
+        nama_kecamatan: "Taman Krocok",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -961,9 +1056,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-klabang',
+        id_panen: "1",
+        nama_panen: 'Kopi - Klabang',
         position: [480, 300],
-        kecamatan: "Klabang",
+        nama_kecamatan: "Klabang",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -971,9 +1067,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-ijen',
+        id_panen: "1",
+        nama_panen: 'Kopi - ijen',
         position: [860, 640],
-        kecamatan: "Ijen",
+        nama_kecamatan: "Ijen",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -981,9 +1078,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-botolinggo',
+        id_panen: "1",
+        nama_panen: 'Kopi - Botolinggo',
         position: [635, 500],
-        kecamatan: "Botolinggo",
+        nama_kecamatan: "Botolinggo",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",
@@ -991,9 +1089,10 @@ export const dataSebaran: PinData[] = [
         produktivitas: "0"
     },
     {
-        id_panen: 'kopi-cermee',
+        id_panen: "1",
+        nama_panen: 'Kopi - Cermee',
         position: [680, 270],
-        kecamatan: "Cermee",
+        nama_kecamatan: "Cermee",
         title: 'Kopi',
         category: 'kopi',
         luas_panen: "0",

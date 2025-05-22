@@ -30,7 +30,7 @@ export default function UserAddressCard() {
                   Country
                 </p>
                 <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  {session?.user?.detail?.country || "Loading..."}
+                  {/* {session?.user?.detail?.country || "Loading..."} */}
                 </p>
               </div>
 
@@ -39,7 +39,7 @@ export default function UserAddressCard() {
                   City/State
                 </p>
                 <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  {session?.user?.detail?.city || "Loading..."}
+                  {/* {session?.user?.detail?.city || "Loading..."} */}
                 </p>
               </div>
 
@@ -48,7 +48,7 @@ export default function UserAddressCard() {
                   Postal Code
                 </p>
                 <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  {session?.user?.detail?.post_kode || "Loading..."}
+                  {/* {session?.user?.detail?.post_kode || "Loading..."} */}
                 </p>
               </div>
 
@@ -57,7 +57,7 @@ export default function UserAddressCard() {
                   TAX ID
                 </p>
                 <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  {session?.user?.detail?.id_tax || "Loading..."}
+                  {/* {session?.user?.detail?.id_tax || "Loading..."} */}
                 </p>
               </div>
             </div>

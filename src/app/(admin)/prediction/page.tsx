@@ -1,6 +1,6 @@
 import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
-import TablePrediction from "@/components/tables/TablePrediction";
+import TablePrediction from "@/components/tables/TablePrediksi";
 import { Metadata } from "next";
 import React from "react";
 

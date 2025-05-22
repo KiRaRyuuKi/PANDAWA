@@ -7,21 +7,22 @@ const PIN_ZOOM_SCALE = 2.5;
 // Define pin interface
 export interface PinData {
     id_panen: string;
+    nama_kecamatan?: string;
+    nama_panen: string;
     position: [number, number];
-    kecamatan?: string;
+    category: string;
+    color?: string;
+    gambar?: string;
+    icon?: string;
     title: string;
     area?: string;
     deskripsi?: string;
     luas_panen?: string;
-    population?: number;
+    jumlah_penduduk?: number;
     produksi?: string;
     produktivitas?: string;
     laju_pertumbuhan?: string;
     komoditas_tertinggi?: string;
-    category: string;
-    color?: string;
-    gambar?: string;
-    custom_icon?: string;
 }
 
 // Define pin categories with improved icons and colors
@@ -36,8 +37,8 @@ export const pinCategories = [
         id_panen: 'padi',
         label: 'Padi',
         color: '#16a34a',
-        icon: '/pins/iconPadi.png',
         type: 'image',
+        icon: '/pins/iconPadi.png',
     },
     {
         id_panen: 'jagung',
@@ -104,7 +105,7 @@ export const createPins = (
         const category = pinCategories.find(cat => cat.id_panen === d.category) || pinCategories[0];
 
         pin.attr("data-color", d.color || category.color);
-        pin.attr("data-icon", d.custom_icon || category.icon);
+        pin.attr("data-icon", d.icon || category.icon);
 
         // Drop shadow
         const defs = pin.append("defs");
@@ -114,18 +115,25 @@ export const createPins = (
             .attr("y", "-50%")
             .attr("width", "200%")
             .attr("height", "200%");
+
         filter.append("feGaussianBlur")
             .attr("in", "SourceAlpha")
             .attr("stdDeviation", 0.5)
             .attr("result", "blur");
+
         filter.append("feOffset")
             .attr("in", "blur")
             .attr("dx", 0)
             .attr("dy", 0.5)
             .attr("result", "offsetBlur");
+
         const feMerge = filter.append("feMerge");
-        feMerge.append("feMergeNode").attr("in", "offsetBlur");
-        feMerge.append("feMergeNode").attr("in", "SourceGraphic");
+
+        feMerge.append("feMergeNode")
+            .attr("in", "offsetBlur");
+
+        feMerge.append("feMergeNode")
+            .attr("in", "SourceGraphic");
 
         pin.append("circle")
             .attr("class", "pin-circle")
@@ -234,7 +242,7 @@ export const updatePinVisibility = (
     const showAll = filters.has('all');
 
     // Update visibility for all pins
-    svg.selectAll("g.pin") // Be more specific with the selector
+    svg.selectAll("g.pin")
         .style("display", function (d: any) {
             if (!showPins) return "none";
             return showAll || filters.has(d.category) ? "block" : "none";
@@ -282,6 +290,7 @@ export const calculateZoomTransform = (
 ) => {
     const width = bounds.maxX - bounds.minX;
     const height = bounds.maxY - bounds.minY;
+
     const centerX = bounds.minX + width / 2;
     const centerY = bounds.minY + height / 2;
 

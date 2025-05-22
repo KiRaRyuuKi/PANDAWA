@@ -29,7 +29,7 @@ export default function UserInfoCard() {
                 First Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                {session?.user?.first_name || "Loading..."}
+                {/* {session?.user?.first_name || "Loading..."} */}
               </p>
             </div>
 
@@ -38,7 +38,7 @@ export default function UserInfoCard() {
                 Last Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                {session?.user?.last_name || "Loading..."}
+                {/* {session?.user?.last_name || "Loading..."} */}
               </p>
             </div>
 
@@ -56,7 +56,7 @@ export default function UserInfoCard() {
                 Phone
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                {session?.user?.detail?.phone || "Loading..."}
+                {/* {session?.user?.detail?.phone || "Loading..."} */}
               </p>
             </div>
 
@@ -65,7 +65,7 @@ export default function UserInfoCard() {
                 Bio
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                {session?.user?.detail?.bio || "Loading..."}
+                {/* {session?.user?.detail?.bio || "Loading..."} */}
               </p>
             </div>
           </div>

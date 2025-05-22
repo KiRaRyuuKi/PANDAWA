@@ -28,7 +28,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ pin, onClose, pinCategorie
                     {pin.gambar ? (
                         <img
                             src={pin.gambar}
-                            alt={pin.title}
+                            alt={pin.nama_kecamatan}
                             className="w-full h-full object-cover"
                         />
                     ) : (
@@ -43,7 +43,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ pin, onClose, pinCategorie
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute p-1 top-1 right-1 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 rounded-md text-gray-500 hover:text-gray-700 transition-all"
+                        className="absolute p-1 top-1 right-1 bg-white hover:bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 rounded-md text-gray-500 hover:text-gray-700 transition-all"
                         aria-label="Close panel"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -59,7 +59,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ pin, onClose, pinCategorie
 
                             <div>
                                 <h2 className="font-bold text-xl text-gray-800 leading-tight">
-                                    {pin.title}
+                                    {pin.nama_kecamatan}
                                 </h2>
                             </div>
                         </div>
@@ -68,7 +68,6 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ pin, onClose, pinCategorie
                     {/* Description with improved readability */}
                     {pin.deskripsi && (
                         <div className="mt-3">
-                            {/* <h4 className="text-sm font-semibold text-gray-700 mb-1">Description</h4> */}
                             <p className="text-gray-600 text-sm leading-relaxed">
                                 {pin.deskripsi}
                             </p>
@@ -83,7 +82,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ pin, onClose, pinCategorie
                                 <path d="M13 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8a4 4 0 0 1 8 0H4Zm9 0a5.978 5.978 0 0 0-1.356-3.778A6.008 6.008 0 0 1 16 15h-3Z" />
                             </svg>
                             <p className="text-xs text-gray-500">Penduduk</p>
-                            <p className="text-sm font-medium text-gray-800">{pin.population?.toLocaleString() || "-"} Jiwa</p>
+                            <p className="text-sm font-medium text-gray-800">{pin.jumlah_penduduk?.toLocaleString() || "-"} Jiwa</p>
                         </div>
 
                         {/* Area */}

@@ -95,8 +95,6 @@ model Kecamatan {
   deskripsi         String    @database.Text
   gambar            String    @database.Text
   area              Float
-  posisi_x          Int
-  posisi_y          Int
 
   created_at        DateTime  @default(now()) @map("created_at")
   updated_at        DateTime  @updatedAt @map("updated_at")

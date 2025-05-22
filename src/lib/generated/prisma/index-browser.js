@@ -177,8 +177,6 @@ exports.Prisma.KecamatanScalarFieldEnum = {
   deskripsi: 'deskripsi',
   gambar: 'gambar',
   area: 'area',
-  posisi_x: 'posisi_x',
-  posisi_y: 'posisi_y',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -218,8 +216,10 @@ exports.Prisma.PrediksiPanenScalarFieldEnum = {
   id_prediksi: 'id_prediksi',
   id_kecamatan: 'id_kecamatan',
   id_komoditas: 'id_komoditas',
+  luas_panen: 'luas_panen',
   tahun_prediksi: 'tahun_prediksi',
   hasil_prediksi: 'hasil_prediksi',
+  hasil_rata_rata: 'hasil_rata_rata',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };

@@ -69,8 +69,6 @@ CREATE TABLE "data_kecamatan" (
     "deskripsi" TEXT NOT NULL,
     "gambar" TEXT NOT NULL,
     "area" DOUBLE PRECISION NOT NULL,
-    "posisi_x" INTEGER NOT NULL,
-    "posisi_y" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -106,6 +104,7 @@ CREATE TABLE "hasil_panen" (
     "id_panen" SERIAL NOT NULL,
     "id_kecamatan" INTEGER NOT NULL,
     "id_komoditas" INTEGER NOT NULL,
+    "nama_panen" TEXT NOT NULL,
     "tahun_panen" INTEGER NOT NULL,
     "produksi" DOUBLE PRECISION NOT NULL,
     "luas_panen" DOUBLE PRECISION NOT NULL,
@@ -121,8 +120,10 @@ CREATE TABLE "prediksi_panen" (
     "id_prediksi" SERIAL NOT NULL,
     "id_kecamatan" INTEGER NOT NULL,
     "id_komoditas" INTEGER NOT NULL,
+    "luas_panen" INTEGER NOT NULL,
     "tahun_prediksi" INTEGER NOT NULL,
     "hasil_prediksi" INTEGER NOT NULL,
+    "hasil_rata_rata" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 

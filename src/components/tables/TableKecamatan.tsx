@@ -534,7 +534,7 @@ export default function TableKecamatan() {
                       value={selectedKecamatan?.area || ''}
                       onChange={(e) => handleInputChange(e, 'area')}
                       disabled={isSubmitting}
-                      step={0.000}
+                      step={0.001}
                       min="0"
                       required
                     />

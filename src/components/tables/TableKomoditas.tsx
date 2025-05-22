@@ -611,7 +611,7 @@ export default function TableKomoditas() {
                       value={selectedItem?.produksi?.toString() || ''}
                       onChange={(e) => handleInputChange(e, 'produksi')}
                       disabled={isSubmitting}
-                      step={0.000}
+                      step={0.001}
                       min="0"
                       required
                     />
@@ -624,7 +624,7 @@ export default function TableKomoditas() {
                       value={selectedItem?.luas_panen?.toString() || ''}
                       onChange={(e) => handleInputChange(e, 'luas_panen')}
                       disabled={isSubmitting}
-                      step={0.000}
+                      step={0.001}
                       min="0"
                       required
                     />
@@ -637,7 +637,7 @@ export default function TableKomoditas() {
                       value={selectedItem?.produktivitas?.toString() || ''}
                       onChange={(e) => handleInputChange(e, 'produktivitas')}
                       disabled={isSubmitting}
-                      step={0.000}
+                      step={0.001}
                       min="0"
                       required
                     />
