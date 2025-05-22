@@ -138,7 +138,7 @@ export function Controls({
             .attr("r", 10)
             .attr("fill", "white")
             .attr("stroke", "#6366f1")
-            .attr("stroke-width", 1.5)
+            .attr("strokeWidth", 1.5)
             .style("filter", "drop-shadow(0px 1px 2px rgba(0,0,0,0.1))");
 
         // Updated path for the arrow to be centered in the circle

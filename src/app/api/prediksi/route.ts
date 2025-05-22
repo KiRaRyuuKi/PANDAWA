@@ -1,32 +1,27 @@
-import { db } from '@/lib/db';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
-    const [rows] = await db.query(`
-      SELECT 
-        prediksi_panen.id_prediksi,
-        prediksi_panen.id_kecamatan,
-        prediksi_panen.id_komoditas,
-        prediksi_panen.tahun,
-        prediksi_panen.luas_panen,
-        prediksi_panen.rata_rata_produksi,
-        prediksi_panen.hasil_prediksi,
-        data_kecamatan.nama_kecamatan,
-        komoditas.nama_komoditas
-      FROM 
-        prediksi_panen
-      JOIN 
-        data_kecamatan ON prediksi_panen.id_kecamatan = data_kecamatan.id_kecamatan
-      JOIN 
-        komoditas ON prediksi_panen.id_komoditas = komoditas.id_komoditas
-    `);
-
-    return NextResponse.json(rows as any[]);
+    const prediksiPanen = await prisma.prediksiPanen.findMany({
+      include: {
+        kecamatan: {
+          select: {
+            nama_kecamatan: true,
+          },
+        },
+        komoditas: {
+          select: {
+            nama_komoditas: true,
+          },
+        },
+      },
+    });
+    return NextResponse.json(prediksiPanen);
   } catch (error) {
     console.error('Error saat mengambil data prediksi panen:', error);
     return NextResponse.json(
-      { error: 'Terjadi kesalahan saat mengambil data' },
+      { error: 'Terjadi kesalahan saat mengambil data prediksi panen' },
       { status: 500 }
     );
   }

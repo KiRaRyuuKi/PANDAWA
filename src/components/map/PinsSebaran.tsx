@@ -142,7 +142,7 @@ export const createPins = (
             .attr("r", 10)
             .attr("fill", d.color || category.color)
             .attr("stroke", "white")
-            .attr("stroke-width", 1.5)
+            .attr("strokeWidth", 1.5)
             .attr("filter", `url(#drop-shadow-${d.id_panen})`);
 
         pin.append("image")
@@ -187,7 +187,7 @@ export const createPins = (
                 .transition()
                 .duration(200)
                 .attr("r", 12)
-                .attr("stroke-width", 2.5);
+                .attr("strokeWidth", 2.5);
 
             d3.select(this).select(".pin-bubble")
                 .transition()
@@ -200,7 +200,7 @@ export const createPins = (
                 .transition()
                 .duration(200)
                 .attr("r", 10)
-                .attr("stroke-width", 1.5);
+                .attr("strokeWidth", 1.5);
 
             d3.select(this).select(".pin-bubble")
                 .transition()

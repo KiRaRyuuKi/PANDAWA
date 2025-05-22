@@ -65,7 +65,7 @@ export function Sidebar({ onSelectKecamatan, isOpen, toggleSidebar }: SidebarPro
                                 onClick={toggleSidebar}
                                 className="bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 transition-all rounded-md p-1 text-gray-500"
                             >
-                                <svg className="h-6 w-6 text-y-500" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <svg className="h-6 w-6 text-y-500" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18" />
                                 </svg>
                             </button>
@@ -76,7 +76,7 @@ export function Sidebar({ onSelectKecamatan, isOpen, toggleSidebar }: SidebarPro
                                 onClick={toggleSidebar}
                                     className="hover:bg-gray-100 border border-white hover:border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 transition-all rounded-md p-1 text-gray-500"
                             >
-                                <svg className="h-6 w-6 text-gray-500" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <svg className="h-6 w-6 text-gray-500" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18" />
                                 </svg>
                             </button>

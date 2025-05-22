@@ -37,7 +37,7 @@ const navItems: NavItem[] = [
   {
     name: "Prediksi Panen",
     icon: <Image src="/images/icons/task.svg" width={20} height={20} alt="Task" />,
-    path: "/prediction",
+    path: "/prediksi",
   },
 ];
 

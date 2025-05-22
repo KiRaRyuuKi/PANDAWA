@@ -34,8 +34,6 @@ interface Kecamatan {
   deskripsi: string;
   gambar?: string;
   area: number;
-  posisi_x?: number;
-  posisi_y?: number;
 }
 
 interface Komoditas {

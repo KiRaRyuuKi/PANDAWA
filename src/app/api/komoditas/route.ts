@@ -77,7 +77,7 @@ export async function POST(req: Request) {
         luas_panen: Number(luas_panen),
         produksi: Number(produksi),
         produktivitas: Number(produktivitas),
-        nama_panen: `${kecamatan.nama_kecamatan}-${komoditas.nama_komoditas}`,
+        nama_panen: `${kecamatan.nama_kecamatan} - ${komoditas.nama_komoditas}`,
         kecamatan: {
           connect: { id_kecamatan: Number(id_kecamatan) }
         },

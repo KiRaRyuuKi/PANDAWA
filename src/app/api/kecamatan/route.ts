@@ -49,8 +49,6 @@ export async function POST(req: Request) {
         deskripsi,
         gambar,
         area,
-        posisi_x,
-        posisi_y
       }
     });
 
