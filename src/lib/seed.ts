@@ -24,6 +24,9 @@ async function main() {
     // Create HasilPanen data
     await seedHasilPanen();
 
+    // Create PrediksiPanen data
+    await seedPrediksiPanen();
+
     console.log('😀 : Seeding completed successfully!!!');
 }
 
@@ -692,6 +695,33 @@ async function seedHasilPanen() {
 
     console.log(`🟢 : Created ${hasilPanenData.length} hasil panen records`);
 }
+
+async function seedPrediksiPanen() {
+    console.log('📊 Seeding prediksi panen...');
+
+    // Get all kecamatan and komoditas for reference
+    const kecamatan = await prisma.kecamatan.findMany();
+    const komoditas = await prisma.komoditas.findMany();
+
+    const prediksiPanenData = [
+        {
+            id_kecamatan: kecamatan[21].id_kecamatan,
+            id_komoditas: komoditas[1].id_komoditas,
+            luas_panen: 2,
+            tahun_prediksi: 2025,
+            hasil_prediksi: 1300 + Math.floor(Math.random() * 5500),
+            hasil_rata_rata: 20
+        },
+    ];
+
+    for (const data of prediksiPanenData) {
+        await prisma.prediksiPanen.create({
+            data
+        });
+    }
+
+    console.log(`🟢 : Created ${prediksiPanenData.length} prediksi panen records`);
+  }
 
 main()
     .catch((e) => {

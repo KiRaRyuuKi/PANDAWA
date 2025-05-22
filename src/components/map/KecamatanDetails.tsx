@@ -1,42 +1,23 @@
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
-interface KecamatanData {
-    name: string;
-    path: string;
-    title: string;
-    luaspanen: string;
-    produksi: string;
-    produktivitas: string;
-    kec: string;
-    center: [number, number];
-    defaultColor?: string;
-}
-
-interface KecamatanDetailProps {
-    containerWidth: number;
-    containerHeight: number;
-    kecamatan: KecamatanData | null;
-    svg: d3.Selection<SVGSVGElement, unknown, null, undefined> | null;
-}
-
 export function KecamatanDetail({ containerWidth, containerHeight, kecamatan, svg }: KecamatanDetailProps) {
     const detailRef = useRef<{
+        kecamatanName: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
         kecamatanInfo: d3.Selection<SVGGElement, unknown, null, undefined> | null;
         kecamatanTitle: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
         komoditas: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
         luasPanen: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
         produksi: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
         produktivitas: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
-        kec: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
     }>( {
+        kecamatanName: null,
         kecamatanInfo: null,
         kecamatanTitle: null,
         komoditas: null,
         luasPanen: null,
         produksi: null,
         produktivitas: null,
-        kec: null,
     });
 
     useEffect(() => {
@@ -60,16 +41,10 @@ export function KecamatanDetail({ containerWidth, containerHeight, kecamatan, sv
 
         detailRef.current.kecamatanTitle = kecamatanInfo.append("text")
             .attr("x", 15)
-            .attr("y", 25)
+            .attr("y", 45)
             .attr("font-size", "16px")
             .attr("font-weight", "bold")
             .attr("fill", "#7c3aed");
-
-        detailRef.current.komoditas = kecamatanInfo.append("text")
-            .attr("x", 15)
-            .attr("y", 45)
-            .attr("font-size", "14px")
-            .attr("fill", "#1f2937");
 
         detailRef.current.luasPanen = kecamatanInfo.append("text")
             .attr("x", 15)
@@ -89,13 +64,12 @@ export function KecamatanDetail({ containerWidth, containerHeight, kecamatan, sv
             .attr("font-size", "14px")
             .attr("fill", "#1f2937");
 
-        detailRef.current.kec = kecamatanInfo.append("text")
+        detailRef.current.kecamatanName = kecamatanInfo.append("text")
             .attr("x", 95)
-            .attr("y", 20)
+            .attr("y", 25)
             .attr("font-size", "18px")
             .attr("fill", "#1f2937");
 
-        // Optional cleanup
         return () => {
             svg.select(".kecamatan-info").remove();
         };
@@ -114,12 +88,11 @@ export function KecamatanDetail({ containerWidth, containerHeight, kecamatan, sv
                 return num !== null ? num.toLocaleString('id-ID') : val;
             };
         
-            detailRef.current.kecamatanTitle?.text(kecamatan.name);
-            detailRef.current.komoditas?.text(`Komoditas: ${kecamatan.title}`);
+            detailRef.current.kecamatanTitle?.text(kecamatan.title);
             detailRef.current.luasPanen?.text(`Luas Panen: ${formatNumber(kecamatan.luaspanen)} ha`);
             detailRef.current.produksi?.text(`Produksi: ${formatNumber(kecamatan.produksi)} ton`);
             detailRef.current.produktivitas?.text(`Produktivitas: ${formatNumber(kecamatan.produktivitas)} ton/ha`);
-            detailRef.current.kec?.text(`${kecamatan.kec}`);
+            detailRef.current.kecamatanName?.text(`${kecamatan.kecamatanName}`);
         
             detailRef.current.kecamatanInfo?.transition().duration(300).style("opacity", 1);
         }

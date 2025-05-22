@@ -3,9 +3,11 @@ import { prisma } from '@/lib/prisma';
 
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = Number(params.id);
+  const { id: idParam } = await params;
+  const id = Number(idParam);
+
   if (isNaN(id)) {
     return NextResponse.json({ error: 'ID tidak valid' }, { status: 400 });
   }
@@ -42,9 +44,11 @@ export async function GET(
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = Number(params.id);
+  const { id: idParam } = await params;
+  const id = Number(idParam);
+
   if (isNaN(id)) {
     return NextResponse.json({ error: 'ID tidak valid' }, { status: 400 });
   }
@@ -146,9 +150,11 @@ export async function PUT(
 
 export async function DELETE(
   _req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = Number(params.id);
+  const { id: idParam } = await params;
+  const id = Number(idParam);
+
   if (isNaN(id)) {
     return NextResponse.json({ error: 'ID tidak valid' }, { status: 400 });
   }

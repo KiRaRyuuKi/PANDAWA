@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import ErrorPage from "@/components/status/error/StatusError";
+import ErrorPage from "@/components/status/StatusError";
 
 export const metadata: Metadata = {
   title: "PANDAWA",

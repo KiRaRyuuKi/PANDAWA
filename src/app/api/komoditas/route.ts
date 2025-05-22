@@ -73,12 +73,17 @@ export async function POST(req: Request) {
 
     const newPanen = await prisma.hasilPanen.create({
       data: {
-        id_kecamatan,
-        id_komoditas,
-        tahun_panen,
-        luas_panen,
-        produksi,
-        produktivitas,
+        tahun_panen: Number(tahun_panen),
+        luas_panen: Number(luas_panen),
+        produksi: Number(produksi),
+        produktivitas: Number(produktivitas),
+        nama_panen: `${kecamatan.nama_kecamatan}-${komoditas.nama_komoditas}`,
+        kecamatan: {
+          connect: { id_kecamatan: Number(id_kecamatan) }
+        },
+        komoditas: {
+          connect: { id_komoditas: Number(id_komoditas) }
+        }
       },
       include: {
         kecamatan: {

@@ -101,7 +101,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ pin, onClose, pinCategorie
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 17l6-6 4 4 8-8" />
                             </svg>
                             <p className="text-xs text-gray-500">Laju Pertumbuhan</p>
-                            <p className="text-sm font-medium text-gray-800">{pin.laju || "-"}</p>
+                            <p className="text-sm font-medium text-gray-800">{pin.laju_pertumbuhan || "-"}</p>
                         </div>
 
                         {/* Komoditas Tertinggi */}
@@ -112,7 +112,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ pin, onClose, pinCategorie
                             <p className="text-xs text-gray-500">Komoditas Utama</p>
                             <p
                                 className="text-sm font-medium text-center text-gray-800"
-                                dangerouslySetInnerHTML={{ __html: pin.komoditastertinggi || "-" }}
+                                dangerouslySetInnerHTML={{ __html: pin.komoditas_tertinggi || "-" }}
                             ></p>
 
                         </div>

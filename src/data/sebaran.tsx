@@ -1,1001 +1,1003 @@
+import { PinData } from "@/components/map/PinsSebaran";
+
 export const dataSebaran: PinData[] = [
     // JAGUNG (CORN) DATA
     { 
-        id: 'jagung-maesan', 
+        id_panen: 'jagung-maesan', 
         position: [283, 610], 
+        kecamatan: "Maesan",
+        category: 'jagung',
         title: 'Jagung', 
-        luaspanen: "1557",
+        luas_panen: "1557",
         produksi: "8409",
-        produktivitas: "5.4",
-        kec: "Maesan",
-        category: 'jagung' 
+        produktivitas: "5.4"
     },
     { 
-        id: 'jagung-grujugan', 
+        id_panen: 'jagung-grujugan', 
         position: [191, 553], 
+        kecamatan: "Grujugan",
+        category: 'jagung',
         title: 'Jagung', 
-        luaspanen: "407",
+        luas_panen: "407",
         produksi: "2211",
-        produktivitas: "5.43",
-        kec: "Grujugan",
-        category: 'jagung' 
+        produktivitas: "5.43"
     },
     { 
-        id: 'jagung-tamanan', 
+        id_panen: 'jagung-tamanan', 
         position: [326, 632], 
+        kecamatan: "Tamanan",
+        category: 'jagung',
         title: 'Jagung', 
-        luaspanen: "330",
+        luas_panen: "330",
         produksi: "1835",
-        produktivitas: "5.56",
-        kec: "Tamanan",
-        category: 'jagung' 
+        produktivitas: "5.56"
     },
     { 
-        id: 'jagung-jambesari', 
+        id_panen: 'jagung-jambesari', 
         position: [372, 568], 
+        kecamatan: "Jambesari",
+        category: 'jagung',
         title: 'Jagung', 
-        luaspanen: "322",
+        luas_panen: "322",
         produksi: "1731",
-        produktivitas: "5.38",
-        kec: "Jambesari",
-        category: 'jagung' 
+        produktivitas: "5.38"
     },
     { 
-        id: 'jagung-pujer', 
+        id_panen: 'jagung-pujer', 
         position: [427, 500], 
+        kecamatan: "Pujer",
+        category: 'jagung',
         title: 'Jagung', 
-        luaspanen: "966",
+        luas_panen: "966",
         produksi: "5390",
-        produktivitas: "5.58",
-        kec: "Pujer",
-        category: 'jagung' 
+        produktivitas: "5.58"
     },
     { 
-        id: 'jagung-tlogosari', 
+        id_panen: 'jagung-tlogosari', 
         position: [565, 633], 
+        kecamatan: "Tlogosari",
+        category: 'jagung',
         title: 'Jagung', 
-        luaspanen: "616",
+        luas_panen: "616",
         produksi: "3401",
-        produktivitas: "5.52",
-        kec: "Tlogosari",
-        category: 'jagung' 
+        produktivitas: "5.52"
     },
     { 
-        id: 'jagung-sukosari', 
+        id_panen: 'jagung-sukosari', 
         position: [490, 480], 
+        kecamatan: "Sukosari",
         title: 'Jagung', 
-        luaspanen: "836",
+        category: 'jagung',
+        luas_panen: "836",
         produksi: "4563",
-        produktivitas: "5.46",
-        kec: "Sukosari",
-        category: 'jagung' 
+        produktivitas: "5.46"
     },
     { 
-        id: 'jagung-sumberwringin', 
+        id_panen: 'jagung-sumberwringin', 
         position: [600, 502], 
+        kecamatan: "Sumber Wringin",
         title: 'Jagung', 
-        luaspanen: "1092",
+        category: 'jagung',
+        luas_panen: "1092",
         produksi: "6005",
-        produktivitas: "5.54",
-        kec: "Sumber Wringin",
-        category: 'jagung' 
+        produktivitas: "5.54"
     },
     { 
-        id: 'jagung-tapen', 
+        id_panen: 'jagung-tapen', 
         position: [472, 413], 
+        kecamatan: "Tapen",
         title: 'Jagung', 
-        luaspanen: "1414",
+        category: 'jagung',
+        luas_panen: "1414",
         produksi: "7879",
-        produktivitas: "5.57",
-        kec: "Tapen",
-        category: 'jagung' 
+        produktivitas: "5.57"
     },
     { 
-        id: 'jagung-wonosari', 
+        id_panen: 'jagung-wonosari', 
         position: [448, 495], 
+        kecamatan: "Wonosari",
         title: 'Jagung', 
-        luaspanen: "348",
+        category: 'jagung',
+        luas_panen: "348",
         produksi: "1930",
-        produktivitas: "5.55",
-        kec: "Wonosari",
-        category: 'jagung' 
+        produktivitas: "5.55"
     },
     { 
-        id: 'jagung-tenggarang', 
+        id_panen: 'jagung-tenggarang', 
         position: [378, 469], 
+        kecamatan: "Tenggarang",
         title: 'Jagung', 
-        luaspanen: "315",
+        category: 'jagung',
+        luas_panen: "315",
         produksi: "1744",
-        produktivitas: "5.54",
-        kec: "Tenggarang",
-        category: 'jagung' 
+        produktivitas: "5.54"
     },
     { 
-        id: 'jagung-bondowoso', 
+        id_panen: 'jagung-bondowoso', 
         position: [325, 519], 
+        kecamatan: "Bondowoso",
         title: 'Jagung', 
-        luaspanen: "100",
+        category: 'jagung',
+        luas_panen: "100",
         produksi: "561",
-        produktivitas: "5.61",
-        kec: "Bondowoso",
-        category: 'jagung' 
+        produktivitas: "5.61"
     },
     { 
-        id: 'jagung-curahdami', 
+        id_panen: 'jagung-curahdami', 
         position: [290, 477], 
+        kecamatan: "Curahdami",
         title: 'Jagung', 
-        luaspanen: "619",
+        category: 'jagung',
+        luas_panen: "619",
         produksi: "3120",
-        produktivitas: "5.04",
-        kec: "Curahdami",
-        category: 'jagung' 
+        produktivitas: "5.04"
     },
     { 
-        id: 'jagung-binakal', 
+        id_panen: 'jagung-binakal', 
         position: [200, 472], 
+        kecamatan: "Binakal",
         title: 'Jagung', 
-        luaspanen: "517",
+        category: 'jagung',
+        luas_panen: "517",
         produksi: "2610",
-        produktivitas: "5.05",
-        kec: "Binakal",
-        category: 'jagung' 
+        produktivitas: "5.05"
     },
     { 
-        id: 'jagung-pakem', 
+        id_panen: 'jagung-pakem', 
         position: [215, 400], 
+        kecamatan: "Pakem",
         title: 'Jagung', 
-        luaspanen: "1031",
+        category: 'jagung',
+        luas_panen: "1031",
         produksi: "4804",
-        produktivitas: "4.66",
-        kec: "Pakem",
-        category: 'jagung' 
+        produktivitas: "4.66"
     },
     { 
-        id: 'jagung-wringin', 
+        id_panen: 'jagung-wringin', 
         position: [253, 345], 
+        kecamatan: "Wringin",
         title: 'Jagung', 
-        luaspanen: "1915",
+        category: 'jagung',
+        luas_panen: "1915",
         produksi: "8849",
-        produktivitas: "4.62",
-        kec: "Wringin",
-        category: 'jagung' 
+        produktivitas: "4.62"
     },
     { 
-        id: 'jagung-tegalampel', 
+        id_panen: 'jagung-tegalampel', 
         position: [332, 433], 
+        kecamatan: "Tegal Ampel",
         title: 'Jagung', 
-        luaspanen: "689",
+        category: 'jagung',
+        luas_panen: "689",
         produksi: "3799",
-        produktivitas: "5.51",
-        kec: "Tegal Ampel",
-        category: 'jagung' 
+        produktivitas: "5.51"
     },
     { 
-        id: 'jagung-tamankrocok', 
+        id_panen: 'jagung-tamankrocok', 
         position: [412, 352], 
+        kecamatan: "Taman Krocok",
         title: 'Jagung', 
-        luaspanen: "2646",
+        category: 'jagung',
+        luas_panen: "2646",
         produksi: "14283",
-        produktivitas: "5.4",
-        kec: "Taman Krocok",
-        category: 'jagung' 
+        produktivitas: "5.4"
     },
     { 
-        id: 'jagung-klabang', 
+        id_panen: 'jagung-klabang', 
         position: [392, 322], 
+        kecamatan: "Klabang",
         title: 'Jagung', 
-        luaspanen: "2386",
+        category: 'jagung',
+        luas_panen: "2386",
         produksi: "13023",
-        produktivitas: "5.46",
-        kec: "Klabang",
-        category: 'jagung' 
+        produktivitas: "5.46"
     },
     { 
-        id: 'jagung-botolinggo', 
+        id_panen: 'jagung-botolinggo', 
         position: [600, 352], 
+        kecamatan: "Botolinggo",
         title: 'Jagung', 
-        luaspanen: "2598",
+        category: 'jagung',
+        luas_panen: "2598",
         produksi: "14317",
-        produktivitas: "5.51",
-        kec: "Botolinggo",
-        category: 'jagung' 
+        produktivitas: "5.51"
     },
     { 
-        id: 'jagung-prajekan', 
+        id_panen: 'jagung-prajekan', 
         position: [544, 263], 
+        kecamatan: "Prajekan",
         title: 'Jagung', 
-        luaspanen: "2598",
+        category: 'jagung',
+        luas_panen: "2598",
         produksi: "14317",
-        produktivitas: "5.51",
-        kec: "Prajekan",
-        category: 'jagung' 
+        produktivitas: "5.51"
     },
     { 
-        id: 'jagung-cermee', 
+        id_panen: 'jagung-cermee', 
         position: [672, 398], 
+        kecamatan: "Cermee",
         title: 'Jagung', 
-        luaspanen: "7368",
+        category: 'jagung',
+        luas_panen: "7368",
         produksi: "41389",
-        produktivitas: "5.62",
-        kec: "Cermee",
-        category: 'jagung' 
+        produktivitas: "5.62"
     },
 
     // UBI KAYU (CASSAVA) DATA
     { 
-        id: 'ubi-maesan', 
+        id_panen: 'ubi-maesan', 
         position: [300, 634], 
+        kecamatan: "Maesan",
         title: 'Ubi Kayu', 
-        luaspanen: "71",
+        category: 'ubi' ,
+        luas_panen: "71",
         produksi: "1108",
-        produktivitas: "15.61",
-        kec: "Maesan",
-        category: 'ubi' 
+        produktivitas: "15.61"
     },
     { 
-        id: 'ubi-grujugan', 
+        id_panen: 'ubi-grujugan', 
         position: [226, 536], 
+        kecamatan: "Grujugan",
         title: 'Ubi Kayu', 
-        luaspanen: "151",
+        category: 'ubi' ,
+        luas_panen: "151",
         produksi: "3459",
-        produktivitas: "22.91",
-        kec: "Grujugan",
-        category: 'ubi' 
+        produktivitas: "22.91"
     },
     { 
-        id: 'ubi-tamanan', 
+        id_panen: 'ubi-tamanan', 
         position: [351, 627], 
+        kecamatan: "Tamanan",
         title: 'Ubi Kayu', 
-        luaspanen: "136",
+        category: 'ubi' ,
+        luas_panen: "136",
         produksi: "3115",
-        produktivitas: "22.9",
-        kec: "Tamanan",
-        category: 'ubi' 
+        produktivitas: "22.9"
     },
     { 
-        id: 'ubi-jambesari', 
+        id_panen: 'ubi-jambesari', 
         position: [400, 585], 
+        kecamatan: "Jambesari",
         title: 'Ubi Kayu', 
-        luaspanen: "99",
+        category: 'ubi' ,
+        luas_panen: "99",
         produksi: "1611",
-        produktivitas: "16.27",
-        kec: "Jambesari",
-        category: 'ubi' 
+        produktivitas: "16.27"
     },
     { 
-        id: 'ubi-pujer', 
+        id_panen: 'ubi-pujer', 
         position: [433, 569], 
+        kecamatan: "Pujer",
         title: 'Ubi Kayu', 
-        luaspanen: "112",
+        category: 'ubi' ,
+        luas_panen: "112",
         produksi: "2566",
-        produktivitas: "22.91",
-        kec: "Pujer",
-        category: 'ubi' 
+        produktivitas: "22.91"
     },
     { 
-        id: 'ubi-tlogosari', 
+        id_panen: 'ubi-tlogosari', 
         position: [600, 668], 
+        kecamatan: "Tlogosari",
         title: 'Ubi Kayu', 
-        luaspanen: "88",
+        category: 'ubi' ,
+        luas_panen: "88",
         produksi: "2020",
-        produktivitas: "22.95",
-        kec: "Tlogosari",
-        category: 'ubi' 
+        produktivitas: "22.95"
     },
     { 
-        id: 'ubi-sukosari', 
+        id_panen: 'ubi-sukosari', 
         position: [500, 530], 
+        kecamatan: "Sukosari",
         title: 'Ubi Kayu', 
-        luaspanen: "81",
+        category: 'ubi' ,
+        luas_panen: "81",
         produksi: "1866",
-        produktivitas: "23.04",
-        kec: "Sukosari",
-        category: 'ubi' 
+        produktivitas: "23.04"
     },
     { 
-        id: 'ubi-sumberwringin', 
+        id_panen: 'ubi-sumberwringin', 
         position: [642, 667], 
+        kecamatan: "Sumber Wringin",
         title: 'Ubi Kayu', 
-        luaspanen: "76",
+        category: 'ubi' ,
+        luas_panen: "76",
         produksi: "1238",
-        produktivitas: "16.29",
-        kec: "Sumber Wringin",
-        category: 'ubi' 
+        produktivitas: "16.29"
     },
     { 
-        id: 'ubi-tapen', 
+        id_panen: 'ubi-tapen', 
         position: [530, 411], 
+        kecamatan: "Tapen",
         title: 'Ubi Kayu', 
-        luaspanen: "72",
+        category: 'ubi' ,
+        luas_panen: "72",
         produksi: "1655",
-        produktivitas: "22.99",
-        kec: "Tapen",
-        category: 'ubi' 
+        produktivitas: "22.99"
     },
     { 
-        id: 'ubi-wonosari', 
+        id_panen: 'ubi-wonosari', 
         position: [473, 464], 
+        kecamatan: "Wonosari",
         title: 'Ubi Kayu', 
-        luaspanen: "3",
+        category: 'ubi' ,
+        luas_panen: "3",
         produksi: "69",
-        produktivitas: "23",
-        kec: "Wonosari",
-        category: 'ubi' 
+        produktivitas: "23"
     },
     { 
-        id: 'ubi-tenggarang', 
+        id_panen: 'ubi-tenggarang', 
         position: [371, 512], 
+        kecamatan: "Tenggarang",
         title: 'Ubi Kayu', 
-        luaspanen: "5",
+        category: 'ubi' ,
+        luas_panen: "5",
         produksi: "115",
-        produktivitas: "23",
-        kec: "Tenggarang",
-        category: 'ubi' 
+        produktivitas: "23"
     },
     { 
-        id: 'ubi-bondowoso', 
+        id_panen: 'ubi-bondowoso', 
         position: [329, 500], 
+        kecamatan: "Bondowoso",
         title: 'Ubi Kayu', 
-        luaspanen: "6",
+        category: 'ubi' ,
+        luas_panen: "6",
         produksi: "237",
-        produktivitas: "39.5",
-        kec: "Bondowoso",
-        category: 'ubi' 
+        produktivitas: "39.5"
     },
     { 
-        id: 'ubi-curahdami', 
+        id_panen: 'ubi-curahdami', 
         position: [243, 499], 
+        kecamatan: "Curahdami",
         title: 'Ubi Kayu', 
-        luaspanen: "44",
+        category: 'ubi' ,
+        luas_panen: "44",
         produksi: "890",
-        produktivitas: "20.23",
-        kec: "Curahdami",
-        category: 'ubi' 
+        produktivitas: "20.23"
     },
     { 
-        id: 'ubi-binakal', 
+        id_panen: 'ubi-binakal', 
         position: [245, 449], 
+        kecamatan: "Binakal",
         title: 'Ubi Kayu', 
-        luaspanen: "75",
+        category: 'ubi' ,
+        luas_panen: "75",
         produksi: "1714",
-        produktivitas: "22.85",
-        kec: "Binakal",
-        category: 'ubi' 
+        produktivitas: "22.85"
     },
     { 
-        id: 'ubi-pakem', 
+        id_panen: 'ubi-pakem', 
         position: [170, 460], 
+        kecamatan: "Pakem",
         title: 'Ubi Kayu', 
-        luaspanen: "57",
+        category: 'ubi' ,
+        luas_panen: "57",
         produksi: "1402",
-        produktivitas: "24.6",
-        kec: "Pakem",
-        category: 'ubi' 
+        produktivitas: "24.6"
     },
     { 
-        id: 'ubi-wringin', 
+        id_panen: 'ubi-wringin', 
         position: [284, 380], 
+        kecamatan: "Wringin",
         title: 'Ubi Kayu', 
-        luaspanen: "884",
+        category: 'ubi' ,
+        luas_panen: "884",
         produksi: "20440",
-        produktivitas: "23.12",
-        kec: "Wringin",
-        category: 'ubi' 
+        produktivitas: "23.12"
     },
     { 
-        id: 'ubi-tegalampel', 
+        id_panen: 'ubi-tegalampel', 
         position: [326, 419], 
+        kecamatan: "Tegal Ampel",
         title: 'Ubi Kayu', 
-        luaspanen: "83",
+        category: 'ubi' ,
+        luas_panen: "83",
         produksi: "1903",
-        produktivitas: "22.93",
-        kec: "Tegal Ampel",
-        category: 'ubi' 
+        produktivitas: "22.93"
     },
     { 
-        id: 'ubi-tamankrocok', 
+        id_panen: 'ubi-tamankrocok', 
         position: [406, 399], 
+        kecamatan: "Taman Krocok",
         title: 'Ubi Kayu', 
-        luaspanen: "129",
+        category: 'ubi' ,
+        luas_panen: "129",
         produksi: "2958",
-        produktivitas: "22.93",
-        kec: "Taman Krocok",
-        category: 'ubi' 
+        produktivitas: "22.93"
     },
     { 
-        id: 'ubi-klabang', 
+        id_panen: 'ubi-klabang', 
         position: [550, 400], 
+        kecamatan: "Klabang",
         title: 'Ubi Kayu', 
-        luaspanen: "232",
+        category: 'ubi' ,
+        luas_panen: "232",
         produksi: "4912",
-        produktivitas: "21.17",
-        kec: "Klabang",
-        category: 'ubi' 
+        produktivitas: "21.17"
     },
     { 
-        id: 'ubi-botolinggo', 
+        id_panen: 'ubi-botolinggo', 
         position: [615, 407], 
+        kecamatan: "Botolinggo",
         title: 'Ubi Kayu', 
-        luaspanen: "275",
+        category: 'ubi' ,
+        luas_panen: "275",
         produksi: "7312",
-        produktivitas: "26.59",
-        kec: "Botolinggo",
-        category: 'ubi' 
+        produktivitas: "26.59"
     },
     { 
-        id: 'ubi-prajekan', 
+        id_panen: 'ubi-prajekan', 
         position: [519, 289], 
+        kecamatan: "Prajekan",
         title: 'Ubi Kayu', 
-        luaspanen: "275",
+        category: 'ubi' ,
+        luas_panen: "275",
         produksi: "7312",
-        produktivitas: "26.59",
-        kec: "Prajekan",
-        category: 'ubi' 
+        produktivitas: "26.59"
     },
     { 
-        id: 'ubi-cermee', 
+        id_panen: 'ubi-cermee', 
         position: [687, 333], 
+        kecamatan: "Cermee",
         title: 'Ubi Kayu', 
-        luaspanen: "524",
+        category: 'ubi' ,
+        luas_panen: "524",
         produksi: "12227",
-        produktivitas: "23.33",
-        kec: "Cermee",
-        category: 'ubi' 
+        produktivitas: "23.33"
     },
     
     // PADI (RICE) DATA
     { 
-        id: 'padi-maesan', 
+        id_panen: 'padi-maesan', 
         position: [221, 600], 
+        kecamatan: "Maesan",
         title: 'Padi', 
-        luaspanen: "2468",
+        category: 'padi' ,
+        luas_panen: "2468",
         produksi: "15558",
-        produktivitas: "6.3",
-        kec: "Maesan",
-        category: 'padi' 
+        produktivitas: "6.3"
     },
     { 
-        id: 'padi-grujugan', 
+        id_panen: 'padi-grujugan', 
         position: [294, 557], 
+        kecamatan: "Grujugan",
         title: 'Padi', 
-        luaspanen: "3414",
+        category: 'padi' ,
+        luas_panen: "3414",
         produksi: "21452",
-        produktivitas: "6.28",
-        kec: "Grujugan",
-        category: 'padi' 
+        produktivitas: "6.28"
     },
     { 
-        id: 'padi-tamanan', 
+        id_panen: 'padi-tamanan', 
         position: [344, 580], 
+        kecamatan: "Tamanan",
         title: 'Padi', 
-        luaspanen: "4145",
+        category: 'padi' ,
+        luas_panen: "4145",
         produksi: "26097",
-        produktivitas: "6.3",
-        kec: "Tamanan",
-        category: 'padi' 
+        produktivitas: "6.3"
     },
     { 
-        id: 'padi-jambesari', 
+        id_panen: 'padi-jambesari', 
         position: [373, 540], 
+        kecamatan: "Jambesari",
         title: 'Padi', 
-        luaspanen: "3171",
+        category: 'padi' ,
+        luas_panen: "3171",
         produksi: "19792",
-        produktivitas: "6.24",
-        kec: "Jambesari",
-        category: 'padi' 
+        produktivitas: "6.24"
     },
     { 
-        id: 'padi-pujer', 
+        id_panen: 'padi-pujer', 
         position: [449, 575], 
+        kecamatan: "Pujer",
         title: 'Padi', 
-        luaspanen: "6098",
+        category: 'padi' ,
+        luas_panen: "6098",
         produksi: "39051",
-        produktivitas: "6.4",
-        kec: "Pujer",
-        category: 'padi' 
+        produktivitas: "6.4"
     },
     { 
-        id: 'padi-tlogosari', 
+        id_panen: 'padi-tlogosari', 
         position: [500, 570], 
+        kecamatan: "Tlogosari",
         title: 'Padi', 
-        luaspanen: "6069",
+        category: 'padi' ,
+        luas_panen: "6069",
         produksi: "38854",
-        produktivitas: "6.4",
-        kec: "Tlogosari",
-        category: 'padi' 
+        produktivitas: "6.4"
     },
     { 
-        id: 'padi-sukosari', 
+        id_panen: 'padi-sukosari', 
         position: [540, 500], 
+        kecamatan: "Sukosari",
         title: 'Padi', 
-        luaspanen: "2378",
+        category: 'padi' ,
+        luas_panen: "2378",
         produksi: "14313",
-        produktivitas: "6.02",
-        kec: "Sukosari",
-        category: 'padi' 
+        produktivitas: "6.02"
     },
     { 
-        id: 'padi-sumberwringin', 
+        id_panen: 'padi-sumberwringin', 
         position: [600, 573], 
+        kecamatan: "Sumber Wringin",
         title: 'Padi', 
-        luaspanen: "3497",
+        category: 'padi' ,
+        luas_panen: "3497",
         produksi: "20794",
-        produktivitas: "5.95",
-        kec: "Sumber Wringin",
-        category: 'padi' 
+        produktivitas: "5.95"
     },
     { 
-        id: 'padi-tapen', 
+        id_panen: 'padi-tapen', 
         position: [492, 380], 
+        kecamatan: "Tapen",
         title: 'Padi', 
-        luaspanen: "6270",
+        category: 'padi' ,
+        luas_panen: "6270",
         produksi: "40715",
-        produktivitas: "6.49",
-        kec: "Tapen",
-        category: 'padi' 
+        produktivitas: "6.49"
     },
     { 
-        id: 'padi-wonosari', 
+        id_panen: 'padi-wonosari', 
         position: [437, 438], 
+        kecamatan: "Wonosari",
         title: 'Padi', 
-        luaspanen: "3914",
+        category: 'padi' ,
+        luas_panen: "3914",
         produksi: "25229",
-        produktivitas: "6.45",
-        kec: "Wonosari",
-        category: 'padi' 
+        produktivitas: "6.45"
     },
     { 
-        id: 'padi-tenggarang', 
+        id_panen: 'padi-tenggarang', 
         position: [379, 493], 
+        kecamatan: "Tenggarang",
         title: 'Padi', 
-        luaspanen: "4211",
+        category: 'padi' ,
+        luas_panen: "4211",
         produksi: "27299",
-        produktivitas: "6.48",
-        kec: "Tenggarang",
-        category: 'padi' 
+        produktivitas: "6.48"
     },
     { 
-        id: 'padi-bondowoso', 
+        id_panen: 'padi-bondowoso', 
         position: [326, 453], 
+        kecamatan: "Bondowoso",
         title: 'Padi', 
-        luaspanen: "2577",
+        category: 'padi' ,
+        luas_panen: "2577",
         produksi: "16156",
-        produktivitas: "6.27",
-        kec: "Bondowoso",
-        category: 'padi' 
+        produktivitas: "6.27"
     },
     { 
-        id: 'padi-curahdami', 
+        id_panen: 'padi-curahdami', 
         position: [271, 500], 
+        kecamatan: "Curahdami",
         title: 'Padi', 
-        luaspanen: "2627",
+        category: 'padi' ,
+        luas_panen: "2627",
         produksi: "14191",
-        produktivitas: "5.4",
-        kec: "Curahdami",
-        category: 'padi' 
+        produktivitas: "5.4"
     },
     { 
-        id: 'padi-binakal', 
+        id_panen: 'padi-binakal', 
         position: [261, 430], 
+        kecamatan: "Binakal",
         title: 'Padi', 
-        luaspanen: "2161",
+        category: 'padi' ,
+        luas_panen: "2161",
         produksi: "11842",
-        produktivitas: "5.48",
-        kec: "Binakal",
-        category: 'padi' 
+        produktivitas: "5.48"
     },
     { 
-        id: 'padi-pakem', 
+        id_panen: 'padi-pakem', 
         position: [177, 435], 
+        kecamatan: "Pakem",
         title: 'Padi', 
-        luaspanen: "2409",
+        category: 'padi' ,
+        luas_panen: "2409",
         produksi: "13308",
-        produktivitas: "5.48",
-        kec: "Pakem",
-        category: 'padi' 
+        produktivitas: "5.48"
     },
     { 
-        id: 'padi-wringin', 
+        id_panen: 'padi-wringin', 
         position: [276, 354], 
+        kecamatan: "Wringin",
         title: 'Padi', 
-        luaspanen: "2447",
+        category: 'padi' ,
+        luas_panen: "2447",
         produksi: "13281",
-        produktivitas: "5.43",
-        kec: "Wringin",
-        category: 'padi' 
+        produktivitas: "5.43"
     },
     { 
-        id: 'padi-tegalampel', 
+        id_panen: 'padi-tegalampel', 
         position: [347, 421], 
+        kecamatan: "Tegal Ampel",
         title: 'Padi', 
-        luaspanen: "2265",
+        category: 'padi' ,
+        luas_panen: "2265",
         produksi: "13700",
-        produktivitas: "6.05",
-        kec: "Tegal Ampel",
-        category: 'padi' 
+        produktivitas: "6.05"
     },
     { 
-        id: 'padi-tamankrocok', 
+        id_panen: 'padi-tamankrocok', 
         position: [420, 384], 
+        kecamatan: "Taman Krocok",
         title: 'Padi', 
-        luaspanen: "1455",
+        category: 'padi' ,
+        luas_panen: "1455",
         produksi: "8619",
-        produktivitas: "5.92",
-        kec: "Taman Krocok",
-        category: 'padi' 
+        produktivitas: "5.92"
     },
     { 
-        id: 'padi-klabang', 
+        id_panen: 'padi-klabang', 
         position: [495, 323], 
+        kecamatan: "Klabang",
         title: 'Padi', 
-        luaspanen: "3824",
+        category: 'padi' ,
+        luas_panen: "3824",
         produksi: "23498",
-        produktivitas: "6.14",
-        kec: "Klabang",
-        category: 'padi' 
+        produktivitas: "6.14"
     },
     { 
-        id: 'padi-botolinggo', 
+        id_panen: 'padi-botolinggo', 
         position: [667, 500], 
+        kecamatan: "Botolinggo",
         title: 'Padi', 
-        luaspanen: "3057",
+        category: 'padi' ,
+        luas_panen: "3057",
         produksi: "18775",
-        produktivitas: "6.18",
-        kec: "Botolinggo",
-        category: 'padi' 
+        produktivitas: "6.18"
     },
     { 
-        id: 'padi-prajekan', 
+        id_panen: 'padi-prajekan', 
         position: [544, 300], 
+        kecamatan: "Prajekan",
         title: 'Padi', 
-        luaspanen: "3057",
+        category: 'padi' ,
+        luas_panen: "3057",
         produksi: "18775",
-        produktivitas: "6.18",
-        kec: "Prajekan",
-        category: 'padi' 
+        produktivitas: "6.18"
     },
     { 
-        id: 'padi-cermee', 
+        id_panen: 'padi-cermee', 
         position: [690, 420], 
+        kecamatan: "Cermee",
         title: 'Padi', 
-        luaspanen: "3696",
+        category: 'padi' ,
+        luas_panen: "3696",
         produksi: "23466",
-        produktivitas: "6.35",
-        kec: "Cermee",
-        category: 'padi' 
+        produktivitas: "6.35"
     },
 
        // KELAPA (COCONUT) DATA
     {
-        id: 'kelapa-maesan',
+        id_panen: 'kelapa-maesan',
         position: [260, 615],
+        kecamatan: "Maesan",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "1579.50",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Maesan",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-grujugan',
+        id_panen: 'kelapa-grujugan',
         position: [245, 565],
+        kecamatan: "Grujugan",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "200.53",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Grujugan",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-tamanan',
+        id_panen: 'kelapa-tamanan',
         position: [372, 610],
+        kecamatan: "Tamanan",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "42.50",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Tamanan",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-jambesari',
+        id_panen: 'kelapa-jambesari',
         position: [389, 550],
+        kecamatan: "Jambesari Darus Sholah",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "15.30",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Jambesari Darus Sholah",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-sukosari',
+        id_panen: 'kelapa-sukosari',
         position: [505, 485],
+        kecamatan: "Sukosari",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "71.00",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Sukosari",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-sumberwringin',
+        id_panen: 'kelapa-sumberwringin',
         position: [635, 630],
+        kecamatan: "Sumber Wringin",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "35.70",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Sumber Wringin",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-tapen',
+        id_panen: 'kelapa-tapen',
         position: [515, 465],
+        kecamatan: "Tapen",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "273.60",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Tapen",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-wonosari',
+        id_panen: 'kelapa-wonosari',
         position: [415, 465],
+        kecamatan: "Wonosari",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "17.33",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Wonosari",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-bondowoso',
+        id_panen: 'kelapa-bondowoso',
         position: [330, 472],
+        kecamatan: "Bondowoso",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "147.20",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Bondowoso",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-curahdami',
+        id_panen: 'kelapa-curahdami',
         position: [295, 505],
+        kecamatan: "Curahdami",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "262.20",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Curahdami",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-binakal',
+        id_panen: 'kelapa-binakal',
         position: [225, 465],
+        kecamatan: "Binakal",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "184.80",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Binakal",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-pakem',
+        id_panen: 'kelapa-pakem',
         position: [189, 425],
+        kecamatan: "Pakem",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "68.32",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Pakem",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-tamankrocok',
+        id_panen: 'kelapa-tamankrocok',
         position: [450, 370],
+        kecamatan: "Taman Krocok",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "92.85",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Taman Krocok",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-klabang',
+        id_panen: 'kelapa-klabang',
         position: [470, 345],
+        kecamatan: "Klabang",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "3.87",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Klabang",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-botolinggo',
+        id_panen: 'kelapa-botolinggo',
         position: [690, 550],
+        kecamatan: "Botolinggo",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "33.85",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Botolinggo",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-prajekan',
+        id_panen: 'kelapa-prajekan',
         position: [630, 340],
+        kecamatan: "Prajekan",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "33.85",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Prajekan",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     {
-        id: 'kelapa-cermee',
+        id_panen: 'kelapa-cermee',
         position: [710, 480],
+        kecamatan: "Cermee",
         title: 'Kelapa',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kelapa',
+        luas_panen: "0",
         produksi: "35.18",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Cermee",
-        category: 'kelapa'
+        produktivitas: "0"
     },
     
     // KOPI (COFFEE) DATA
     {
-        id: 'kopi-maesan',
+        id_panen: 'kopi-maesan',
         position: [250, 608],
+        kecamatan: "Maesan",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "846.43",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Maesan",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-grujugan',
+        id_panen: 'kopi-grujugan',
         position: [255, 540],
+        kecamatan: "Grujugan",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "174.91",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Grujugan",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-tamanan',
+        id_panen: 'kopi-tamanan',
         position: [334, 598],
+        kecamatan: "Tamanan",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "9.89",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Tamanan",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-pujer',
+        id_panen: 'kopi-pujer',
         position: [430, 540],
+        kecamatan: "Pujer",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "2.25",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Pujer",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-tlogosari',
+        id_panen: 'kopi-tlogosari',
         position: [535, 635],
+        kecamatan: "Tlogosari",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "452.10",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Tlogosari",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-sukosari',
+        id_panen: 'kopi-sukosari',
         position: [479, 495],
+        kecamatan: "Sukosari",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "155.00",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Sukosari",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-sumberwringin',
+        id_panen: 'kopi-sumberwringin',
         position: [665, 630],
+        kecamatan: "Sumber Wringin",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "4902.57",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Sumber Wringin",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-curahdami',
+        id_panen: 'kopi-curahdami',
         position: [295, 445],
+        kecamatan: "Curahdami",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "114.12",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Curahdami",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-binakal',
+        id_panen: 'kopi-binakal',
         position: [265, 400],
+        kecamatan: "Binakal",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "26.38",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Binakal",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-pakem',
+        id_panen: 'kopi-pakem',
         position: [135, 500],
+        kecamatan: "Pakem",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "172.37",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Pakem",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-tegalampel',
+        id_panen: 'kopi-tegalampel',
         position: [340, 375],
+        kecamatan: "Tegal Ampel",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "6.58",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Tegal Ampel",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-tamankrocok',
+        id_panen: 'kopi-tamankrocok',
         position: [380, 370],
+        kecamatan: "Taman Krocok",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "60.75",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Taman Krocok",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-klabang',
+        id_panen: 'kopi-klabang',
         position: [480, 300],
+        kecamatan: "Klabang",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "170.44",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Klabang",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-ijen',
+        id_panen: 'kopi-ijen',
         position: [860, 640],
+        kecamatan: "Ijen",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "853.40",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Ijen",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-botolinggo',
+        id_panen: 'kopi-botolinggo',
         position: [635, 500],
+        kecamatan: "Botolinggo",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "372.34",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Botolinggo",
-        category: 'kopi'
+        produktivitas: "0"
     },
     {
-        id: 'kopi-cermee',
+        id_panen: 'kopi-cermee',
         position: [680, 270],
+        kecamatan: "Cermee",
         title: 'Kopi',
-        luaspanen: "0", // Add appropriate value if available
+        category: 'kopi',
+        luas_panen: "0",
         produksi: "119.71",
-        produktivitas: "0", // Add appropriate value if available
-        kec: "Cermee",
-        category: 'kopi'
+        produktivitas: "0"
     }
 ];

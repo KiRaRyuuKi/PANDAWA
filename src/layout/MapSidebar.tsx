@@ -41,9 +41,13 @@ export function Sidebar({ onSelectKecamatan, isOpen, toggleSidebar }) {
                     ) : (
                         // Changed this section to make the logo clickable when sidebar is collapsed
                         <div className="flex justify-center w-full">
-                            <a href="/" className="flex items-center gap-2">
+                            <button
+                                onClick={toggleSidebar}
+                                className="cursor-pointer flex items-center justify-center"
+                                title="Expand sidebar"
+                            >
                                 <Image src="/images/logo/logo-icon-pandawa.png" width={28} height={28} alt="Logo" />
-                            </a>
+                            </button>
                         </div>
                     )}
                 </div>

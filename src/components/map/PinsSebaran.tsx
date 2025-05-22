@@ -6,55 +6,59 @@ const PIN_ZOOM_SCALE = 2.5;
 
 // Define pin interface
 export interface PinData {
-    id: string;
+    id_panen: string;
     position: [number, number];
+    kecamatan?: string;
     title: string;
-    deskripsi?: string;
-    population?: number;
-    laju?: string;
     area?: string;
-    komoditastertinggi?: string;
+    deskripsi?: string;
+    luas_panen?: string;
+    population?: number;
+    produksi?: string;
+    produktivitas?: string;
+    laju_pertumbuhan?: string;
+    komoditas_tertinggi?: string;
     category: string;
     color?: string;
     gambar?: string;
-    customIcon?: string;
+    custom_icon?: string;
 }
 
 // Define pin categories with improved icons and colors
 export const pinCategories = [
     {
-        id: 'all',
+        id_panen: 'all',
         label: 'Semua Kategori',
         color: '#EA4335',
         icon: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
     },
     {
-        id: 'padi',
+        id_panen: 'padi',
         label: 'Padi',
         color: '#16a34a' ,
         icon: '/pins/iconPadi.png',
         type: 'image',
     },
     {
-        id: 'jagung',
+        id_panen: 'jagung',
         label: 'Jagung',
         color: '#facc15',
         icon: '/pins/iconJagung.png',
     },
     {
-        id: 'ubi',
+        id_panen: 'ubi',
         label: 'Ubi Kayu',
         color: '#a16207',
         icon: '/pins/ubi.png',
     },
     {
-        id: 'kelapa',
+        id_panen: 'kelapa',
         label: 'Kelapa',
         color: '#10b981',
         icon: '/pins/kelapa.png',
     },
     {
-        id: 'kopi',
+        id_panen: 'kopi',
         label: 'Kopi',
         color: '#6b3e26',
         icon: '/pins/kopi.png',
@@ -86,7 +90,7 @@ export const createPins = (
         .data(pins)
         .enter()
         .append("g")
-        .attr("class", d => `pin pin-${d.id}`)
+        .attr("class", d => `pin pin-${d.id_panen}`)
         .attr("data-category", d => d.category)
         .attr("transform", d => `translate(${d.position[0]}, ${d.position[1]})`)
         .style("cursor", "pointer")
@@ -98,15 +102,15 @@ export const createPins = (
     // Tambahkan isi pin
     pinElements.each(function (d) {
         const pin = d3.select(this);
-        const category = pinCategories.find(cat => cat.id === d.category) || pinCategories[0];
+        const category = pinCategories.find(cat => cat.id_panen === d.category) || pinCategories[0];
 
         pin.attr("data-color", d.color || category.color);
-        pin.attr("data-icon", d.customIcon || category.icon);
+        pin.attr("data-icon", d.custom_icon || category.icon);
 
         // Drop shadow
         const defs = pin.append("defs");
         const filter = defs.append("filter")
-            .attr("id", `drop-shadow-${d.id}`)
+            .attr("id_panen", `drop-shadow-${d.id_panen}`)
             .attr("x", "-50%")
             .attr("y", "-50%")
             .attr("width", "200%")
@@ -132,7 +136,7 @@ export const createPins = (
             .attr("fill", d.color || category.color)
             .attr("stroke", "white")
             .attr("stroke-width", 1.5)
-            .attr("filter", `url(#drop-shadow-${d.id})`);
+            .attr("filter", `url(#drop-shadow-${d.id_panen})`);
 
             pin.append("image")
             .attr("class", "pin-icon")
@@ -216,7 +220,7 @@ export const createPins = (
 
             svg.transition()
                 .duration(750)
-                .call(zoom.transform, transform);
+                .call(zoom.transform, transform);      
         });
 };
 
