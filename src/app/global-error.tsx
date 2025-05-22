@@ -1,6 +1,6 @@
 "use client";
 
-import ErrorPage from "@/components/status/StatusError";
+import ErrorPage from "@/components/status/Error";
 import { useEffect } from "react";
 
 interface GlobalErrorProps {
