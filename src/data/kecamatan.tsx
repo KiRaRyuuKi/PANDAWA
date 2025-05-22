@@ -1,4 +1,22 @@
-export const Kecamatan = [
+export interface DataKecamatan {
+    id_kecamatan: number;
+    name: string;
+    path: string;
+    center: [number, number];
+    defaultColor: string;
+}
+
+export interface Kecamatan extends DataKecamatan {
+    title?: string;
+    gambar?: string | null;
+    deskripsi?: string;
+    luas_area?: string | number;
+    population?: string | number;
+    laju_pertumbuhan?: string;
+    komoditas_tertinggi?: string;
+}
+
+export const dataKecamatan: DataKecamatan[] = [
     {
         id_kecamatan: 1,
         name: "Binakal",

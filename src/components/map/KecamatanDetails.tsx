@@ -1,6 +1,20 @@
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
+// Define the interface for KecamatanDetailProps
+interface KecamatanDetailProps {
+    containerWidth: number;
+    containerHeight: number;
+    kecamatan: {
+        title: string;
+        kecamatanName: string;
+        luaspanen: string;
+        produksi: string;
+        produktivitas: string;
+    } | null;
+    svg: d3.Selection<SVGSVGElement, unknown, null, undefined> | null;
+}
+
 export function KecamatanDetail({ containerWidth, containerHeight, kecamatan, svg }: KecamatanDetailProps) {
     const detailRef = useRef<{
         kecamatanName: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
@@ -10,7 +24,7 @@ export function KecamatanDetail({ containerWidth, containerHeight, kecamatan, sv
         luasPanen: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
         produksi: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
         produktivitas: d3.Selection<SVGTextElement, unknown, null, undefined> | null;
-    }>( {
+    }>({
         kecamatanName: null,
         kecamatanInfo: null,
         kecamatanTitle: null,
@@ -82,21 +96,20 @@ export function KecamatanDetail({ containerWidth, containerHeight, kecamatan, sv
         if (kecamatan) {
             const toNumber = (val: string) =>
                 isNaN(parseFloat(val.replace(',', '.'))) ? null : parseFloat(val.replace(',', '.'));
-        
+
             const formatNumber = (val: string) => {
                 const num = toNumber(val);
                 return num !== null ? num.toLocaleString('id-ID') : val;
             };
-        
+
             detailRef.current.kecamatanTitle?.text(kecamatan.title);
             detailRef.current.luasPanen?.text(`Luas Panen: ${formatNumber(kecamatan.luaspanen)} ha`);
             detailRef.current.produksi?.text(`Produksi: ${formatNumber(kecamatan.produksi)} ton`);
             detailRef.current.produktivitas?.text(`Produktivitas: ${formatNumber(kecamatan.produktivitas)} ton/ha`);
             detailRef.current.kecamatanName?.text(`${kecamatan.kecamatanName}`);
-        
+
             detailRef.current.kecamatanInfo?.transition().duration(300).style("opacity", 1);
         }
-        
         else {
             info.transition().duration(300).style("opacity", 0);
         }

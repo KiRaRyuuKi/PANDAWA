@@ -16,7 +16,7 @@ export function Controls({
     containerHeight,
     resetView
 }: ZoomControlsProps) {
-    const controlsRef = useRef(null);
+    const controlsRef = useRef<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
 
     useEffect(() => {
         if (!svg || !zoom || !containerWidth || !containerHeight) return;
@@ -61,9 +61,10 @@ export function Controls({
             .on("click", (event) => {
                 event.stopPropagation();
                 event.stopImmediatePropagation();
+                // Fixed: Use the selection directly instead of calling it as a function
                 svg.transition()
                     .duration(300)
-                    .call(zoom.scaleBy, 1.5);
+                    .call(zoom.scaleBy as any, 1.5);
             });
 
         zoomInBtn.append("rect")
@@ -78,8 +79,8 @@ export function Controls({
             .attr("y", 25)
             .attr("text-anchor", "middle")
             .attr("font-size", "22px")
-            .attr("font-family", "system-ui, -apple-system, sans-serif") // Match sidebar font
-            .attr("fill", "#4b5563") // Darker gray for text similar to sidebar
+            .attr("font-family", "system-ui, -apple-system, sans-serif")
+            .attr("fill", "#4b5563")
             .attr("font-weight", "bold")
             .text("+");
 
@@ -90,9 +91,10 @@ export function Controls({
             .on("click", (event) => {
                 event.stopPropagation();
                 event.stopImmediatePropagation();
+                // Fixed: Use the selection directly instead of calling it as a function
                 svg.transition()
                     .duration(300)
-                    .call(zoom.scaleBy, 0.7);
+                    .call(zoom.scaleBy as any, 0.7);
             });
 
         zoomOutBtn.append("rect")
@@ -154,9 +156,7 @@ export function Controls({
                 d3.select(this).attr("fill", "#f9fafb");
             });
 
-        if (controlsRef.current) {
-            controlsRef.current = controlsContainer;
-        }
+        controlsRef.current = controlsContainer;
 
         return () => {
             d3.select(".zoom-controls").remove();
@@ -197,7 +197,7 @@ export function calculateZoomTransform(width: number, height: number, bounds: an
     const scaleY = height / boundsHeight;
 
     // Use the smaller scale so the entire map is visible
-    const scale = Math.min(scaleX, scaleY) * 0.9; // 0.9 to add a little padding
+    const scale = Math.min(scaleX, scaleY) * 0.9;
 
     // Check that scale is valid
     if (isNaN(scale) || scale <= 0) {

@@ -16,7 +16,7 @@ export const FilterPanel = ({
     pinCategories
 }: FilterProps) => {
     const [collapsed, setCollapsed] = useState(true);
-    const [width, setWidth] = useState(200); // Default width
+    const [width, setWidth] = useState(200);
 
     const handleResize = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -24,7 +24,7 @@ export const FilterPanel = ({
         const startWidth = width;
 
         const doDrag = (e: MouseEvent) => {
-            const newWidth = startWidth + (startX - e.clientX); // Note the reversed calculation
+            const newWidth = startWidth + (startX - e.clientX);
             setWidth(Math.max(150, Math.min(400, newWidth)));
         };
 

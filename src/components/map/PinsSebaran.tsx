@@ -35,7 +35,7 @@ export const pinCategories = [
     {
         id_panen: 'padi',
         label: 'Padi',
-        color: '#16a34a' ,
+        color: '#16a34a',
         icon: '/pins/iconPadi.png',
         type: 'image',
     },
@@ -63,7 +63,6 @@ export const pinCategories = [
         color: '#6b3e26',
         icon: '/pins/kopi.png',
     },
-    
 ];
 
 // Function to create pins on the map
@@ -80,7 +79,7 @@ export const createPins = (
     // Remove existing pins to avoid duplicates
     g.select(".pin-group").remove();
 
-    // Create a group for pins (ikut transform dari g)
+    // Create a group for pins
     const pinGroup = g.append("g")
         .attr("class", "pin-group")
         .style("display", showPins ? "block" : "none");
@@ -110,7 +109,7 @@ export const createPins = (
         // Drop shadow
         const defs = pin.append("defs");
         const filter = defs.append("filter")
-            .attr("id_panen", `drop-shadow-${d.id_panen}`)
+            .attr("id", `drop-shadow-${d.id_panen}`)
             .attr("x", "-50%")
             .attr("y", "-50%")
             .attr("width", "200%")
@@ -138,13 +137,13 @@ export const createPins = (
             .attr("stroke-width", 1.5)
             .attr("filter", `url(#drop-shadow-${d.id_panen})`);
 
-            pin.append("image")
+        pin.append("image")
             .attr("class", "pin-icon")
             .attr("x", -6)
             .attr("y", -6)
-            .attr("width", 12)  // Ukuran gambar, bisa disesuaikan
+            .attr("width", 12)
             .attr("height", 12)
-            .attr("xlink:href", category.icon);  // Pastikan ini benar
+            .attr("xlink:href", category.icon);
 
         const fo = pin.append("foreignObject")
             .attr("x", -40)
@@ -155,7 +154,7 @@ export const createPins = (
             .style("pointer-events", "none")
             .attr("class", "pin-bubble")
             .style("opacity", 0);
-        
+
         fo.append("xhtml:div")
             .style("background", "white")
             .style("border", "1px solid #ccc")
@@ -167,50 +166,48 @@ export const createPins = (
             .style("box-shadow", "0 2px 6px rgba(0,0,0,0.15)")
             .style("transition", "opacity 0.3s ease, transform 0.3s ease")
             .text(d.title);
-        
-        
-            
     });
 
-    // ❌ Hapus updatePinsOnZoom dan jangan override zoom transform
+    // Remove the problematic zoom event listener
     svg.on("zoom.pins", null);
 
     // Hover dan click
     pinElements
-    .on("mouseover", function () {
-        d3.select(this).raise();
-        d3.select(this).selectAll("circle")
-            .transition()
-            .duration(200)
-            .attr("r", 12)
-            .attr("stroke-width", 2.5);
-    
-        d3.select(this).select(".pin-bubble")
-            .transition()
-            .duration(200)
-            .style("opacity", 1)
-            .style("transform", "translateY(-5px)");
-    })
-    .on("mouseout", function () {
-        d3.select(this).selectAll("circle")
-            .transition()
-            .duration(200)
-            .attr("r", 10)
-            .attr("stroke-width", 1.5);
-    
-        d3.select(this).select(".pin-bubble")
-            .transition()
-            .duration(200)
-            .style("opacity", 0)
-            .style("transform", "translateY(0px)");
-    })
-    
+        .on("mouseover", function () {
+            d3.select(this).raise();
+            d3.select(this).selectAll("circle")
+                .transition()
+                .duration(200)
+                .attr("r", 12)
+                .attr("stroke-width", 2.5);
+
+            d3.select(this).select(".pin-bubble")
+                .transition()
+                .duration(200)
+                .style("opacity", 1)
+                .style("transform", "translateY(-5px)");
+        })
+        .on("mouseout", function () {
+            d3.select(this).selectAll("circle")
+                .transition()
+                .duration(200)
+                .attr("r", 10)
+                .attr("stroke-width", 1.5);
+
+            d3.select(this).select(".pin-bubble")
+                .transition()
+                .duration(200)
+                .style("opacity", 0)
+                .style("transform", "translateY(0px)");
+        })
         .on("click", function (event, d) {
             event.stopPropagation();
             setSelectedPin(d);
 
-            const containerWidth = containerRef.current!.clientWidth;
-            const containerHeight = containerRef.current!.clientHeight;
+            if (!containerRef.current) return;
+
+            const containerWidth = containerRef.current.clientWidth;
+            const containerHeight = containerRef.current.clientHeight;
 
             const transform = d3.zoomIdentity
                 .translate(containerWidth / 2, containerHeight / 2)
@@ -218,12 +215,12 @@ export const createPins = (
                 .translate(-d.position[0], -d.position[1])
                 .translate(DEFAULT_ZOOM_OFFSET.x, DEFAULT_ZOOM_OFFSET.y);
 
+            // Fixed: Use the selection directly instead of calling it as a function
             svg.transition()
                 .duration(750)
-                .call(zoom.transform, transform);      
+                .call(zoom.transform as any, transform);
         });
 };
-
 
 // Function to update pin visibility based on filters
 export const updatePinVisibility = (
