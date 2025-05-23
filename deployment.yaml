@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: pandawa
-          image: kiraryuuki/pandawa:latest
+          image: kiraryuuki/pandawa:0.8.2
           ports:
             - containerPort: 3000
               name: http
