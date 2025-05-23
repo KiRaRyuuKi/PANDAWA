@@ -12739,10 +12739,10 @@ export namespace Prisma {
     readonly id_prediksi: FieldRef<"PrediksiPanen", 'Int'>
     readonly id_kecamatan: FieldRef<"PrediksiPanen", 'Int'>
     readonly id_komoditas: FieldRef<"PrediksiPanen", 'Int'>
-    readonly luas_panen: FieldRef<"PrediksiPanen", 'Int'>
+    readonly luas_panen: FieldRef<"PrediksiPanen", 'Float'>
     readonly tahun_prediksi: FieldRef<"PrediksiPanen", 'Int'>
-    readonly hasil_prediksi: FieldRef<"PrediksiPanen", 'Int'>
-    readonly hasil_rata_rata: FieldRef<"PrediksiPanen", 'Int'>
+    readonly hasil_prediksi: FieldRef<"PrediksiPanen", 'Float'>
+    readonly hasil_rata_rata: FieldRef<"PrediksiPanen", 'Float'>
     readonly created_at: FieldRef<"PrediksiPanen", 'DateTime'>
     readonly updated_at: FieldRef<"PrediksiPanen", 'DateTime'>
   }
@@ -14030,10 +14030,10 @@ export namespace Prisma {
     id_prediksi?: IntFilter<"PrediksiPanen"> | number
     id_kecamatan?: IntFilter<"PrediksiPanen"> | number
     id_komoditas?: IntFilter<"PrediksiPanen"> | number
-    luas_panen?: IntFilter<"PrediksiPanen"> | number
+    luas_panen?: FloatFilter<"PrediksiPanen"> | number
     tahun_prediksi?: IntFilter<"PrediksiPanen"> | number
-    hasil_prediksi?: IntFilter<"PrediksiPanen"> | number
-    hasil_rata_rata?: IntFilter<"PrediksiPanen"> | number
+    hasil_prediksi?: FloatFilter<"PrediksiPanen"> | number
+    hasil_rata_rata?: FloatFilter<"PrediksiPanen"> | number
     created_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     updated_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     kecamatan?: XOR<KecamatanScalarRelationFilter, KecamatanWhereInput>
@@ -14061,10 +14061,10 @@ export namespace Prisma {
     NOT?: PrediksiPanenWhereInput | PrediksiPanenWhereInput[]
     id_kecamatan?: IntFilter<"PrediksiPanen"> | number
     id_komoditas?: IntFilter<"PrediksiPanen"> | number
-    luas_panen?: IntFilter<"PrediksiPanen"> | number
+    luas_panen?: FloatFilter<"PrediksiPanen"> | number
     tahun_prediksi?: IntFilter<"PrediksiPanen"> | number
-    hasil_prediksi?: IntFilter<"PrediksiPanen"> | number
-    hasil_rata_rata?: IntFilter<"PrediksiPanen"> | number
+    hasil_prediksi?: FloatFilter<"PrediksiPanen"> | number
+    hasil_rata_rata?: FloatFilter<"PrediksiPanen"> | number
     created_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     updated_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     kecamatan?: XOR<KecamatanScalarRelationFilter, KecamatanWhereInput>
@@ -14095,10 +14095,10 @@ export namespace Prisma {
     id_prediksi?: IntWithAggregatesFilter<"PrediksiPanen"> | number
     id_kecamatan?: IntWithAggregatesFilter<"PrediksiPanen"> | number
     id_komoditas?: IntWithAggregatesFilter<"PrediksiPanen"> | number
-    luas_panen?: IntWithAggregatesFilter<"PrediksiPanen"> | number
+    luas_panen?: FloatWithAggregatesFilter<"PrediksiPanen"> | number
     tahun_prediksi?: IntWithAggregatesFilter<"PrediksiPanen"> | number
-    hasil_prediksi?: IntWithAggregatesFilter<"PrediksiPanen"> | number
-    hasil_rata_rata?: IntWithAggregatesFilter<"PrediksiPanen"> | number
+    hasil_prediksi?: FloatWithAggregatesFilter<"PrediksiPanen"> | number
+    hasil_rata_rata?: FloatWithAggregatesFilter<"PrediksiPanen"> | number
     created_at?: DateTimeWithAggregatesFilter<"PrediksiPanen"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"PrediksiPanen"> | Date | string
   }
@@ -14788,10 +14788,10 @@ export namespace Prisma {
   }
 
   export type PrediksiPanenUpdateInput = {
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     kecamatan?: KecamatanUpdateOneRequiredWithoutPrediksi_panenNestedInput
@@ -14802,10 +14802,10 @@ export namespace Prisma {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14823,10 +14823,10 @@ export namespace Prisma {
   }
 
   export type PrediksiPanenUpdateManyMutationInput = {
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14835,10 +14835,10 @@ export namespace Prisma {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16884,10 +16884,10 @@ export namespace Prisma {
     id_prediksi?: IntFilter<"PrediksiPanen"> | number
     id_kecamatan?: IntFilter<"PrediksiPanen"> | number
     id_komoditas?: IntFilter<"PrediksiPanen"> | number
-    luas_panen?: IntFilter<"PrediksiPanen"> | number
+    luas_panen?: FloatFilter<"PrediksiPanen"> | number
     tahun_prediksi?: IntFilter<"PrediksiPanen"> | number
-    hasil_prediksi?: IntFilter<"PrediksiPanen"> | number
-    hasil_rata_rata?: IntFilter<"PrediksiPanen"> | number
+    hasil_prediksi?: FloatFilter<"PrediksiPanen"> | number
+    hasil_rata_rata?: FloatFilter<"PrediksiPanen"> | number
     created_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
     updated_at?: DateTimeFilter<"PrediksiPanen"> | Date | string
   }
@@ -17533,10 +17533,10 @@ export namespace Prisma {
   }
 
   export type PrediksiPanenUpdateWithoutKecamatanInput = {
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     komoditas?: KomoditasUpdateOneRequiredWithoutPrediksi_panenNestedInput
@@ -17545,10 +17545,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedUpdateWithoutKecamatanInput = {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17556,10 +17556,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedUpdateManyWithoutKecamatanInput = {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_komoditas?: IntFieldUpdateOperationsInput | number
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17668,10 +17668,10 @@ export namespace Prisma {
   }
 
   export type PrediksiPanenUpdateWithoutKomoditasInput = {
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     kecamatan?: KecamatanUpdateOneRequiredWithoutPrediksi_panenNestedInput
@@ -17680,10 +17680,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedUpdateWithoutKomoditasInput = {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17691,10 +17691,10 @@ export namespace Prisma {
   export type PrediksiPanenUncheckedUpdateManyWithoutKomoditasInput = {
     id_prediksi?: IntFieldUpdateOperationsInput | number
     id_kecamatan?: IntFieldUpdateOperationsInput | number
-    luas_panen?: IntFieldUpdateOperationsInput | number
+    luas_panen?: FloatFieldUpdateOperationsInput | number
     tahun_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_prediksi?: IntFieldUpdateOperationsInput | number
-    hasil_rata_rata?: IntFieldUpdateOperationsInput | number
+    hasil_prediksi?: FloatFieldUpdateOperationsInput | number
+    hasil_rata_rata?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

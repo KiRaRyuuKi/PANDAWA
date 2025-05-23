@@ -5,9 +5,9 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/lib/generated/prisma"
-  binaryTargets = ["native", "debian-openssl-3.0.x", "linux-musl-openssl-3.0.x"]
+  provider      = "prisma-client-js"
+  output        = "../src/lib/generated/prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-3.0.x"]
 }
 
 datasource database {
@@ -159,10 +159,10 @@ model PrediksiPanen {
   kecamatan       Kecamatan @relation(fields: [id_kecamatan], references: [id_kecamatan])
   id_komoditas    Int
   komoditas       Komoditas @relation(fields: [id_komoditas], references: [id_komoditas])
-  luas_panen      Int
+  luas_panen      Float
   tahun_prediksi  Int
-  hasil_prediksi  Int
-  hasil_rata_rata Int
+  hasil_prediksi  Float
+  hasil_rata_rata Float
 
   created_at DateTime @default(now()) @map("created_at")
   updated_at DateTime @updatedAt @map("updated_at")

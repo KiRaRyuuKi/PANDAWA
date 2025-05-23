@@ -31,7 +31,7 @@ async function main() {
 }
 
 async function clearDatabase() {
-    console.log('♻️ : Clearing existing data...');
+    console.log('♻️  : Clearing existing data...');
 
     // Delete in correct order to respect foreign key constraints
     await prisma.prediksiPanen.deleteMany({});
@@ -45,7 +45,7 @@ async function clearDatabase() {
     await prisma.detail.deleteMany({});
     await prisma.user.deleteMany({});
 
-    console.log('🟢 : Database cleared');
+    console.log('👍 : Database cleared');
 }
 
 async function seedUsers() {
@@ -73,7 +73,7 @@ async function seedUsers() {
         }
     });
 
-    console.log(`🟢 : Created users`);
+    console.log(`👍 : Created users`);
 }
 
 async function seedKomoditas() {
@@ -95,11 +95,11 @@ async function seedKomoditas() {
         });
     }
 
-    console.log(`🟢 : Created ${komoditasData.length} komoditas`);
+    console.log(`👍 : Created ${komoditasData.length} komoditas`);
 }
 
 async function seedKecamatan() {
-    console.log('🏛️ : Seeding kecamatan...');
+    console.log('🏛️  : Seeding kecamatan...');
 
     // Get all komoditas for reference
     const komoditas = await prisma.komoditas.findMany();
@@ -274,11 +274,11 @@ async function seedKecamatan() {
         });
     }
 
-    console.log(`🟢 : Created ${kecamatanData.length} kecamatan`);
+    console.log(`👍 : Created ${kecamatanData.length} kecamatan`);
 }
 
 async function seedPenduduk() {
-    console.log('🎗️ : Seeding penduduk...');
+    console.log('🎗️  : Seeding penduduk...');
 
     // Get all kecamatan for reference
     const kecamatan = await prisma.kecamatan.findMany();
@@ -430,7 +430,7 @@ async function seedPenduduk() {
         });
     }
 
-    console.log(`🟢 : Created ${pendudukData.length} penduduk records`);
+    console.log(`👍 : Created ${pendudukData.length} penduduk records`);
 }
 
 async function seedHasilPanen() {
@@ -647,7 +647,7 @@ async function seedHasilPanen() {
         });
     }
 
-    console.log(`🟢 : Created ${hasilPanenData.length} hasil panen records`);
+    console.log(`👍 : Created ${hasilPanenData.length} hasil panen records`);
 }
 
 async function seedPrediksiPanen() {
@@ -850,7 +850,7 @@ async function seedPrediksiPanen() {
         });
     }
 
-    console.log(`🟢 : Created ${prediksiPanenData.length} prediksi panen records`);
+    console.log(`👍 : Created ${prediksiPanenData.length} prediksi panen records`);
   }
 
 main()
