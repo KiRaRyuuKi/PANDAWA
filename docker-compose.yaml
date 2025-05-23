@@ -6,12 +6,12 @@ services:
       target: production
     restart: unless-stopped
     networks:
-      - pandawa-network
+      - application-network
     environment:
       - NEXTAUTH_URL=${NEXTAUTH_URL}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       - DATABASE_URL=${DATABASE_URL}
-      
+
   application-second:
     build:
       context: .
@@ -19,12 +19,12 @@ services:
       target: production
     restart: unless-stopped
     networks:
-      - pandawa-network
+      - application-network
     environment:
       - NEXTAUTH_URL=${NEXTAUTH_URL}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       - DATABASE_URL=${DATABASE_URL}
-      
+
   application-third:
     build:
       context: .
@@ -32,12 +32,12 @@ services:
       target: production
     restart: unless-stopped
     networks:
-      - pandawa-network
+      - application-network
     environment:
       - NEXTAUTH_URL=${NEXTAUTH_URL}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       - DATABASE_URL=${DATABASE_URL}
-      
+
   application-fourth:
     build:
       context: .
@@ -45,12 +45,12 @@ services:
       target: production
     restart: unless-stopped
     networks:
-      - pandawa-network
+      - application-network
     environment:
       - NEXTAUTH_URL=${NEXTAUTH_URL}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       - DATABASE_URL=${DATABASE_URL}
-      
+
   application-fifth:
     build:
       context: .
@@ -58,12 +58,12 @@ services:
       target: production
     restart: unless-stopped
     networks:
-      - pandawa-network
+      - application-network
     environment:
       - NEXTAUTH_URL=${NEXTAUTH_URL}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       - DATABASE_URL=${DATABASE_URL}
-      
+
   nginx:
     image: nginx:alpine
     ports:
@@ -71,7 +71,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
-      - pandawa-network
+      - application-network
     depends_on:
       - application-first
       - application-second
@@ -80,5 +80,5 @@ services:
       - application-fifth
 
 networks:
-  pandawa-network:
+  application-network:
     driver: bridge
