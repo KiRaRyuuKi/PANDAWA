@@ -8,9 +8,9 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
+      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
   application-second:
     build:
@@ -21,9 +21,9 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
+      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
   application-third:
     build:
@@ -34,9 +34,9 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
+      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
   application-fourth:
     build:
@@ -47,9 +47,9 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
+      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
   application-fifth:
     build:
@@ -60,9 +60,9 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
+      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
   nginx:
     image: nginx:alpine
