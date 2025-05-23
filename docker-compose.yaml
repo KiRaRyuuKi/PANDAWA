@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: development
+      target: production
     expose:
       - "3000"
     restart: unless-stopped
@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: development
+      target: production
     expose:
       - "3000"
     restart: unless-stopped
@@ -29,7 +29,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: development
+      target: production
     expose:
       - "3000"
     restart: unless-stopped
@@ -42,7 +42,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: development
+      target: production
     expose:
       - "3000"
     restart: unless-stopped
@@ -55,7 +55,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: development
+      target: production
     expose:
       - "3000"
     restart: unless-stopped
