@@ -682,8 +682,14 @@ export function Map() {
                     </svg>
                     <h2 className="text-xl font-semibold text-gray-700 mb-2">Memuat Peta</h2>
                     <p className="text-gray-600">
-                        {isLoadingKecamatan && "Mengambil data kecamatan, "}
-                        {isLoadingKomoditas && "dan data komoditas..."}
+                        {isLoadingKecamatan || isLoadingKomoditas ? (
+                            <>
+                                Mengambil{isLoadingKecamatan && " data kecamatan"}
+                                {isLoadingKecamatan && isLoadingKomoditas && ", dan"}
+                                {!isLoadingKecamatan && isLoadingKomoditas && " data"}
+                                {isLoadingKomoditas && " data komoditas"}...
+                            </>
+                        ) : null}
                     </p>
                 </div>
             </div>
