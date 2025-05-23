@@ -5,64 +5,80 @@ services:
       dockerfile: Dockerfile
       target: production
     restart: unless-stopped
+    networks:
+      - pandawa-network
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
-      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
-
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+      
   application-second:
     build:
       context: .
       dockerfile: Dockerfile
       target: production
     restart: unless-stopped
+    networks:
+      - pandawa-network
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
-      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
-
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+      
   application-third:
     build:
       context: .
       dockerfile: Dockerfile
       target: production
     restart: unless-stopped
+    networks:
+      - pandawa-network
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
-      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
-
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+      
   application-fourth:
     build:
       context: .
       dockerfile: Dockerfile
       target: production
     restart: unless-stopped
+    networks:
+      - pandawa-network
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
-      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
-
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+      
   application-fifth:
     build:
       context: .
       dockerfile: Dockerfile
       target: production
     restart: unless-stopped
+    networks:
+      - pandawa-network
     environment:
-      - NEXTAUTH_URL=http://localhost:30000
-      - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
-      - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
-
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+      
   nginx:
     image: nginx:alpine
     ports:
       - "30000:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - pandawa-network
     depends_on:
       - application-first
       - application-second
       - application-third
       - application-fourth
       - application-fifth
+
+networks:
+  pandawa-network:
+    driver: bridge
