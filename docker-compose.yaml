@@ -8,7 +8,7 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL=http://localhost:30000
       - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
       - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
@@ -21,7 +21,7 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL=http://localhost:30000
       - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
       - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
@@ -34,7 +34,7 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL=http://localhost:30000
       - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
       - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
@@ -47,7 +47,7 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL=http://localhost:30000
       - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
       - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
@@ -60,7 +60,7 @@ services:
       - "3000"
     restart: unless-stopped
     environment:
-      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL=http://localhost:30000
       - NEXTAUTH_SECRET=LMvrmo42yk1qmjCSiN6VuLmYETvog/d1oEWzehA4W+c=
       - DATABASE_URL=postgres://postgres:supersecretpassword@cakradigital.my.id:5432/pandawa?schema=public
 
