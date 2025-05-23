@@ -2,10 +2,11 @@
 Proyek ini menggunakan Node.js dengan Prisma sebagai ORM (Object-Relational Mapping) untuk mengelola database.
 
 ## Persyaratan
-- Node.js & NPM
-- Database (PostgreSQL/MySQL/SQLite/etc, sesuai konfigurasi Prisma)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+- Node.js & NPM
+- Database (PostgreSQL/MySQL/SQLite/etc, sesuai konfigurasi Prisma)
 
 ## Getting Started
 
