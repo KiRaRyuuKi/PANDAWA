@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pandawa-deployment
+  labels:
+    app: pandawa
 spec:
   replicas: 5
   selector:
@@ -17,13 +19,48 @@ spec:
           image: kiraryuuki/pandawa:latest
           ports:
             - containerPort: 3000
-          envFrom:
-            - configMapRef:
-                name: pandawa-config
+              name: http
+          env:
+            - name: NEXTAUTH_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: pandawa-config
+                  key: NEXTAUTH_URL
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: pandawa-config
+                  key: NODE_ENV
+            - name: NEXTAUTH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: pandawa-secret
+                  key: NEXTAUTH_SECRET
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: pandawa-secret
+                  key: DATABASE_URL
           resources:
             requests:
-              memory: "128Mi"
+              memory: "256Mi"
               cpu: "250m"
             limits:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: "1Gi"
+              cpu: "1000m"
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 10"]
