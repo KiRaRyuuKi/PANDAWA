@@ -7,6 +7,10 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Generate Prisma Client for Alpine Linux
+RUN npx prisma generate
+
 RUN npm run build
 
 FROM node:20-alpine AS development
@@ -14,6 +18,9 @@ WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Generate Prisma Client for Development
+RUN npx prisma generate
 
 EXPOSE 3000
 CMD ["npm", "run", "dev"]
@@ -26,10 +33,15 @@ ENV NODE_ENV=production
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 
+# Copy generated Prisma Client from builder stage
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.ts ./
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/src/lib/generated/prisma ./src/lib/generated/prisma
+
+# Generate Prisma Client in Production environment
+RUN npx prisma generate
 
 EXPOSE 3000
 CMD ["npm", "run", "start"]
